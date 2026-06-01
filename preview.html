@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Casa del Torero — Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --color-cream:   #F7F3EE;
+  --color-white:   #FFFFFF;
+  --color-black:   #111111;
+  --color-gold:    #B8965A;
+  --color-gold-lt: #D4B483;
+  --color-text:    #2C2C2C;
+  --color-muted:   #7A7065;
+  --color-border:  #E2D9CE;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans:  'Inter', system-ui, sans-serif;
+  --max-w: 1280px;
+  --section-py: clamp(4rem, 8vw, 8rem);
+  --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--font-sans); color: var(--color-text); background: var(--color-white); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+.container { width: 100%; max-width: var(--max-w); margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 3rem); }
+h1,h2,h3,h4 { font-family: var(--font-serif); font-weight: 400; line-height: 1.15; }
+.eyebrow { font-family: var(--font-sans); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-gold); display: block; margin-bottom: 1rem; }
+.section-title { font-size: clamp(2.25rem, 4vw, 3.75rem); color: var(--color-black); }
+.section-body { font-size: 1.0625rem; color: var(--color-muted); max-width: 52ch; line-height: 1.8; }
+
+/* BUTTONS */
+.btn { display: inline-flex; align-items: center; gap: .625rem; font-family: var(--font-sans); font-size: .75rem; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; padding: 1rem 2.25rem; border: 1px solid currentColor; transition: var(--transition); cursor: pointer; }
+.btn--primary { background: var(--color-gold); border-color: var(--color-gold); color: var(--color-white); }
+.btn--primary:hover { background: #9e7d48; border-color: #9e7d48; }
+.btn--outline { background: transparent; border-color: rgba(255,255,255,.6); color: var(--color-white); }
+.btn--outline:hover { background: var(--color-white); color: var(--color-black); }
+.btn--dark { background: transparent; border-color: var(--color-black); color: var(--color-black); }
+.btn--dark:hover { background: var(--color-black); color: var(--color-white); }
+
+/* HEADER */
+#site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 0; transition: background var(--transition), padding var(--transition), box-shadow var(--transition); }
+#site-header.scrolled { background: rgba(255,255,255,.97); backdrop-filter: blur(8px); padding: 1rem 0; box-shadow: 0 1px 0 var(--color-border); }
+#site-header .container { display: flex; align-items: center; justify-content: space-between; }
+.site-logo { font-family: var(--font-serif); font-size: 1.375rem; letter-spacing: .02em; color: var(--color-white); transition: color var(--transition); line-height: 1.2; }
+.site-logo span { display: block; font-size: .6rem; letter-spacing: .25em; text-transform: uppercase; }
+#site-header.scrolled .site-logo { color: var(--color-black); }
+.primary-nav { display: flex; align-items: center; gap: 2.5rem; }
+.primary-nav a { font-size: .6875rem; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.85); transition: color var(--transition); position: relative; }
+.primary-nav a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--color-gold); transition: width var(--transition); }
+.primary-nav a:hover { color: var(--color-white); }
+.primary-nav a:hover::after { width: 100%; }
+#site-header.scrolled .primary-nav a { color: var(--color-muted); }
+#site-header.scrolled .primary-nav a:hover { color: var(--color-black); }
+.nav-cta { font-size: .6875rem; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; padding: .625rem 1.5rem; border: 1px solid rgba(255,255,255,.6); color: var(--color-white); transition: var(--transition); }
+.nav-cta:hover { background: var(--color-white); border-color: var(--color-white); color: var(--color-black); }
+#site-header.scrolled .nav-cta { border-color: var(--color-gold); color: var(--color-gold); }
+#site-header.scrolled .nav-cta:hover { background: var(--color-gold); color: var(--color-white); }
+.nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+.nav-toggle span { display: block; width: 26px; height: 1.5px; background: var(--color-white); transition: var(--transition); }
+#site-header.scrolled .nav-toggle span { background: var(--color-black); }
+
+/* HERO */
+.hero { position: relative; height: 100svh; min-height: 600px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
+.hero__bg { position: absolute; inset: 0; background: linear-gradient(135deg, #1a0f08 0%, #3d2415 30%, #2a1a0e 60%, #0d0806 100%); }
+/* Textura simulada sobre el fondo */
+.hero__bg::before { content:''; position:absolute; inset:0; background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a96e' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+.hero__overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,8,6,.3) 0%, rgba(10,8,6,.45) 50%, rgba(10,8,6,.65) 100%); }
+/* Elemento decorativo dorado */
+.hero__deco { position: absolute; width: 400px; height: 400px; border: 1px solid rgba(185,150,90,.15); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+.hero__deco::before { content:''; position:absolute; inset:20px; border: 1px solid rgba(185,150,90,.08); border-radius: 50%; }
+.hero__content { position: relative; z-index: 2; color: var(--color-white); padding-inline: 1.5rem; max-width: 800px; }
+.hero__eyebrow { font-family: var(--font-sans); font-size: .6875rem; font-weight: 500; letter-spacing: .25em; text-transform: uppercase; color: var(--color-gold-lt); display: block; margin-bottom: 1.5rem; opacity: 0; transform: translateY(16px); animation: fadeUp .9s .3s forwards; }
+.hero__title { font-family: var(--font-serif); font-size: clamp(3rem,7vw,6.5rem); font-weight: 300; line-height: 1.05; letter-spacing: -.02em; margin-bottom: 1.5rem; opacity: 0; transform: translateY(20px); animation: fadeUp .9s .55s forwards; }
+.hero__subtitle { font-size: clamp(.9375rem,1.5vw,1.125rem); color: rgba(255,255,255,.7); max-width: 44ch; margin-inline: auto; margin-bottom: 2.5rem; line-height: 1.7; opacity: 0; transform: translateY(16px); animation: fadeUp .9s .8s forwards; }
+.hero__actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; opacity: 0; transform: translateY(16px); animation: fadeUp .9s 1.05s forwards; }
+.hero__scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: .5rem; color: rgba(255,255,255,.5); font-size: .625rem; letter-spacing: .2em; text-transform: uppercase; }
+.hero__scroll::after { content: ''; width: 1px; height: 48px; background: rgba(255,255,255,.3); animation: scrollLine 1.8s ease-in-out infinite; }
+
+/* INTRO STRIP */
+.intro-strip { background: var(--color-black); color: var(--color-white); padding: 2.5rem 0; }
+.intro-strip__inner { display: grid; grid-template-columns: repeat(3,1fr); text-align: center; }
+.intro-strip__item { padding: 1rem 2rem; border-right: 1px solid rgba(255,255,255,.1); }
+.intro-strip__item:last-child { border-right: none; }
+.intro-strip__label { font-size: .625rem; letter-spacing: .2em; text-transform: uppercase; color: var(--color-gold); margin-bottom: .375rem; }
+.intro-strip__value { font-family: var(--font-serif); font-size: 1.125rem; color: rgba(255,255,255,.9); }
+
+/* ABOUT */
+.about { padding: var(--section-py) 0; background: var(--color-white); }
+.about__inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem,6vw,7rem); align-items: center; }
+.about__image-wrap { position: relative; }
+.about__image-main { width: 100%; aspect-ratio: 4/5; object-fit: cover; background: linear-gradient(145deg, #e8ddd0, #d4c4b0); display:flex; align-items:center; justify-content:center; }
+.img-placeholder { display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%; height:100%; color:var(--color-muted); font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; gap:.75rem; }
+.img-placeholder svg { opacity:.3; }
+.about__image-accent { position: absolute; bottom: -2.5rem; right: -2.5rem; width: 55%; aspect-ratio: 1; background: linear-gradient(145deg, #c4b09a, #b09880); border: 6px solid var(--color-white); box-shadow: 0 12px 40px rgba(0,0,0,.12); display:flex; align-items:center; justify-content:center; }
+.about__title { font-size: clamp(2rem,3.5vw,3.25rem); margin-bottom: 1.5rem; }
+.about__text { font-size: 1.0625rem; color: var(--color-muted); line-height: 1.85; margin-bottom: 1.5rem; }
+.about__detail { display: flex; align-items: flex-start; gap: 1rem; padding: 1.25rem 0; border-top: 1px solid var(--color-border); }
+.about__detail:last-of-type { border-bottom: 1px solid var(--color-border); margin-bottom: 2rem; }
+.about__detail-icon { width: 20px; height: 20px; flex-shrink: 0; margin-top: 3px; color: var(--color-gold); }
+.about__detail-text strong { display: block; font-size: .8125rem; font-weight: 600; margin-bottom: .2rem; color: var(--color-black); }
+.about__detail-text span { font-size: .875rem; color: var(--color-muted); }
+
+/* SPACES */
+.spaces { padding: var(--section-py) 0; background: var(--color-cream); }
+.spaces__header { text-align: center; margin-bottom: clamp(3rem,5vw,5rem); }
+.spaces__header .section-body { margin-inline: auto; margin-top: 1rem; }
+.spaces__grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; }
+.space-card { position: relative; overflow: hidden; cursor: pointer; }
+.space-card__img { width: 100%; aspect-ratio: 3/4; object-fit: cover; background: linear-gradient(145deg,#3d2d1e,#2a1f15); transition: transform .7s var(--transition); display:flex; align-items:center; justify-content:center; }
+.space-card:hover .space-card__img { transform: scale(1.05); }
+.space-card__img.s1 { background: linear-gradient(145deg,#4a3020,#2d1e12); }
+.space-card__img.s2 { background: linear-gradient(145deg,#2a2018,#1a1510); }
+.space-card__img.s3 { background: linear-gradient(145deg,#1e2d1a,#151f12); }
+.space-card__overlay { position: absolute; inset: 0; background: linear-gradient(to top,rgba(10,8,6,.75) 0%,rgba(10,8,6,0) 50%); display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem; color: var(--color-white); }
+.space-card__tag { font-size: .625rem; letter-spacing: .2em; text-transform: uppercase; color: var(--color-gold-lt); margin-bottom: .5rem; }
+.space-card__name { font-family: var(--font-serif); font-size: 1.5rem; line-height: 1.2; margin-bottom: .25rem; }
+.space-card__desc { font-size: .8125rem; color: rgba(255,255,255,.65); max-height: 0; overflow: hidden; transition: max-height .4s ease, opacity .4s ease; opacity: 0; }
+.space-card:hover .space-card__desc { max-height: 80px; opacity: 1; }
+
+/* EXPERIENCE */
+.experience { padding: var(--section-py) 0; background: var(--color-white); }
+.experience__inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem,6vw,7rem); align-items: center; }
+.experience__title { font-size: clamp(2rem,3.5vw,3.25rem); margin-bottom: 1rem; }
+.experience__lead { font-size: 1.0625rem; color: var(--color-muted); line-height: 1.8; margin-bottom: 2.5rem; }
+.amenities-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 2rem; margin-bottom: 2.5rem; }
+.amenity { display: flex; align-items: center; gap: .75rem; font-size: .875rem; color: var(--color-text); }
+.amenity::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--color-gold); flex-shrink: 0; }
+.experience__image-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: .75rem; height: 560px; }
+.experience__image-grid .img-block { width:100%; height:100%; object-fit:cover; }
+.experience__image-grid .img-block:first-child { grid-row: span 2; }
+.img-block { background: linear-gradient(145deg,#e8ddd0,#d0c4b4); display:flex; align-items:center; justify-content:center; }
+.img-block.b2 { background: linear-gradient(145deg,#d4c4b0,#c0b09a); }
+.img-block.b3 { background: linear-gradient(145deg,#c4b49a,#b0a088); }
+
+/* BOOKING */
+.booking { padding: var(--section-py) 0; background: var(--color-black); color: var(--color-white); }
+.booking__header { text-align: center; margin-bottom: clamp(2.5rem,4vw,4rem); }
+.booking__header .section-title { color: var(--color-white); }
+.booking__header p { margin-top: 1rem; font-size: 1.0625rem; color: rgba(255,255,255,.55); max-width: 44ch; margin-inline: auto; }
+.booking__engine { background: var(--color-white); color: var(--color-text); padding: clamp(2rem,4vw,3.5rem); max-width: 900px; margin-inline: auto; }
+.booking-demo { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 1rem; align-items: end; }
+.booking-field label { display: block; font-size: .625rem; letter-spacing: .15em; text-transform: uppercase; color: var(--color-muted); margin-bottom: .5rem; }
+.booking-field input { width: 100%; padding: .875rem 1rem; border: 1px solid var(--color-border); font-family: var(--font-sans); font-size: .9375rem; background: var(--color-cream); color: var(--color-text); outline: none; transition: border-color var(--transition); }
+.booking-field input:focus { border-color: var(--color-gold); }
+.booking-note { text-align:center; font-size:.75rem; color:var(--color-muted); margin-top:1.5rem; letter-spacing:.05em; }
+
+/* TESTIMONIALS */
+.testimonials { padding: var(--section-py) 0; background: var(--color-white); }
+.testimonials__header { text-align: center; margin-bottom: clamp(3rem,5vw,5rem); }
+.testimonials__track { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
+.testimonial-card { padding: 2.5rem 2rem; border: 1px solid var(--color-border); position: relative; }
+.testimonial-card::before { content: '\201C'; font-family: var(--font-serif); font-size: 5rem; color: var(--color-gold); line-height: 1; position: absolute; top: 1rem; left: 1.75rem; opacity: .4; }
+.testimonial-card__text { font-family: var(--font-serif); font-size: 1.125rem; line-height: 1.7; color: var(--color-text); margin-bottom: 2rem; padding-top: 1.5rem; }
+.testimonial-card__name { font-size: .875rem; font-weight: 600; color: var(--color-black); }
+.testimonial-card__origin { font-size: .75rem; color: var(--color-muted); }
+.testimonial-card__stars { color: var(--color-gold); font-size: .875rem; letter-spacing: 2px; margin-bottom: .75rem; }
+
+/* LOCATION */
+.location { padding: var(--section-py) 0; background: var(--color-cream); }
+.location__inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem,6vw,7rem); align-items: start; }
+.location__title { font-size: clamp(2rem,3.5vw,3.25rem); margin-bottom: 1rem; }
+.location__text { font-size: 1.0625rem; color: var(--color-muted); line-height: 1.8; margin-bottom: 2rem; }
+.location__points { display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2.5rem; }
+.location__point { display: flex; align-items: flex-start; gap: 1rem; font-size: .9375rem; }
+.location__point-icon { width: 36px; height: 36px; background: var(--color-gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--color-white); }
+.location__point-icon svg { width: 16px; height: 16px; }
+.location__point strong { display: block; font-size: .8125rem; font-weight: 600; color: var(--color-black); margin-bottom: .15rem; }
+.location__point span { color: var(--color-muted); font-size: .875rem; }
+.location__map { overflow: hidden; height: 480px; background: #e0e0e0; }
+.location__map iframe { width: 100%; height: 100%; border: none; filter: grayscale(.2) contrast(1.05); }
+
+/* CTA BANNER */
+.cta-banner { position: relative; padding: clamp(5rem,10vw,10rem) 0; text-align: center; overflow: hidden; background: linear-gradient(135deg,#1a0f08,#2d1a0e); }
+.cta-banner::before { content:''; position:absolute; inset:0; background-image: radial-gradient(ellipse at center, rgba(185,150,90,.15) 0%, transparent 70%); }
+.cta-banner__content { position: relative; z-index: 2; color: var(--color-white); }
+.cta-banner__title { font-family: var(--font-serif); font-size: clamp(2.5rem,5vw,4.5rem); color: var(--color-white); margin-bottom: 1rem; }
+.cta-banner__text { font-size: 1.0625rem; color: rgba(255,255,255,.7); max-width: 44ch; margin-inline: auto; margin-bottom: 2.5rem; line-height: 1.7; }
+.cta-banner__actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+/* FOOTER */
+#site-footer { background: var(--color-black); color: rgba(255,255,255,.6); padding: clamp(3.5rem,6vw,6rem) 0 2rem; }
+.footer__grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,.08); margin-bottom: 2rem; }
+.footer__brand .site-logo { color: var(--color-white); margin-bottom: 1rem; }
+.footer__brand p { font-size: .875rem; line-height: 1.7; max-width: 28ch; margin-bottom: 1.5rem; }
+.footer__social { display: flex; gap: .75rem; }
+.footer__social a { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,.15); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.5); transition: var(--transition); }
+.footer__social a:hover { border-color: var(--color-gold); color: var(--color-gold); }
+.footer__social svg { width: 14px; height: 14px; }
+.footer__col h4 { font-family: var(--font-sans); font-size: .625rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--color-white); margin-bottom: 1.25rem; }
+.footer__col ul { display: flex; flex-direction: column; gap: .75rem; }
+.footer__col ul a { font-size: .875rem; color: rgba(255,255,255,.5); transition: color var(--transition); }
+.footer__col ul a:hover { color: var(--color-gold); }
+.footer__col address { font-style: normal; font-size: .875rem; line-height: 1.8; }
+.footer__bottom { display: flex; justify-content: space-between; align-items: center; font-size: .75rem; color: rgba(255,255,255,.3); gap: 1rem; flex-wrap: wrap; }
+
+/* ANIMATIONS */
+@keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+@keyframes scrollLine {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  50%  { transform: scaleY(1); transform-origin: top; }
+  51%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+.reveal { opacity:0; transform:translateY(32px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.reveal-delay-1 { transition-delay:.1s; }
+.reveal-delay-2 { transition-delay:.2s; }
+
+/* Decorative line for spaces section */
+.gold-line { width: 40px; height: 1px; background: var(--color-gold); margin: 1rem auto 0; }
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .primary-nav { display:none; }
+  .nav-toggle { display:flex; }
+  .about__inner,.experience__inner,.location__inner { grid-template-columns:1fr; }
+  .spaces__grid { grid-template-columns:1fr; }
+  .testimonials__track { grid-template-columns:1fr; }
+  .intro-strip__inner { grid-template-columns:1fr; }
+  .footer__grid { grid-template-columns:1fr 1fr; }
+  .footer__brand { grid-column:span 2; }
+  .booking-demo { grid-template-columns:1fr; }
+  .experience__image-grid { height:300px; }
+}
+@media(max-width:1024px){
+  .footer__grid { grid-template-columns:1fr 1fr; gap:2rem; }
+  .footer__brand { grid-column:span 2; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="site-header">
+  <div class="container">
+    <a href="#" class="site-logo">
+      La Casa del Torero
+      <span>Casa Rural · Hotel Boutique · Ronda</span>
+    </a>
+    <button class="nav-toggle" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="primary-nav">
+      <a href="#la-casa">La Casa</a>
+      <a href="#espacios">Espacios</a>
+      <a href="#experiencias">Experiencias</a>
+      <a href="#reservas">Reservas</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#reservas" class="nav-cta">Reservar</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__bg">
+    <!-- Simulación de foto con SVG de arquitectura andaluza -->
+    <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.06" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+      <rect x="150" y="100" width="500" height="300" fill="none" stroke="#c9a96e" stroke-width=".5"/>
+      <rect x="180" y="130" width="440" height="240" fill="none" stroke="#c9a96e" stroke-width=".3"/>
+      <rect x="320" y="250" width="160" height="150" fill="none" stroke="#c9a96e" stroke-width=".5"/>
+      <path d="M 150 100 L 400 30 L 650 100" fill="none" stroke="#c9a96e" stroke-width=".5"/>
+      <circle cx="400" cy="30" r="3" fill="#c9a96e" opacity=".4"/>
+      <line x1="400" y1="0" x2="400" y2="500" stroke="#c9a96e" stroke-width=".2" opacity=".3"/>
+      <line x1="0" y1="250" x2="800" y2="250" stroke="#c9a96e" stroke-width=".2" opacity=".3"/>
+    </svg>
+  </div>
+  <div class="hero__overlay"></div>
+  <div class="hero__deco"></div>
+
+  <div class="hero__content">
+    <span class="hero__eyebrow">Casa Rural · Hotel Boutique · Ronda, Málaga</span>
+    <h1 class="hero__title">La Casa<br>del Torero</h1>
+    <p class="hero__subtitle">Un refugio de elegancia andaluza donde el tiempo se detiene y cada detalle cuenta una historia.</p>
+    <div class="hero__actions">
+      <a href="#reservas" class="btn btn--primary">Reservar ahora</a>
+      <a href="#la-casa" class="btn btn--outline">Descubrir la casa</a>
+    </div>
+  </div>
+  <div class="hero__scroll" aria-hidden="true">Scroll</div>
+</section>
+
+<!-- INTRO STRIP -->
+<div class="intro-strip">
+  <div class="container">
+    <div class="intro-strip__inner">
+      <div class="intro-strip__item">
+        <p class="intro-strip__label">Capacidad</p>
+        <p class="intro-strip__value">Hasta 10 huéspedes</p>
+      </div>
+      <div class="intro-strip__item">
+        <p class="intro-strip__label">Alquiler</p>
+        <p class="intro-strip__value">Casa completa exclusiva</p>
+      </div>
+      <div class="intro-strip__item">
+        <p class="intro-strip__label">Ubicación</p>
+        <p class="intro-strip__value">Ronda, Málaga</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="la-casa" class="about">
+  <div class="container">
+    <div class="about__inner">
+      <div class="about__image-wrap reveal">
+        <div class="about__image-main">
+          <div class="img-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Tu foto aquí<br>Fachada de la casa
+          </div>
+        </div>
+        <div class="about__image-accent">
+          <div class="img-placeholder" style="font-size:.6rem">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Detalle
+          </div>
+        </div>
+      </div>
+
+      <div class="about__content reveal reveal-delay-1">
+        <span class="eyebrow">La Casa</span>
+        <h2 class="about__title">Una joya en el corazón de Andalucía</h2>
+        <p class="about__text">Situada en un enclave único, La Casa del Torero es una propiedad histórica rehabilitada con mimo y criterio donde conviven la arquitectura tradicional andaluza y los más altos estándares de confort contemporáneo.</p>
+        <p class="about__text">Cada rincón ha sido diseñado para ofrecer una experiencia verdaderamente singular: espacios luminosos, materiales nobles y una atmósfera que invita a la desconexión total.</p>
+
+        <div class="about__detail">
+          <svg class="about__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <div class="about__detail-text">
+            <strong>Casa completa en exclusiva</strong>
+            <span>Disfrutad de toda la propiedad solo para vosotros</span>
+          </div>
+        </div>
+        <div class="about__detail">
+          <svg class="about__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div class="about__detail-text">
+            <strong>Check-in flexible</strong>
+            <span>Nos adaptamos a vuestros horarios</span>
+          </div>
+        </div>
+        <div class="about__detail">
+          <svg class="about__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div class="about__detail-text">
+            <strong>Atención personalizada</strong>
+            <span>Siempre disponibles para lo que necesitéis</span>
+          </div>
+        </div>
+
+        <a href="#espacios" class="btn btn--dark">Ver espacios</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPACES -->
+<section id="espacios" class="spaces">
+  <div class="container">
+    <header class="spaces__header reveal">
+      <span class="eyebrow">Los Espacios</span>
+      <h2 class="section-title">Cada rincón, una experiencia</h2>
+      <div class="gold-line"></div>
+      <p class="section-body" style="margin-top:1.5rem">Habitaciones, salones y jardines concebidos para el descanso absoluto y el placer de estar.</p>
+    </header>
+  </div>
+  <div class="spaces__grid">
+    <div class="space-card reveal">
+      <div class="space-card__img s1">
+        <div class="img-placeholder" style="color:rgba(255,255,255,.2)">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>
+          Suite Principal
+        </div>
+      </div>
+      <div class="space-card__overlay">
+        <span class="space-card__tag">Dormitorio</span>
+        <h3 class="space-card__name">Suite Principal</h3>
+        <p class="space-card__desc">Cama king-size, baño en suite con bañera exenta y vistas al campo.</p>
+      </div>
+    </div>
+    <div class="space-card reveal reveal-delay-1">
+      <div class="space-card__img s2">
+        <div class="img-placeholder" style="color:rgba(255,255,255,.2)">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          Gran Salón
+        </div>
+      </div>
+      <div class="space-card__overlay">
+        <span class="space-card__tag">Salón</span>
+        <h3 class="space-card__name">Gran Salón</h3>
+        <p class="space-card__desc">Techos altos, chimenea de leña y sofás de diseño.</p>
+      </div>
+    </div>
+    <div class="space-card reveal reveal-delay-2">
+      <div class="space-card__img s3">
+        <div class="img-placeholder" style="color:rgba(255,255,255,.2)">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Patio Andaluz
+        </div>
+      </div>
+      <div class="space-card__overlay">
+        <span class="space-card__tag">Exterior</span>
+        <h3 class="space-card__name">Patio Andaluz</h3>
+        <p class="space-card__desc">Piscina privada, pérgola y zona de comedor exterior.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experiencias" class="experience">
+  <div class="container">
+    <div class="experience__inner">
+      <div class="experience__content reveal">
+        <span class="eyebrow">La Experiencia</span>
+        <h2 class="experience__title">Todo lo que necesitáis está aquí</h2>
+        <p class="experience__lead">Desde el momento en que cruzáis la puerta, nos ocupamos de que no os falte de nada.</p>
+        <ul class="amenities-list">
+          <li class="amenity">Piscina privada</li>
+          <li class="amenity">Wifi de alta velocidad</li>
+          <li class="amenity">Cocina totalmente equipada</li>
+          <li class="amenity">Aire acondicionado</li>
+          <li class="amenity">Chimenea de leña</li>
+          <li class="amenity">Smart TV en todas las estancias</li>
+          <li class="amenity">Ropa de cama de lujo</li>
+          <li class="amenity">Terraza con vistas</li>
+          <li class="amenity">Parking privado</li>
+          <li class="amenity">Cuna y trona disponibles</li>
+          <li class="amenity">Admite mascotas (consultar)</li>
+          <li class="amenity">Zona de barbacoa</li>
+        </ul>
+        <a href="#reservas" class="btn btn--dark">Consultar disponibilidad</a>
+      </div>
+      <div class="experience__visual reveal reveal-delay-1">
+        <div class="experience__image-grid">
+          <div class="img-block">
+            <div class="img-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8" style="opacity:.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              Interior
+            </div>
+          </div>
+          <div class="img-block b2">
+            <div class="img-placeholder">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8" style="opacity:.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              Cocina
+            </div>
+          </div>
+          <div class="img-block b3">
+            <div class="img-placeholder">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8" style="opacity:.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              Baño
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="reservas" class="booking">
+  <div class="container">
+    <header class="booking__header reveal">
+      <span class="eyebrow">Reservas</span>
+      <h2 class="section-title">Comprueba disponibilidad</h2>
+      <p>Reserva directamente y obtén las mejores condiciones. Pago seguro y confirmación inmediata.</p>
+    </header>
+    <div class="booking__engine reveal reveal-delay-1">
+      <!-- Demo visual del motor de reservas (Redfors se integra aquí via shortcode) -->
+      <div class="booking-demo">
+        <div class="booking-field">
+          <label>Llegada</label>
+          <input type="text" placeholder="dd/mm/aaaa" value="15/08/2025">
+        </div>
+        <div class="booking-field">
+          <label>Salida</label>
+          <input type="text" placeholder="dd/mm/aaaa" value="22/08/2025">
+        </div>
+        <div class="booking-field">
+          <label>Huéspedes</label>
+          <input type="text" placeholder="Nº personas" value="6 personas">
+        </div>
+        <a href="#" class="btn btn--primary" style="white-space:nowrap">Buscar</a>
+      </div>
+      <p class="booking-note">⚑ Este es el espacio donde aparecerá el motor de reservas Redfors una vez activado el plugin en WordPress.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <header class="testimonials__header reveal">
+      <span class="eyebrow">Opiniones</span>
+      <h2 class="section-title">Lo que dicen nuestros huéspedes</h2>
+    </header>
+    <div class="testimonials__track">
+      <div class="testimonial-card reveal">
+        <p class="testimonial-card__stars">★★★★★</p>
+        <p class="testimonial-card__text">Una casa absolutamente increíble. Los espacios son mágicos, la decoración impecable y la atención de los propietarios, diez sobre diez. Volveremos sin dudarlo.</p>
+        <div class="testimonial-card__author">
+          <div>
+            <p class="testimonial-card__name">María G.</p>
+            <p class="testimonial-card__origin">Madrid · Agosto 2024</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <p class="testimonial-card__stars">★★★★★</p>
+        <p class="testimonial-card__text">Ronda ya es preciosa, pero La Casa del Torero le añade una capa de magia especial. La piscina, los patios, la luz... todo perfecto para desconectar.</p>
+        <div class="testimonial-card__author">
+          <div>
+            <p class="testimonial-card__name">Carlos y Beatriz</p>
+            <p class="testimonial-card__origin">Valencia · Julio 2024</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <p class="testimonial-card__stars">★★★★★</p>
+        <p class="testimonial-card__text">We stayed for a week and it felt like living in a dream. The house is stunning, incredibly well-equipped and the location is perfect. Highly recommended.</p>
+        <div class="testimonial-card__author">
+          <div>
+            <p class="testimonial-card__name">Sophie & James</p>
+            <p class="testimonial-card__origin">London · May 2024</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="ubicacion" class="location">
+  <div class="container">
+    <div class="location__inner">
+      <div class="location__content reveal">
+        <span class="eyebrow">Ubicación</span>
+        <h2 class="location__title">En el corazón de Ronda</h2>
+        <p class="location__text">Situada en uno de los enclaves más espectaculares de Andalucía, a pocos pasos del centro histórico y del famoso Puente Nuevo.</p>
+        <div class="location__points">
+          <div class="location__point">
+            <div class="location__point-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.333 8 14 8 14s8-8.667 8-14a8 8 0 0 0-8-8z"/></svg>
+            </div>
+            <div><strong>Centro histórico de Ronda</strong><span>A 5 minutos a pie</span></div>
+          </div>
+          <div class="location__point">
+            <div class="location__point-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            </div>
+            <div><strong>Puente Nuevo</strong><span>A 8 minutos a pie</span></div>
+          </div>
+          <div class="location__point">
+            <div class="location__point-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <div><strong>Málaga capital</strong><span>1 hora en coche</span></div>
+          </div>
+          <div class="location__point">
+            <div class="location__point-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div><strong>Aeropuerto de Málaga</strong><span>1h 15min en coche</span></div>
+          </div>
+        </div>
+        <a href="#reservas" class="btn btn--dark">Reservar ahora</a>
+      </div>
+      <div class="location__map reveal reveal-delay-1">
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-5.1840%2C36.7400%2C-5.1600%2C36.7500&layer=mapnik&marker=36.7450%2C-5.1720"
+          title="Mapa de Ronda"
+          loading="lazy"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner" id="contacto">
+  <div class="container">
+    <div class="cta-banner__content reveal">
+      <span class="eyebrow" style="color:var(--color-gold-lt)">Contacto</span>
+      <h2 class="cta-banner__title">¿Listo para vivir<br>la experiencia?</h2>
+      <p class="cta-banner__text">Cada estancia en La Casa del Torero es única. Reserva ahora y asegura tus fechas antes de que se agoten.</p>
+      <div class="cta-banner__actions">
+        <a href="#reservas" class="btn btn--primary">Reservar ahora</a>
+        <a href="mailto:info@lacasadeltorero.com" class="btn btn--outline">Escribirnos</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="site-footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="#" class="site-logo">La Casa del Torero<span>Casa Rural · Hotel Boutique · Ronda</span></a>
+        <p>Una experiencia única en el corazón de Andalucía. Tradición, confort y belleza en un entorno privilegiado.</p>
+        <div class="footer__social">
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4>La Casa</h4>
+        <ul>
+          <li><a href="#la-casa">Historia</a></li>
+          <li><a href="#espacios">Espacios</a></li>
+          <li><a href="#experiencias">Experiencias</a></li>
+          <li><a href="#">Galería</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Información</h4>
+        <ul>
+          <li><a href="#reservas">Reservas</a></li>
+          <li><a href="#">Normas de la casa</a></li>
+          <li><a href="#">Cancelación</a></li>
+          <li><a href="#">Privacidad</a></li>
+          <li><a href="#">Aviso legal</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Contacto</h4>
+        <address>
+          Ronda, Málaga<br>Andalucía, España<br><br>
+          <a href="tel:+34600000000">+34 600 000 000</a><br>
+          <a href="mailto:info@lacasadeltorero.com">info@lacasadeltorero.com</a>
+        </address>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2025 La Casa del Torero. Todos los derechos reservados.</span>
+      <div>
+        <a href="#">Privacidad</a> &nbsp;·&nbsp; <a href="#">Aviso legal</a> &nbsp;·&nbsp; <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  // Header scroll
+  const header = document.getElementById('site-header');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 60);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Mobile nav
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.primary-nav');
+  if(toggle && nav){
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    nav.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
+      nav.classList.remove('open');
+      document.body.style.overflow = '';
+    }));
+  }
+
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+})();
+</script>
+</body>
+</html>
