@@ -472,6 +472,16 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 .location__map { overflow: hidden; height: 480px; background: #e0e0e0; }
 .location__map iframe { width: 100%; height: 100%; border: none; filter: grayscale(.15) contrast(1.05); }
 
+/* ═══════════ PRESTIGE BAR ═══════════ */
+.prestige-bar { background: var(--cream); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.75rem 0; }
+.prestige-bar__inner { display: flex; align-items: center; justify-content: center; gap: clamp(2rem,5vw,5rem); flex-wrap: wrap; }
+.prestige-bar__label { font-family: var(--sans); font-size: .58rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+.prestige-divider { width: 1px; height: 28px; background: var(--border); flex-shrink: 0; }
+.prestige-logo { display: flex; align-items: center; opacity: .55; transition: opacity var(--ease); }
+.prestige-logo:hover { opacity: 1; }
+.prestige-logo svg { height: 22px; width: auto; }
+@media(max-width:768px) { .prestige-divider { display: none; } .prestige-bar__inner { gap: 1.5rem 2.5rem; } }
+
 /* ═══════════ CTA BANNER ═══════════ */
 .cta-banner {
   position: relative; padding: clamp(5rem,10vw,10rem) 0;
@@ -672,6 +682,52 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
         <p class="intro-strip__label">Ubicación</p>
         <p class="intro-strip__value">Vejer de la Frontera, Cádiz</p>
       </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════ PRESTIGE BAR ══════════════════ -->
+<div class="prestige-bar">
+  <div class="container">
+    <div class="prestige-bar__inner">
+      <span class="prestige-bar__label">Seleccionados por</span>
+      <span class="prestige-divider"></span>
+
+      <!-- Rusticae -->
+      <a href="https://www.rusticae.com/hotel/la-casa-del-torero-10850" target="_blank" rel="noopener" class="prestige-logo" aria-label="Rusticae">
+        <svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="24" font-family="Georgia, serif" font-size="22" font-weight="400" fill="#2C2C2C" letter-spacing="2">RUSTICAE</text>
+        </svg>
+      </a>
+
+      <span class="prestige-divider"></span>
+
+      <!-- Secret Places -->
+      <a href="https://www.secretplaces.com/vejer-de-la-frontera-boutique-hotels/la-casa-del-torero" target="_blank" rel="noopener" class="prestige-logo" aria-label="Secret Places">
+        <svg viewBox="0 0 195 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="22" font-family="Georgia, serif" font-size="16" font-weight="400" fill="#2C2C2C" letter-spacing="3">SECRET PLACES</text>
+        </svg>
+      </a>
+
+      <span class="prestige-divider"></span>
+
+      <!-- Cosy Places -->
+      <a href="https://cosy-places.com/la-casa-del-torero/" target="_blank" rel="noopener" class="prestige-logo" aria-label="Cosy Places">
+        <svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="22" font-family="Georgia, serif" font-size="16" font-weight="400" fill="#2C2C2C" letter-spacing="3">COSY PLACES</text>
+        </svg>
+      </a>
+
+      <span class="prestige-divider"></span>
+
+      <!-- Further Afield -->
+      <a href="https://www.furtherafield.com/properties/la-casa-del-torerovejer-de-la-frontera-andalucia/" target="_blank" rel="noopener" class="prestige-logo" aria-label="Further Afield">
+        <svg viewBox="0 0 185 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="22" font-family="Georgia, serif" font-size="16" font-weight="400" fill="#2C2C2C" letter-spacing="3">FURTHER AFIELD</text>
+        </svg>
+      </a>
+
     </div>
   </div>
 </div>
