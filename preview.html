@@ -73,6 +73,9 @@
   --black:     #111111;
   --gold:      #B8965A;
   --gold-lt:   #D4B483;
+  --blue:      #1C4A59;
+  --blue-lt:   #2a6478;
+  --red:       #C0655C;
   --text:      #2C2C2C;
   --muted:     #7A7065;
   --border:    #E2D9CE;
@@ -137,13 +140,19 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 #site-header .container { display: flex; align-items: center; justify-content: space-between; }
 
 .site-logo {
-  display: block;
-  color: var(--white);
-  transition: color var(--ease);
+  display: flex; align-items: center; gap: .85rem;
+  color: var(--white); transition: color var(--ease); text-decoration: none;
 }
-#site-header.scrolled .site-logo { color: var(--gold); }
-.site-logo__svg { height: 54px; width: auto; display: block; }
-/* footer logo siempre blanco */
+.site-logo__svg { height: 48px; width: auto; flex-shrink: 0; }
+.site-logo__name {
+  font-family: var(--serif); font-size: 1.25rem; font-weight: 400;
+  letter-spacing: .04em; line-height: 1.15; color: inherit;
+}
+.site-logo__name em {
+  display: block; font-style: normal; font-size: .55rem;
+  letter-spacing: .28em; text-transform: uppercase; opacity: .75; margin-top: .2rem;
+}
+#site-header.scrolled .site-logo { color: var(--blue); }
 #site-footer .site-logo { color: var(--white); }
 #site-footer .site-logo:hover { color: var(--gold-lt); }
 
@@ -513,6 +522,7 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
   <path class="st0" d="M731.76,467.17c-4.19-1.78-8.49-3.39-12.85-4.77-55.86-17.7-112.04-17.12-166.56,3.19-.32.1-.59.21-.89.34-.04-9.13-.1-18.24,0-27.33,1.09-1.13,1.95-2.44,2.68-3.84-4.43,2.71-9.63,4.31-15.2,4.31s-10.27-1.45-14.56-3.92c.69,1.24,1.49,2.42,2.48,3.45.13,11.76.21,23.53.13,35.29-55.14,15.61-110.26,15.13-166.05-2.33-10.83-3.39-13.92.65-17.53,9.19-4.54,10.81,2.2,13.69,9.79,15.2,26.29,5.15,52.53,12.48,79.06,13.69,30.51,1.39,61.27-2.85,93.36-4.74.13.41.89,1.44.89,2.47.16,23.38.34,46.82.37,70.21,0,8.3-.55,15.61,11.85,15.87,13.41.32,12.85-7.51,12.78-16.53-.13-21.67-.06-43.38-.03-65.07,0-2.56,0-4.83.03-6.82.04-.31.04-.62.04-.95v-.22c.41-12.16,2.92-12.99,18.89-17.72,48.55-14.42,97.02-14.38,144.88,2.36,10.21,3.54,16.02,2.81,19.31-7.75,1-3.15,2.2-6.24,3.4-9.63-2.48-1.59-4.26-3.1-6.29-3.95"/>
   <polygon class="st0" points="541.35 499.66 541.35 593.45 537.18 593.45 537.18 501.85 541.35 499.66"/>
 </svg>
+      <span class="site-logo__name">La Casa del Torero<em>Vejer · Cádiz</em></span>
     </a>
     <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -1012,6 +1022,7 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
   <path class="st0" d="M731.76,467.17c-4.19-1.78-8.49-3.39-12.85-4.77-55.86-17.7-112.04-17.12-166.56,3.19-.32.1-.59.21-.89.34-.04-9.13-.1-18.24,0-27.33,1.09-1.13,1.95-2.44,2.68-3.84-4.43,2.71-9.63,4.31-15.2,4.31s-10.27-1.45-14.56-3.92c.69,1.24,1.49,2.42,2.48,3.45.13,11.76.21,23.53.13,35.29-55.14,15.61-110.26,15.13-166.05-2.33-10.83-3.39-13.92.65-17.53,9.19-4.54,10.81,2.2,13.69,9.79,15.2,26.29,5.15,52.53,12.48,79.06,13.69,30.51,1.39,61.27-2.85,93.36-4.74.13.41.89,1.44.89,2.47.16,23.38.34,46.82.37,70.21,0,8.3-.55,15.61,11.85,15.87,13.41.32,12.85-7.51,12.78-16.53-.13-21.67-.06-43.38-.03-65.07,0-2.56,0-4.83.03-6.82.04-.31.04-.62.04-.95v-.22c.41-12.16,2.92-12.99,18.89-17.72,48.55-14.42,97.02-14.38,144.88,2.36,10.21,3.54,16.02,2.81,19.31-7.75,1-3.15,2.2-6.24,3.4-9.63-2.48-1.59-4.26-3.1-6.29-3.95"/>
   <polygon class="st0" points="541.35 499.66 541.35 593.45 537.18 593.45 537.18 501.85 541.35 499.66"/>
 </svg>
+          <span class="site-logo__name">La Casa del Torero<em>Vejer · Cádiz</em></span>
         </a>
         <p>Finca histórica de 24 hectáreas entre olivos centenarios, frente al pueblo blanco de Vejer de la Frontera, a 11 km de las playas vírgenes de la Costa de la Luz.</p>
         <div class="footer__social">

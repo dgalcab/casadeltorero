@@ -2,20 +2,7 @@
    LOGO SVG (currentColor)
 =========================== */
 
-/* El SVG usa currentColor: solo cambiamos 'color' para controlar el tono */
-.site-logo {
-  display: block;
-  color: var(--color-white);
-  transition: color var(--transition);
-}
-#site-header.scrolled .site-logo {
-  color: var(--color-gold);
-}
-.site-logo__svg {
-  height: 54px;
-  width: auto;
-  display: block;
-}
+/* Logo SVG — estilos completos en la sección HEADER más abajo */
 
 /* Placeholder ACF cuando no hay imagen subida aún */
 .acf-placeholder {
@@ -64,6 +51,9 @@
   --color-black:   #111111;
   --color-gold:    #B8965A;
   --color-gold-lt: #D4B483;
+  --color-blue:    #1C4A59;
+  --color-blue-lt: #2a6478;
+  --color-red:     #C0655C;
   --color-text:    #2C2C2C;
   --color-muted:   #7A7065;
   --color-border:  #E2D9CE;
@@ -207,16 +197,38 @@ h1, h2, h3, h4 {
 }
 
 .site-logo {
-  font-family: var(--font-serif);
-  font-size: 1.375rem;
-  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
   color: var(--color-white);
   transition: color var(--transition);
-  line-height: 1.2;
+  text-decoration: none;
 }
-.site-logo span { display: block; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; }
+.site-logo__svg {
+  height: 48px;
+  width: auto;
+  flex-shrink: 0;
+}
+.site-logo__name {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+  color: inherit;
+}
+.site-logo__name em {
+  display: block;
+  font-style: normal;
+  font-size: 0.55rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-top: 0.2rem;
+}
 
-#site-header.scrolled .site-logo { color: var(--color-black); }
+#site-header.scrolled .site-logo { color: var(--color-blue); }
+.footer__brand .site-logo { color: var(--color-white); }
 
 .primary-nav {
   display: flex;

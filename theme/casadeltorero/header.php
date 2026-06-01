@@ -13,9 +13,12 @@
 <header id="site-header" role="banner">
   <div class="container">
 
-    <!-- Logo SVG inline — color controlado por CSS según estado del header -->
     <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo" aria-label="<?php bloginfo('name'); ?> — Inicio">
       <?php include get_template_directory() . '/inc/logo.php'; ?>
+      <span class="site-logo__name">
+        La Casa del Torero
+        <em>Vejer · Cádiz</em>
+      </span>
     </a>
 
     <button class="nav-toggle" aria-label="<?php esc_attr_e('Abrir menú', 'casadeltorero'); ?>" aria-expanded="false" aria-controls="primary-nav">
