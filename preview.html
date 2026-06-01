@@ -331,7 +331,7 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 .spaces { padding: var(--py) 0; background: var(--cream); }
 .spaces__header { text-align: center; margin-bottom: clamp(3rem,5vw,5rem); }
 .spaces__header .section-body { margin-inline: auto; margin-top: 1rem; }
-.spaces__grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; }
+.spaces__grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5px; }
 .space-card { position: relative; overflow: hidden; cursor: pointer; }
 .space-card__img {
   width: 100%; aspect-ratio: 3/4; object-fit: cover;
@@ -352,6 +352,34 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 .space-card__size { font-size: .75rem; color: rgba(255,255,255,.5); margin-bottom: .25rem; }
 .space-card__desc { font-size: .8125rem; color: rgba(255,255,255,.65); max-height: 0; overflow: hidden; transition: max-height .4s ease, opacity .4s ease; opacity: 0; }
 .space-card:hover .space-card__desc { max-height: 80px; opacity: 1; }
+
+/* ═══════════ SPACES PRICE ═══════════ */
+.space-card__price { font-size: .875rem; color: var(--gold-lt); font-weight: 600; margin-bottom: .5rem; }
+.space-card__cta { display: inline-block; margin-top: .75rem; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--white); border-bottom: 1px solid rgba(255,255,255,.45); padding-bottom: 2px; transition: color var(--ease), border-color var(--ease); opacity:0; transition: opacity .4s ease .1s; }
+.space-card:hover .space-card__cta { opacity: 1; }
+.space-card:hover .space-card__cta:hover { color: var(--gold); border-color: var(--gold); }
+
+/* ═══════════ MODALITY ═══════════ */
+.modality { padding: var(--py) 0; background: var(--cream); }
+.modality__header { text-align: center; margin-bottom: clamp(2.5rem,4vw,4rem); }
+.modality__header p { max-width: 52ch; margin: 1rem auto 0; color: var(--muted); font-size: 1.0625rem; line-height: 1.8; }
+.modality__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem,3vw,2.5rem); }
+.modality-card { background: var(--white); border: 1px solid var(--border); padding: clamp(2rem,4vw,3.5rem); display: flex; flex-direction: column; gap: 1.5rem; transition: box-shadow var(--ease); }
+.modality-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,.08); }
+.modality-card--house { border-top: 3px solid var(--blue); }
+.modality-card--rooms { border-top: 3px solid var(--gold); }
+.modality-card__icon { width: 48px; height: 48px; }
+.modality-card__title { font-family: var(--serif); font-size: clamp(1.75rem,2.5vw,2.25rem); line-height: 1.15; }
+.modality-card__price { font-size: 2rem; font-weight: 700; color: var(--blue); line-height: 1; }
+.modality-card__price span { font-size: .875rem; font-weight: 400; color: var(--muted); }
+.modality-card--rooms .modality-card__price { color: var(--gold); }
+.modality-card__desc { color: var(--muted); font-size: .9375rem; line-height: 1.8; }
+.modality-card__features { display: flex; flex-direction: column; gap: .6rem; }
+.modality-card__feat { display: flex; align-items: center; gap: .75rem; font-size: .875rem; color: var(--text); }
+.modality-card__feat::before { content: ''; width: 18px; height: 2px; background: var(--gold); flex-shrink: 0; }
+.modality-card__actions { margin-top: auto; }
+.modality-card__actions .btn { width: 100%; text-align: center; }
+@media(max-width:768px) { .modality__grid { grid-template-columns: 1fr; } }
 
 /* ═══════════ EXPERIENCE ═══════════ */
 .experience { padding: var(--py) 0; background: var(--white); }
@@ -463,6 +491,7 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
   .intro-strip__inner { grid-template-columns: repeat(2,1fr); }
   .intro-strip__item:nth-child(2) { border-right: none; }
   .spaces__grid { grid-template-columns: 1fr 1fr; }
+  .modality__grid { grid-template-columns: 1fr; }
   .footer__grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
   .footer__brand { grid-column: span 2; }
 }
@@ -559,8 +588,8 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
     <h1 class="hero__title">La Casa<br>del Torero</h1>
     <p class="hero__subtitle">Una finca histórica de 24 hectáreas entre olivos centenarios, a 11 km de las playas vírgenes de la Costa de la Luz.</p>
     <div class="hero__actions">
-      <a href="#reservas" class="btn btn--gold">Reservar ahora</a>
-      <a href="#la-casa" class="btn btn--ghost">Descubrir la finca</a>
+      <a href="#habitaciones" class="btn btn--gold">Reservar habitación</a>
+      <a href="#casa-completa" class="btn btn--ghost">Alquilar la casa completa</a>
     </div>
   </div>
 
@@ -586,8 +615,8 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
         <p class="intro-strip__value">11 km · Costa de la Luz</p>
       </div>
       <div class="intro-strip__item">
-        <p class="intro-strip__label">Alquiler</p>
-        <p class="intro-strip__value">Casa completa en exclusiva</p>
+        <p class="intro-strip__label">Modalidades</p>
+        <p class="intro-strip__value">Por habitación · Casa completa</p>
       </div>
       <div class="intro-strip__item">
         <p class="intro-strip__label">Ubicación</p>
@@ -699,53 +728,135 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 
 
 <!-- ══════════════════ SPACES ══════════════════ -->
-<section id="espacios" class="spaces">
+<section id="habitaciones" class="spaces">
   <div class="container">
     <header class="spaces__header reveal">
-      <span class="eyebrow">Los Espacios</span>
-      <h2 class="section-title">Cuatro habitaciones, una experiencia única</h2>
+      <span class="eyebrow">Las Habitaciones</span>
+      <h2 class="section-title">Cuatro estancias, cada una única</h2>
       <div class="gold-rule"></div>
-      <p class="section-body" style="margin-top:1.5rem">Cada estancia ha sido diseñada con encanto moderno y andaluz. Todas con terraza, vistas al pueblo y acceso privado al campo.</p>
+      <p class="section-body" style="margin-top:1.5rem">Todas con terraza propia, vistas al pueblo blanco de Vejer y acceso privado al campo. Desayuno continental incluido.</p>
     </header>
   </div>
   <div class="spaces__grid">
 
     <div class="space-card reveal">
       <div class="space-card__img s1">
+        <img src="assets/img/espacios/habitacion-doble.jpg" alt="Habitación Doble" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="space-card__overlay">
+        <span class="space-card__tag">Habitación doble</span>
+        <h3 class="space-card__name">Habitación Doble</h3>
+        <p class="space-card__size">25 m² · Hasta 2 personas</p>
+        <p class="space-card__price">Desde 140 € / noche</p>
+        <p class="space-card__desc">Amplio cuarto de baño. Terraza con vista a Vejer. Acceso al campo.</p>
+        <a href="#reservas" class="space-card__cta">Reservar</a>
+      </div>
+    </div>
+
+    <div class="space-card reveal d1">
+      <div class="space-card__img s2">
+        <img src="assets/img/espacios/doble-superior.jpg" alt="Doble Superior" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="space-card__overlay">
+        <span class="space-card__tag">Habitación doble superior</span>
+        <h3 class="space-card__name">Doble Superior</h3>
+        <p class="space-card__size">33 m² · Hasta 2 personas</p>
+        <p class="space-card__price">Desde 140 € / noche</p>
+        <p class="space-card__desc">Amplio cuarto de baño. Terraza con vista a Vejer. Acceso al campo.</p>
+        <a href="#reservas" class="space-card__cta">Reservar</a>
+      </div>
+    </div>
+
+    <div class="space-card reveal d2">
+      <div class="space-card__img s3">
         <img src="assets/img/espacios/suite-principal.jpg" alt="Suite del Torero" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
       <div class="space-card__overlay">
         <span class="space-card__tag">Suite</span>
         <h3 class="space-card__name">Suite del Torero</h3>
         <p class="space-card__size">50 m² · Hasta 4 personas</p>
-        <p class="space-card__desc">Salón privado, dormitorio, gran baño con ducha y bañera. Terraza con vistas a Vejer y acceso directo al campo.</p>
+        <p class="space-card__price">Desde 165 € / noche</p>
+        <p class="space-card__desc">Gran cuarto de baño. Terrazas con vistas a Vejer. Acceso directo al campo.</p>
+        <a href="#reservas" class="space-card__cta">Reservar</a>
       </div>
     </div>
 
-    <div class="space-card reveal d1">
-      <div class="space-card__img s2">
-        <img src="assets/img/espacios/hab-slide-1.jpg" alt="Habitación Albero" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <div class="space-card reveal d3">
+      <div class="space-card__img" style="background:linear-gradient(145deg,#1e2a3a,#0d1520);">
+        <img src="assets/img/espacios/apartamento.jpg" alt="Apartamento panorámico" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
       <div class="space-card__overlay">
-        <span class="space-card__tag">Habitación doble</span>
-        <h3 class="space-card__name">Habitación Albero</h3>
-        <p class="space-card__size">25 m² · Hasta 2 personas</p>
-        <p class="space-card__desc">Dos camas individuales, baño amplio y terraza privada con vistas al pueblo blanco de Vejer.</p>
+        <span class="space-card__tag">Apartamento</span>
+        <h3 class="space-card__name">Apartamento Panorámico</h3>
+        <p class="space-card__size">2 habitaciones · Cocina · Salón</p>
+        <p class="space-card__price">Desde 250 € / noche</p>
+        <p class="space-card__desc">Cocina equipada, salón de estar y vistas panorámicas. Máxima independencia.</p>
+        <a href="#reservas" class="space-card__cta">Reservar</a>
       </div>
     </div>
 
-    <div class="space-card reveal d2">
-      <div class="space-card__img s3">
-        <img src="assets/img/casa/piscina.jpg" alt="Jardín y Piscina" style="width:100%;height:100%;object-fit:cover;display:block;">
-      </div>
-      <div class="space-card__overlay">
-        <span class="space-card__tag">Exterior</span>
-        <h3 class="space-card__name">Jardín & Piscina</h3>
-        <p class="space-card__size">Jardín privado · Piscina exterior · Jacuzzi</p>
-        <p class="space-card__desc">Terraza de sol, salón comunitario con chimenea y jardín privado con piscina de temporada y jacuzzi.</p>
-      </div>
-    </div>
+  </div>
+</section>
 
+
+<!-- ══════════════════ MODALITY ══════════════════ -->
+<section id="casa-completa" class="modality">
+  <div class="container">
+    <header class="modality__header reveal">
+      <span class="eyebrow">Dos formas de disfrutarla</span>
+      <h2 class="section-title">¿Cómo quieres vivirlo?</h2>
+      <div class="gold-rule"></div>
+      <p>La Casa del Torero se puede reservar por habitaciones o en exclusiva. Dos experiencias distintas, la misma magia.</p>
+    </header>
+    <div class="modality__grid">
+
+      <div class="modality-card modality-card--rooms reveal">
+        <svg class="modality-card__icon" viewBox="0 0 48 48" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round">
+          <rect x="6" y="20" width="36" height="22" rx="1"/>
+          <path d="M6 26h36M16 26v16M32 26v16M2 20l22-14 22 14"/>
+        </svg>
+        <div>
+          <span style="font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-family:var(--sans);font-weight:600;">B&amp;B · Por habitaciones</span>
+          <h3 class="modality-card__title">Reserva tu habitación</h3>
+        </div>
+        <p class="modality-card__price">Desde 140 € <span>/ habitación / noche</span></p>
+        <p class="modality-card__desc">Disfruta de La Casa del Torero a tu ritmo. Cada habitación incluye desayuno continental, acceso a todas las zonas comunes, piscina, jacuzzi y los 24 km de campo de la finca.</p>
+        <ul class="modality-card__features">
+          <li class="modality-card__feat">Desayuno continental incluido</li>
+          <li class="modality-card__feat">Piscina, jacuzzi y jardines</li>
+          <li class="modality-card__feat">Acceso a 24 ha de campo</li>
+          <li class="modality-card__feat">4 habitaciones disponibles</li>
+          <li class="modality-card__feat">Confirmación inmediata</li>
+        </ul>
+        <div class="modality-card__actions">
+          <a href="#reservas" class="btn btn--gold">Ver habitaciones y reservar</a>
+        </div>
+      </div>
+
+      <div class="modality-card modality-card--house reveal d1">
+        <svg class="modality-card__icon" viewBox="0 0 48 48" fill="none" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round">
+          <path d="M6 42V20L24 6l18 14v22H6z"/>
+          <path d="M16 42V28h16v14M24 6v6"/>
+        </svg>
+        <div>
+          <span style="font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);font-family:var(--sans);font-weight:600;">Alquiler completo · Exclusiva</span>
+          <h3 class="modality-card__title">Alquila la casa entera</h3>
+        </div>
+        <p class="modality-card__price" style="color:var(--blue);">Precio <span>a consultar · grupos de 10+</span></p>
+        <p class="modality-card__desc">La finca es vuestra. Celebrad una boda, un cumpleaños, un retiro corporativo o una escapada familiar con total privacidad. Sin más huéspedes. Sin horarios.</p>
+        <ul class="modality-card__features">
+          <li class="modality-card__feat">Exclusividad total · solo vuestro grupo</li>
+          <li class="modality-card__feat">4 habitaciones + apartamento</li>
+          <li class="modality-card__feat">Cocina, salones y terraza privados</li>
+          <li class="modality-card__feat">Piscina, jacuzzi y plaza de tentación</li>
+          <li class="modality-card__feat">Ideal para bodas, eventos y retiros</li>
+        </ul>
+        <div class="modality-card__actions">
+          <a href="mailto:info@lacasadeltorero.com" class="btn btn--dark">Solicitar presupuesto</a>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
