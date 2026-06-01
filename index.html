@@ -473,14 +473,20 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 .location__map iframe { width: 100%; height: 100%; border: none; filter: grayscale(.15) contrast(1.05); }
 
 /* ═══════════ PRESTIGE BAR ═══════════ */
-.prestige-bar { background: var(--cream); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.75rem 0; }
-.prestige-bar__inner { display: flex; align-items: center; justify-content: center; gap: clamp(2rem,5vw,5rem); flex-wrap: wrap; }
-.prestige-bar__label { font-family: var(--sans); font-size: .58rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
-.prestige-divider { width: 1px; height: 28px; background: var(--border); flex-shrink: 0; }
-.prestige-logo { display: flex; align-items: center; opacity: .55; transition: opacity var(--ease); }
-.prestige-logo:hover { opacity: 1; }
-.prestige-logo svg { height: 22px; width: auto; }
-@media(max-width:768px) { .prestige-divider { display: none; } .prestige-bar__inner { gap: 1.5rem 2.5rem; } }
+.prestige-bar { background: var(--blue); overflow: hidden; position: relative; }
+.prestige-bar::before,.prestige-bar::after { content:''; position:absolute; top:0; bottom:0; width:80px; z-index:2; pointer-events:none; }
+.prestige-bar::before { left:0; background: linear-gradient(to right, var(--blue), transparent); }
+.prestige-bar::after { right:0; background: linear-gradient(to left, var(--blue), transparent); }
+.prestige-bar__label { font-family: var(--sans); font-size: .58rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.45); white-space: nowrap; flex-shrink: 0; }
+.prestige-bar__track { display: flex; align-items: center; gap: 0; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; cursor: grab; padding: 2rem clamp(1.5rem,5vw,4rem); }
+.prestige-bar__track::-webkit-scrollbar { display: none; }
+.prestige-bar__track.dragging { cursor: grabbing; scroll-snap-type: none; }
+.prestige-item { flex: 0 0 auto; scroll-snap-align: center; display: flex; align-items: center; justify-content: center; padding: 0 clamp(1.75rem,4vw,3.5rem); border-right: 1px solid rgba(255,255,255,.15); min-width: 160px; }
+.prestige-item:last-child { border-right: none; }
+.prestige-item img { height: 28px; width: auto; opacity: .65; transition: opacity var(--ease); filter: brightness(0) invert(1); }
+.prestige-item:hover img { opacity: 1; }
+.prestige-item__text { font-family: var(--serif); font-size: 1rem; font-weight: 400; letter-spacing: .18em; color: rgba(255,255,255,.65); white-space: nowrap; text-transform: uppercase; transition: color var(--ease); text-decoration: none; }
+.prestige-item:hover .prestige-item__text { color: #fff; }
 
 /* ═══════════ CTA BANNER ═══════════ */
 .cta-banner {
@@ -689,66 +695,54 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 
 <!-- ══════════════════ PRESTIGE BAR ══════════════════ -->
 <div class="prestige-bar">
-  <div class="container">
-    <div class="prestige-bar__inner">
+  <div class="prestige-bar__track" id="prestigeTrack">
+
+    <div class="prestige-item">
       <span class="prestige-bar__label">Seleccionados por</span>
-      <span class="prestige-divider"></span>
-
-      <!-- Rusticae -->
-      <a href="https://www.rusticae.com/hotel/la-casa-del-torero-10850" target="_blank" rel="noopener" class="prestige-logo" aria-label="Rusticae">
-        <svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="0" y="24" font-family="Georgia, serif" font-size="22" font-weight="400" fill="#2C2C2C" letter-spacing="2">RUSTICAE</text>
-        </svg>
-      </a>
-
-      <span class="prestige-divider"></span>
-
-      <!-- Secret Places -->
-      <a href="https://www.secretplaces.com/vejer-de-la-frontera-boutique-hotels/la-casa-del-torero" target="_blank" rel="noopener" class="prestige-logo" aria-label="Secret Places">
-        <svg viewBox="0 0 195 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="0" y="22" font-family="Georgia, serif" font-size="16" font-weight="400" fill="#2C2C2C" letter-spacing="3">SECRET PLACES</text>
-        </svg>
-      </a>
-
-      <span class="prestige-divider"></span>
-
-      <!-- Cosy Places -->
-      <a href="https://cosy-places.com/la-casa-del-torero/" target="_blank" rel="noopener" class="prestige-logo" aria-label="Cosy Places">
-        <svg viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="0" y="22" font-family="Georgia, serif" font-size="16" font-weight="400" fill="#2C2C2C" letter-spacing="3">COSY PLACES</text>
-        </svg>
-      </a>
-
-      <span class="prestige-divider"></span>
-
-      <!-- Further Afield -->
-      <a href="https://www.furtherafield.com/properties/la-casa-del-torerovejer-de-la-frontera-andalucia/" target="_blank" rel="noopener" class="prestige-logo" aria-label="Further Afield">
-        <svg viewBox="0 0 185 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="0" y="22" font-family="Georgia, serif" font-size="16" font-weight="400" fill="#2C2C2C" letter-spacing="3">FURTHER AFIELD</text>
-        </svg>
-      </a>
-
-      <span class="prestige-divider"></span>
-
-      <!-- The Hotel Guru -->
-      <a href="https://www.thehotelguru.com/best-hotels-in/spain/vejer-de-la-frontera" target="_blank" rel="noopener" class="prestige-logo" aria-label="The Hotel Guru">
-        <svg viewBox="0 0 185 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="0" y="22" font-family="Georgia, serif" font-size="16" font-weight="400" fill="#2C2C2C" letter-spacing="3">THE HOTEL GURU</text>
-        </svg>
-      </a>
-
-      <span class="prestige-divider"></span>
-
-      <!-- Gay Sejour -->
-      <a href="https://www.gay-sejour.com/en/a-10039/la-casa-del-torero--vejer-de-la-frontera.html" target="_blank" rel="noopener" class="prestige-logo" aria-label="Gay Séjour">
-        <svg viewBox="0 0 155 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="0" y="22" font-family="Georgia, serif" font-size="16" font-weight="400" fill="#2C2C2C" letter-spacing="3">GAY SÉJOUR</text>
-        </svg>
-      </a>
-
     </div>
+
+    <!-- Rusticae -->
+    <a href="https://www.rusticae.com/hotel/la-casa-del-torero-10850" target="_blank" rel="noopener" class="prestige-item" aria-label="Rusticae">
+      <img src="assets/img/Rusticae-logo.svg" alt="Rusticae" loading="lazy">
+    </a>
+
+    <!-- Secret Places -->
+    <a href="https://www.secretplaces.com/vejer-de-la-frontera-boutique-hotels/la-casa-del-torero" target="_blank" rel="noopener" class="prestige-item" aria-label="Secret Places">
+      <img src="assets/img/secretplaces-logo-white.svg" alt="Secret Places" loading="lazy">
+    </a>
+
+    <!-- Cosy Places -->
+    <a href="https://cosy-places.com/la-casa-del-torero/" target="_blank" rel="noopener" class="prestige-item" aria-label="Cosy Places">
+      <img src="assets/img/Cosy-Places-Worldwide-white-long.svg" alt="Cosy Places" loading="lazy">
+    </a>
+
+    <!-- Further Afield -->
+    <a href="https://www.furtherafield.com/properties/la-casa-del-torerovejer-de-la-frontera-andalucia/" target="_blank" rel="noopener" class="prestige-item" aria-label="Further Afield">
+      <img src="assets/img/logo_es.svg" alt="Further Afield" loading="lazy">
+    </a>
+
+    <!-- The Hotel Guru — texto -->
+    <a href="https://www.thehotelguru.com/best-hotels-in/spain/vejer-de-la-frontera" target="_blank" rel="noopener" class="prestige-item" aria-label="The Hotel Guru">
+      <span class="prestige-item__text">The Hotel Guru</span>
+    </a>
+
+    <!-- Gay Séjour — texto -->
+    <a href="https://www.gay-sejour.com/en/a-10039/la-casa-del-torero--vejer-de-la-frontera.html" target="_blank" rel="noopener" class="prestige-item" aria-label="Gay Séjour">
+      <span class="prestige-item__text">Gay Séjour</span>
+    </a>
+
   </div>
 </div>
+<script>
+(function(){
+  var t = document.getElementById('prestigeTrack');
+  if(!t) return;
+  var down=false, sx=0, sl=0;
+  t.addEventListener('mousedown', function(e){ down=true; t.classList.add('dragging'); sx=e.pageX; sl=t.scrollLeft; });
+  window.addEventListener('mouseup', function(){ down=false; t.classList.remove('dragging'); });
+  t.addEventListener('mousemove', function(e){ if(!down) return; e.preventDefault(); t.scrollLeft=sl-(e.pageX-sx); });
+})();
+</script>
 
 
 <!-- ══════════════════ MODALITY ══════════════════ -->
