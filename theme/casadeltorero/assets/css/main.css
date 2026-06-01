@@ -199,21 +199,21 @@ h1, h2, h3, h4 {
 .site-logo {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 1.1rem;
   color: var(--color-white);
   transition: color var(--transition);
   text-decoration: none;
 }
 .site-logo__svg {
-  height: 48px;
+  height: 72px;
   width: auto;
   flex-shrink: 0;
 }
 .site-logo__name {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
+  font-size: 1.75rem;
   font-weight: 400;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   line-height: 1.15;
   color: inherit;
 }
