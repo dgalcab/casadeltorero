@@ -422,6 +422,31 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 .t-card__origin { font-size: .75rem; color: var(--muted); }
 .t-card__platform { font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-top: .25rem; }
 
+/* ═══════════ CHEF / GASTRONOMÍA ═══════════ */
+.gastro { padding: var(--py) 0; background: var(--blue); color: var(--white); position: relative; overflow: hidden; }
+.gastro::before {
+  content: ''; position: absolute; inset: 0;
+  background: url('assets/img/galeria/g09.jpg') center/cover no-repeat;
+  opacity: .12;
+}
+.gastro .container { position: relative; z-index: 2; }
+.gastro__inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem,7vw,8rem); align-items: center; }
+.gastro__content .eyebrow { color: var(--gold); }
+.gastro__title { font-size: clamp(2.25rem,4vw,3.75rem); color: var(--white); margin-bottom: 1.5rem; line-height: 1.1; }
+.gastro__title em { font-style: italic; color: var(--gold-lt); }
+.gastro__lead { font-size: 1.125rem; color: rgba(255,255,255,.7); line-height: 1.9; margin-bottom: 2rem; }
+.gastro__tags { display: flex; flex-wrap: wrap; gap: .625rem; margin-bottom: 2.5rem; }
+.gastro__tag { font-size: .65rem; letter-spacing: .18em; text-transform: uppercase; padding: .5rem 1.1rem; border: 1px solid rgba(184,150,90,.45); color: var(--gold-lt); }
+.gastro__visual { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: .75rem; }
+.gastro__img { overflow: hidden; }
+.gastro__img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .7s ease; }
+.gastro__img:hover img { transform: scale(1.05); }
+.gastro__img:first-child { grid-column: span 2; height: 280px; }
+.gastro__img:not(:first-child) { height: 180px; }
+.gastro__quote { grid-column: span 2; border-left: 2px solid var(--gold); padding: 1rem 1.5rem; margin-top: .5rem; }
+.gastro__quote p { font-family: var(--serif); font-size: 1.1rem; font-style: italic; color: rgba(255,255,255,.75); line-height: 1.7; }
+@media(max-width:768px) { .gastro__inner { grid-template-columns: 1fr; } .gastro__visual { display: none; } }
+
 /* ═══════════ LOCATION ═══════════ */
 .location { padding: var(--py) 0; background: var(--white); }
 .location__inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem,6vw,7rem); align-items: start; }
@@ -883,11 +908,12 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
           <li class="amenity">Salón comunitario</li>
           <li class="amenity">Parking gratuito</li>
           <li class="amenity">Terraza de sol</li>
-          <li class="amenity">Desayuno continental</li>
-          <li class="amenity">Huerto propio</li>
+          <li class="amenity">Desayuno continental incluido</li>
+          <li class="amenity">Chef privado a disposición</li>
+          <li class="amenity">Menús con producto local</li>
+          <li class="amenity">Huerta propia ecológica</li>
           <li class="amenity">24 ha de campo para pasear</li>
           <li class="amenity">Plaza de tentación histórica</li>
-          <li class="amenity">Cocina mediterránea con toque francés</li>
           <li class="amenity">TV en todas las estancias</li>
         </ul>
         <a href="#reservas" class="btn btn--dark">Consultar disponibilidad</a>
@@ -904,6 +930,48 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
           <div class="exp-img ei3">
             <img src="assets/img/galeria/g04.jpg" alt="Detalle de la finca" style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════ GASTRONOMÍA ══════════════════ -->
+<section id="gastronomia" class="gastro">
+  <div class="container">
+    <div class="gastro__inner">
+
+      <div class="gastro__content reveal">
+        <span class="eyebrow">Gastronomía · Servicio exclusivo</span>
+        <h2 class="gastro__title">Chef propio a<br><em>vuestra disposición</em></h2>
+        <p class="gastro__lead">
+          Un chef privado que elabora cada día los mejores productos de la zona, con verduras frescas de nuestra propia huerta. Cocina mediterránea con un delicado toque afrancesado — sencilla en apariencia, memorable en el plato.
+        </p>
+        <div class="gastro__tags">
+          <span class="gastro__tag">Menús diarios</span>
+          <span class="gastro__tag">Huerta propia</span>
+          <span class="gastro__tag">Producto local</span>
+          <span class="gastro__tag">Cocina mediterránea</span>
+          <span class="gastro__tag">Toque afrancesado</span>
+          <span class="gastro__tag">Personalizable</span>
+        </div>
+        <a href="mailto:info@lacasadeltorero.com" class="btn btn--ghost">Consultar menús y disponibilidad</a>
+      </div>
+
+      <div class="gastro__visual reveal d1">
+        <div class="gastro__img">
+          <img src="assets/img/galeria/g09.jpg" alt="Cocina y gastronomía en La Casa del Torero">
+        </div>
+        <div class="gastro__img">
+          <img src="assets/img/galeria/g10.jpg" alt="Productos de la huerta propia">
+        </div>
+        <div class="gastro__img">
+          <img src="assets/img/galeria/g11.jpg" alt="Menú mediterráneo">
+        </div>
+        <div class="gastro__quote">
+          <p>"Verduras de nuestra propia huerta, los mejores productos de la zona y la precisión de la cocina francesa — todo en una misma mesa."</p>
         </div>
       </div>
 
