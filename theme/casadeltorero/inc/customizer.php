@@ -44,7 +44,7 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
 
     $hero_fields = [
         'hero_video_url' => ['Vídeo de fondo (URL MP4)', 'text', ''],
-        'hero_eyebrow'   => ['Subtítulo pequeño',  'text',     'Casa Rural · Hotel Boutique · Vejer de la Frontera, Cádiz'],
+        'hero_eyebrow'   => ['Subtítulo pequeño',  'text',     'Casa Rural · Hotel Boutique · Vejer, Cádiz'],
         'hero_title'     => ['Título principal',   'text',     'La Casa del Torero'],
         'hero_subtitle'  => ['Texto descriptivo',  'textarea', 'Un refugio de elegancia andaluza donde el tiempo se detiene y cada detalle cuenta una historia.'],
         'hero_cta1_text' => ['Botón 1 — Texto',    'text',     'Reservar ahora'],

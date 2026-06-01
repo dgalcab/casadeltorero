@@ -1,4 +1,63 @@
 /* ===========================
+   LOGO DUAL (blanco / oscuro)
+=========================== */
+
+/* Altura máxima del logo — ajusta según tu logo real */
+.site-logo img.logo { height: 52px; width: auto; display: block; transition: opacity 0.3s ease; }
+
+/* Sobre el hero (header transparente): mostramos blanco, ocultamos oscuro */
+.logo--white { display: block; }
+.logo--dark  { display: none; }
+
+/* Al hacer scroll (header blanco): mostramos oscuro, ocultamos blanco */
+#site-header.scrolled .logo--white { display: none; }
+#site-header.scrolled .logo--dark  { display: block; }
+
+/* Fallback texto si no hay logo subido */
+.logo-text { font-family: var(--font-serif); font-size: 1.35rem; letter-spacing: .02em; line-height: 1.2; color: var(--color-white); }
+.logo-text small { display: block; font-family: var(--font-sans); font-size: .58rem; letter-spacing: .26em; text-transform: uppercase; font-weight: 500; }
+#site-header.scrolled .logo-text { color: var(--color-black); }
+#site-header.scrolled .logo-text small { color: var(--color-muted); }
+
+/* Placeholder ACF cuando no hay imagen subida aún */
+.acf-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: .75rem; background: linear-gradient(145deg, #e8ddd0, #d4c4b0);
+  color: var(--color-muted); font-size: .7rem; letter-spacing: .12em;
+  text-transform: uppercase; font-family: var(--font-sans);
+}
+.acf-placeholder svg { opacity: .25; }
+.acf-placeholder--dark { background: linear-gradient(145deg, #3d2d1e, #2a1f15); color: rgba(255,255,255,.2); }
+.acf-placeholder--dark svg { opacity: .2; }
+
+/* ===========================
+   GALERÍA
+=========================== */
+.gallery { padding: var(--section-py) 0; background: var(--color-black); }
+.gallery__header { text-align: center; margin-bottom: clamp(3rem,5vw,4rem); }
+.gallery__header .section-title { color: var(--color-white); }
+.gallery__header .eyebrow { color: var(--color-gold); }
+.gallery__header .gold-rule { background: var(--color-gold); }
+
+.gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+}
+.gallery__item { overflow: hidden; display: block; aspect-ratio: 1; }
+.gallery__item img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.gallery__item:hover img { transform: scale(1.06); }
+
+/* Cada 5ª foto ocupa 2 columnas para romper la monotonía */
+.gallery__item:nth-child(5n) { grid-column: span 2; aspect-ratio: 2/1; }
+
+@media(max-width: 768px) {
+  .gallery__grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery__item:nth-child(5n) { grid-column: span 1; aspect-ratio: 1; }
+}
+
+/* ===========================
    VARIABLES & RESET
 =========================== */
 :root {

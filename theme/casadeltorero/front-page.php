@@ -1,130 +1,175 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Portada — usa ACF Pro para todos los campos de contenido e imágenes.
+ * Si ACF no está activo o un campo está vacío, se muestra un placeholder visual.
+ */
 
-<!-- ════════════════════════════════════════
-     HERO
-════════════════════════════════════════ -->
-<section class="hero" aria-label="La Casa del Torero, Vejer de la Frontera">
+/* ── Helper: obtiene campo ACF o devuelve fallback ── */
+function cdt_field(string $key, $fallback = '') {
+    if (!function_exists('get_field')) return $fallback;
+    $val = get_field($key);
+    return ($val !== '' && $val !== null && $val !== false) ? $val : $fallback;
+}
 
-  <!-- Vídeo de fondo: sube tu MP4 a la Biblioteca de medios y actualiza la URL -->
+/* ── Helper: imprime una imagen ACF (array) o un placeholder ── */
+function cdt_image(string $key, string $placeholder_text = 'Foto', string $extra_class = '', string $style = ''): void {
+    if (function_exists('get_field')) {
+        $img = get_field($key);
+        if ($img && !empty($img['url'])) {
+            printf(
+                '<img class="%s" src="%s" alt="%s" loading="lazy" %s>',
+                esc_attr($extra_class),
+                esc_url($img['url']),
+                esc_attr($img['alt'] ?: $placeholder_text),
+                $style ? 'style="' . esc_attr($style) . '"' : ''
+            );
+            return;
+        }
+    }
+    // Placeholder visual
+    ?>
+    <div class="acf-placeholder <?php echo esc_attr($extra_class); ?>" <?php echo $style ? 'style="' . esc_attr($style) . '"' : ''; ?>>
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span><?php echo esc_html($placeholder_text); ?></span>
+    </div>
+    <?php
+}
+
+get_header();
+?>
+
+<?php /* ══════════════════════════════════════════
+   HERO — VÍDEO
+══════════════════════════════════════════ */ ?>
+<section class="hero" aria-label="La Casa del Torero, Vejer">
+
   <div class="hero__video-wrap">
-    <video
-      autoplay muted loop playsinline
-      poster="<?php echo esc_url(get_template_directory_uri() . '/assets/images/hero-poster.jpg'); ?>"
-      aria-hidden="true"
-      preload="none"
-    >
-      <source src="<?php echo esc_url(get_theme_mod('hero_video_url', '')); ?>" type="video/mp4">
-    </video>
-    <!-- Fallback imagen si no hay vídeo -->
-    <div class="hero__bg" style="background-image:url('<?php echo esc_url(get_template_directory_uri() . '/assets/images/hero.jpg'); ?>')"></div>
+    <?php
+    $video_url  = cdt_field('hero_video');
+    $poster_url = cdt_field('hero_poster');
+    $fallback   = cdt_field('hero_fallback');
+    ?>
+    <?php if ($video_url) : ?>
+      <video
+        autoplay muted loop playsinline
+        <?php if ($poster_url) : ?>poster="<?php echo esc_url($poster_url); ?>"<?php endif; ?>
+        aria-hidden="true"
+        preload="none"
+      >
+        <source src="<?php echo esc_url($video_url); ?>" type="video/mp4">
+      </video>
+    <?php endif; ?>
+
+    <?php if ($fallback || !$video_url) : ?>
+      <div class="hero__bg" <?php if ($fallback) : ?>style="background-image:url('<?php echo esc_url($fallback); ?>')"<?php endif; ?>></div>
+    <?php endif; ?>
   </div>
 
   <div class="hero__overlay"></div>
   <div class="hero__deco" aria-hidden="true"></div>
 
   <div class="hero__content">
-    <span class="hero__eyebrow">Casa Rural · Hotel Boutique · Vejer de la Frontera, Cádiz</span>
-    <h1 class="hero__title">La Casa<br>del Torero</h1>
-    <p class="hero__subtitle">Una finca histórica de 24 hectáreas entre olivos centenarios, a 11 km de las playas vírgenes de la Costa de la Luz.</p>
+    <span class="hero__eyebrow">Casa Rural &middot; Hotel Boutique &middot; Vejer, C&aacute;diz</span>
+    <h1 class="hero__title"><?php echo nl2br(esc_html(cdt_field('hero_title', "La Casa\ndel Torero"))); ?></h1>
+    <p class="hero__subtitle"><?php echo esc_html(cdt_field('hero_subtitle', 'Una finca histórica de 24 hectáreas entre olivos centenarios, a 11 km de las playas vírgenes de la Costa de la Luz.')); ?></p>
     <div class="hero__actions">
-      <a href="#reservas" class="btn btn--primary">Reservar ahora</a>
-      <a href="#la-casa" class="btn btn--outline">Descubrir la finca</a>
+      <a href="#reservas" class="btn btn--primary"><?php esc_html_e('Reservar ahora', 'casadeltorero'); ?></a>
+      <a href="#la-casa" class="btn btn--outline"><?php esc_html_e('Descubrir la finca', 'casadeltorero'); ?></a>
     </div>
   </div>
 
-  <div class="hero__badge" aria-label="En días despejados se ve Marruecos">
-    <strong>Marruecos visible</strong>
-    en días despejados
+  <div class="hero__badge" aria-label="<?php esc_attr_e('En días despejados se ve Marruecos', 'casadeltorero'); ?>">
+    <strong><?php esc_html_e('Marruecos visible', 'casadeltorero'); ?></strong>
+    <?php esc_html_e('en días despejados', 'casadeltorero'); ?>
   </div>
 
-  <div class="hero__scroll" aria-hidden="true">Descubrir</div>
+  <div class="hero__scroll" aria-hidden="true"><?php esc_html_e('Descubrir', 'casadeltorero'); ?></div>
 </section>
 
 
-<!-- ════════════════════════════════════════
-     INTRO STRIP
-════════════════════════════════════════ -->
+<?php /* ══════════════════════════════════════════
+   INTRO STRIP
+══════════════════════════════════════════ */ ?>
 <div class="intro-strip">
   <div class="container">
     <div class="intro-strip__inner">
       <div class="intro-strip__item">
-        <p class="intro-strip__label">Capacidad</p>
-        <p class="intro-strip__value">Hasta 10 huéspedes</p>
+        <p class="intro-strip__label"><?php esc_html_e('Finca', 'casadeltorero'); ?></p>
+        <p class="intro-strip__value">24 <?php esc_html_e('hectáreas', 'casadeltorero'); ?></p>
       </div>
       <div class="intro-strip__item">
-        <p class="intro-strip__label">Alquiler</p>
-        <p class="intro-strip__value">Casa completa exclusiva</p>
+        <p class="intro-strip__label"><?php esc_html_e('Playas', 'casadeltorero'); ?></p>
+        <p class="intro-strip__value">11 km &middot; Costa de la Luz</p>
       </div>
       <div class="intro-strip__item">
-        <p class="intro-strip__label">Ubicación</p>
-        <p class="intro-strip__value">Ronda, Málaga</p>
+        <p class="intro-strip__label"><?php esc_html_e('Alquiler', 'casadeltorero'); ?></p>
+        <p class="intro-strip__value"><?php esc_html_e('Casa completa en exclusiva', 'casadeltorero'); ?></p>
+      </div>
+      <div class="intro-strip__item">
+        <p class="intro-strip__label"><?php esc_html_e('Ubicación', 'casadeltorero'); ?></p>
+        <p class="intro-strip__value">Vejer, C&aacute;diz</p>
       </div>
     </div>
   </div>
 </div>
 
 
-<!-- ════════════════════════════════════════
-     ABOUT — LA CASA
-════════════════════════════════════════ -->
+<?php /* ══════════════════════════════════════════
+   LA CASA
+══════════════════════════════════════════ */ ?>
 <section id="la-casa" class="about">
   <div class="container">
     <div class="about__inner">
 
       <div class="about__image-wrap reveal">
-        <img
-          class="about__image-main"
-          src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/about-main.jpg'); ?>"
-          alt="Fachada de La Casa del Torero"
-          width="640"
-          height="800"
-          loading="lazy"
-        >
-        <img
-          class="about__image-accent"
-          src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/about-detail.jpg'); ?>"
-          alt="Detalle interior"
-          width="320"
-          height="320"
-          loading="lazy"
-        >
+        <?php cdt_image('casa_foto_principal', 'Foto fachada principal', 'about__image-main'); ?>
+        <?php cdt_image('casa_foto_detalle',   'Detalle interior',       'about__image-accent'); ?>
       </div>
 
       <div class="about__content reveal reveal-delay-1">
-        <span class="eyebrow">La Casa</span>
-        <h2 class="about__title">Una joya en el corazón de Andalucía</h2>
-        <p class="about__text">
-          Situada en un enclave único, La Casa del Torero es una propiedad histórica rehabilitada con mimo y criterio donde conviven la arquitectura tradicional andaluza y los más altos estándares de confort contemporáneo.
-        </p>
-        <p class="about__text">
-          Cada rincón ha sido diseñado para ofrecer una experiencia de alojamiento verdaderamente singular: espacios luminosos, materiales nobles y una atmósfera que invita a la desconexión total.
-        </p>
+        <span class="eyebrow"><?php esc_html_e('La Casa', 'casadeltorero'); ?></span>
+        <h2 class="about__title"><?php echo esc_html(cdt_field('casa_titulo', 'Un enclave único entre el pueblo blanco y el campo andaluz')); ?></h2>
 
-        <div class="about__detail">
-          <svg class="about__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          <div class="about__detail-text">
-            <strong>Casa completa en exclusiva</strong>
-            <span>Disfrutad de toda la propiedad solo para vosotros</span>
-          </div>
+        <div class="about__text">
+          <?php
+          $texto1 = cdt_field('casa_texto1');
+          echo $texto1
+            ? wp_kses_post($texto1)
+            : '<p>La Casa del Torero es una finca de 24 hectáreas diseñada por y para un torero, siguiendo el modelo de una ganadería de reses bravas donde aún hoy siguen en uso sus instalaciones: corrales, plaza de tentación con su típica palco y burladero.</p>';
+          ?>
+        </div>
+        <div class="about__text">
+          <?php
+          $texto2 = cdt_field('casa_texto2');
+          echo $texto2
+            ? wp_kses_post($texto2)
+            : '<p>Situada en una de las colinas frente al pueblo blanco de Vejer, la casa ofrece unas vistas privilegiadas sobre la Laguna de La Janda, las marismas de Barbate y, en días despejados, la costa de Marruecos al otro lado del Estrecho.</p>';
+          ?>
         </div>
 
         <div class="about__detail">
-          <svg class="about__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <svg class="about__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
           <div class="about__detail-text">
-            <strong>Check-in flexible</strong>
-            <span>Nos adaptamos a vuestros horarios</span>
+            <strong><?php esc_html_e('Arquitectura tradicional andaluza rehabilitada', 'casadeltorero'); ?></strong>
+            <span><?php esc_html_e('Encanto moderno y andaluz que acompaña cada rincón iluminado y colorido', 'casadeltorero'); ?></span>
           </div>
         </div>
-
         <div class="about__detail">
-          <svg class="about__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <svg class="about__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           <div class="about__detail-text">
-            <strong>Atención personalizada</strong>
-            <span>Siempre disponibles para lo que necesitéis</span>
+            <strong><?php esc_html_e('Finca sostenible en activo', 'casadeltorero'); ?></strong>
+            <span><?php esc_html_e('Ganado, faisanes, perdices y conejos conviven entre olivos centenarios', 'casadeltorero'); ?></span>
+          </div>
+        </div>
+        <div class="about__detail">
+          <svg class="about__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div class="about__detail-text">
+            <strong><?php esc_html_e('Check-in personalizado · Atención 24 h', 'casadeltorero'); ?></strong>
+            <span><?php esc_html_e('Nos adaptamos a vuestros horarios y necesidades', 'casadeltorero'); ?></span>
           </div>
         </div>
 
-        <a href="#espacios" class="btn btn--dark">Ver espacios</a>
+        <a href="#espacios" class="btn btn--dark"><?php esc_html_e('Descubrir los espacios', 'casadeltorero'); ?></a>
       </div>
 
     </div>
@@ -132,127 +177,169 @@
 </section>
 
 
-<!-- ════════════════════════════════════════
-     SPACES
-════════════════════════════════════════ -->
+<?php /* ══════════════════════════════════════════
+   LA FINCA
+══════════════════════════════════════════ */ ?>
+<section id="la-finca" class="finca">
+  <div class="container">
+    <div class="finca__inner">
+
+      <div class="finca__content reveal">
+        <span class="eyebrow"><?php esc_html_e('La Finca', 'casadeltorero'); ?></span>
+        <h2 class="finca__title"><?php echo esc_html(cdt_field('finca_titulo', 'Historia viva en 24 hectáreas de campo abierto')); ?></h2>
+
+        <div class="finca__text">
+          <?php
+          $ft1 = cdt_field('finca_texto1');
+          echo $ft1
+            ? wp_kses_post($ft1)
+            : '<p>Concebida como una auténtica finca taurina, La Casa del Torero conserva su esencia ganadera mientras se ha convertido en un refugio de lujo. Sus olivos centenarios, su plaza de tentación y sus corrales son testigos de generaciones de tradición andaluza.</p>';
+          ?>
+        </div>
+        <div class="finca__text">
+          <?php
+          $ft2 = cdt_field('finca_texto2');
+          echo $ft2
+            ? wp_kses_post($ft2)
+            : '<p>Desde 2019 la propiedad funciona también como alojamiento exclusivo, combinando el alma de la finca brava con los más altos estándares de confort. Los productos de la huerta propia y la cocina mediterránea con toque francés completan la experiencia.</p>';
+          ?>
+        </div>
+
+        <div class="finca__stat-grid">
+          <div class="finca__stat"><div class="finca__stat-number">24</div><div class="finca__stat-label"><?php esc_html_e('hectáreas de campo abierto', 'casadeltorero'); ?></div></div>
+          <div class="finca__stat"><div class="finca__stat-number">11</div><div class="finca__stat-label"><?php esc_html_e('km a las playas', 'casadeltorero'); ?></div></div>
+          <div class="finca__stat"><div class="finca__stat-number">4</div><div class="finca__stat-label"><?php esc_html_e('habitaciones y suite', 'casadeltorero'); ?></div></div>
+          <div class="finca__stat"><div class="finca__stat-number">∞</div><div class="finca__stat-label"><?php esc_html_e('vistas al horizonte', 'casadeltorero'); ?></div></div>
+        </div>
+
+        <a href="#reservas" class="btn btn--gold"><?php esc_html_e('Consultar disponibilidad', 'casadeltorero'); ?></a>
+      </div>
+
+      <div class="finca__image reveal reveal-delay-1">
+        <?php cdt_image('finca_foto', 'Foto aérea / olivos centenarios'); ?>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<?php /* ══════════════════════════════════════════
+   ESPACIOS — Repeater ACF
+══════════════════════════════════════════ */ ?>
 <section id="espacios" class="spaces">
   <div class="container">
     <header class="spaces__header reveal">
-      <span class="eyebrow">Los Espacios</span>
-      <h2 class="section-title">Cada rincón, una experiencia</h2>
-      <p class="section-body">Habitaciones, salones y jardines concebidos para el descanso absoluto y el placer de estar.</p>
+      <span class="eyebrow"><?php esc_html_e('Los Espacios', 'casadeltorero'); ?></span>
+      <h2 class="section-title"><?php esc_html_e('Cuatro habitaciones, una experiencia única', 'casadeltorero'); ?></h2>
+      <div class="gold-rule"></div>
+      <p class="section-body" style="margin-top:1.5rem"><?php esc_html_e('Cada estancia ha sido diseñada con encanto moderno y andaluz. Todas con terraza, vistas al pueblo y acceso privado al campo.', 'casadeltorero'); ?></p>
     </header>
   </div>
 
   <div class="spaces__grid">
+    <?php
+    $espacios = function_exists('get_field') ? get_field('espacios') : null;
 
-    <div class="space-card reveal">
-      <img
-        class="space-card__img"
-        src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/space-suite.jpg'); ?>"
-        alt="Suite principal"
-        width="600"
-        height="800"
-        loading="lazy"
-      >
-      <div class="space-card__overlay">
-        <span class="space-card__tag">Dormitorio</span>
-        <h3 class="space-card__name">Suite Principal</h3>
-        <p class="space-card__desc">Cama king-size, baño en suite con bañera exenta y vistas al campo.</p>
+    if ($espacios) :
+      foreach ($espacios as $i => $espacio) :
+        $delay = $i > 0 ? ' reveal-delay-' . min($i, 3) : '';
+        $img   = $espacio['foto'] ?? null;
+    ?>
+      <div class="space-card reveal<?php echo esc_attr($delay); ?>">
+        <?php if ($img && !empty($img['url'])) : ?>
+          <img class="space-card__img" src="<?php echo esc_url($img['url']); ?>" alt="<?php echo esc_attr($img['alt'] ?: $espacio['nombre']); ?>" loading="lazy">
+        <?php else : ?>
+          <div class="space-card__img acf-placeholder acf-placeholder--dark">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </div>
+        <?php endif; ?>
+        <div class="space-card__overlay">
+          <?php if (!empty($espacio['tag'])) : ?>
+            <span class="space-card__tag"><?php echo esc_html($espacio['tag']); ?></span>
+          <?php endif; ?>
+          <h3 class="space-card__name"><?php echo esc_html($espacio['nombre'] ?? ''); ?></h3>
+          <?php if (!empty($espacio['tamanyo'])) : ?>
+            <p class="space-card__size"><?php echo esc_html($espacio['tamanyo']); ?></p>
+          <?php endif; ?>
+          <?php if (!empty($espacio['descripcion'])) : ?>
+            <p class="space-card__desc"><?php echo esc_html($espacio['descripcion']); ?></p>
+          <?php endif; ?>
+        </div>
       </div>
-    </div>
+    <?php
+      endforeach;
 
-    <div class="space-card reveal reveal-delay-1">
-      <img
-        class="space-card__img"
-        src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/space-salon.jpg'); ?>"
-        alt="Salón principal"
-        width="600"
-        height="800"
-        loading="lazy"
-      >
-      <div class="space-card__overlay">
-        <span class="space-card__tag">Salón</span>
-        <h3 class="space-card__name">Gran Salón</h3>
-        <p class="space-card__desc">Techos altos, chimenea de leña y sofás de diseño para los mejores momentos.</p>
+    else :
+      // Fallback visual si aún no hay datos ACF
+      $fallback_spaces = [
+        ['tag' => 'Suite',         'name' => 'Suite del Torero',  'size' => '50 m² · Hasta 4 personas', 'class' => 's1'],
+        ['tag' => 'Habitación',    'name' => 'Habitación Albero', 'size' => '25 m² · Hasta 2 personas', 'class' => 's2'],
+        ['tag' => 'Exterior',      'name' => 'Jardín & Piscina',  'size' => 'Piscina · Jacuzzi',         'class' => 's3'],
+      ];
+      foreach ($fallback_spaces as $i => $s) :
+        $delay = $i > 0 ? ' reveal-delay-' . $i : '';
+    ?>
+      <div class="space-card reveal<?php echo esc_attr($delay); ?>">
+        <div class="space-card__img acf-placeholder acf-placeholder--dark <?php echo esc_attr($s['class']); ?>">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <div class="space-card__overlay">
+          <span class="space-card__tag"><?php echo esc_html($s['tag']); ?></span>
+          <h3 class="space-card__name"><?php echo esc_html($s['name']); ?></h3>
+          <p class="space-card__size"><?php echo esc_html($s['size']); ?></p>
+        </div>
       </div>
-    </div>
-
-    <div class="space-card reveal reveal-delay-2">
-      <img
-        class="space-card__img"
-        src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/space-patio.jpg'); ?>"
-        alt="Patio andaluz"
-        width="600"
-        height="800"
-        loading="lazy"
-      >
-      <div class="space-card__overlay">
-        <span class="space-card__tag">Exterior</span>
-        <h3 class="space-card__name">Patio Andaluz</h3>
-        <p class="space-card__desc">Patio tradicional con piscina privada, pérgola y zona de comedor exterior.</p>
-      </div>
-    </div>
-
+    <?php
+      endforeach;
+    endif;
+    ?>
   </div>
 </section>
 
 
-<!-- ════════════════════════════════════════
-     EXPERIENCE / AMENITIES
-════════════════════════════════════════ -->
+<?php /* ══════════════════════════════════════════
+   EXPERIENCIAS + AMENITIES
+══════════════════════════════════════════ */ ?>
 <section id="experiencias" class="experience">
   <div class="container">
     <div class="experience__inner">
 
       <div class="experience__content reveal">
-        <span class="eyebrow">La Experiencia</span>
-        <h2 class="experience__title">Todo lo que necesitáis está aquí</h2>
-        <p class="experience__lead">
-          Desde el momento en que cruzáis la puerta, nos ocupamos de que no os falte de nada. La casa está equipada al más alto nivel para que vuestra estancia sea perfecta.
-        </p>
+        <span class="eyebrow"><?php esc_html_e('La Experiencia', 'casadeltorero'); ?></span>
+        <h2 class="experience__title"><?php esc_html_e('Todo lo que necesitáis, y lo que no esperabais', 'casadeltorero'); ?></h2>
+        <p class="experience__lead"><?php esc_html_e('Desde vuestra llegada todo está pensado para que no tengáis que pensar en nada. La finca, el campo, las vistas y la tranquilidad absoluta son los mejores anfitriones.', 'casadeltorero'); ?></p>
 
         <ul class="amenities-list">
-          <li class="amenity">Piscina privada</li>
-          <li class="amenity">Wifi de alta velocidad</li>
-          <li class="amenity">Cocina totalmente equipada</li>
-          <li class="amenity">Aire acondicionado</li>
-          <li class="amenity">Chimenea de leña</li>
-          <li class="amenity">Smart TV en todas las estancias</li>
-          <li class="amenity">Ropa de cama de lujo</li>
-          <li class="amenity">Terraza con vistas</li>
-          <li class="amenity">Parking privado</li>
-          <li class="amenity">Cuna y trona disponibles</li>
-          <li class="amenity">Admite mascotas (consultar)</li>
-          <li class="amenity">Zona de barbacoa</li>
+          <?php
+          $amenities = function_exists('get_field') ? get_field('amenities') : null;
+          if ($amenities) :
+            foreach ($amenities as $a) :
+          ?>
+            <li class="amenity"><?php echo esc_html($a['texto']); ?></li>
+          <?php
+            endforeach;
+          else :
+            $defaults = ['Piscina exterior de temporada','Jacuzzi privado','WiFi gratuito','Aire acondicionado','Chimenea de leña','Salón comunitario','Parking gratuito','Terraza de sol','Desayuno continental','Huerto propio','24 ha de campo para pasear','Plaza de tentación histórica','Cocina mediterránea con toque francés','TV en todas las estancias'];
+            foreach ($defaults as $d) :
+          ?>
+            <li class="amenity"><?php echo esc_html($d); ?></li>
+          <?php
+            endforeach;
+          endif;
+          ?>
         </ul>
 
-        <a href="#reservas" class="btn btn--dark">Consultar disponibilidad</a>
+        <a href="#reservas" class="btn btn--dark"><?php esc_html_e('Consultar disponibilidad', 'casadeltorero'); ?></a>
       </div>
 
       <div class="experience__visual reveal reveal-delay-1">
         <div class="experience__image-grid">
-          <img
-            src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/exp-main.jpg'); ?>"
-            alt="Interior de la casa"
-            width="400"
-            height="560"
-            loading="lazy"
-          >
-          <img
-            src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/exp-detail1.jpg'); ?>"
-            alt="Detalle cocina"
-            width="400"
-            height="270"
-            loading="lazy"
-          >
-          <img
-            src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/exp-detail2.jpg'); ?>"
-            alt="Detalle baño"
-            width="400"
-            height="270"
-            loading="lazy"
-          >
+          <?php
+          cdt_image('exp_foto_grande', 'Salón / chimenea',       'exp-img ei1');
+          cdt_image('exp_foto_2',      'Piscina / jacuzzi',      'exp-img ei2');
+          cdt_image('exp_foto_3',      'Desayuno / huerto',      'exp-img ei3');
+          ?>
         </div>
       </div>
 
@@ -261,33 +348,59 @@
 </section>
 
 
-<!-- ════════════════════════════════════════
-     BOOKING — REDFORS
-════════════════════════════════════════ -->
+<?php /* ══════════════════════════════════════════
+   GALERÍA
+══════════════════════════════════════════ */ ?>
+<?php
+$galeria = function_exists('get_field') ? get_field('galeria') : null;
+if ($galeria && count($galeria) > 0) :
+?>
+<section id="galeria" class="gallery">
+  <div class="container">
+    <header class="gallery__header reveal">
+      <span class="eyebrow"><?php esc_html_e('Galería', 'casadeltorero'); ?></span>
+      <h2 class="section-title"><?php esc_html_e('La finca en imágenes', 'casadeltorero'); ?></h2>
+      <div class="gold-rule"></div>
+    </header>
+  </div>
+  <div class="gallery__grid">
+    <?php foreach ($galeria as $img) : ?>
+      <a href="<?php echo esc_url($img['url']); ?>" class="gallery__item" data-lightbox="galeria" data-title="<?php echo esc_attr($img['caption'] ?? ''); ?>">
+        <img
+          src="<?php echo esc_url($img['sizes']['medium_large'] ?? $img['url']); ?>"
+          alt="<?php echo esc_attr($img['alt'] ?: 'La Casa del Torero'); ?>"
+          loading="lazy"
+          width="<?php echo esc_attr($img['sizes']['medium_large-width'] ?? ''); ?>"
+          height="<?php echo esc_attr($img['sizes']['medium_large-height'] ?? ''); ?>"
+        >
+      </a>
+    <?php endforeach; ?>
+  </div>
+</section>
+<?php endif; ?>
+
+
+<?php /* ══════════════════════════════════════════
+   BOOKING — REDFORS
+══════════════════════════════════════════ */ ?>
 <section id="reservas" class="booking">
   <div class="container">
     <header class="booking__header reveal">
-      <span class="eyebrow">Reservas</span>
-      <h2 class="section-title">Comprueba disponibilidad</h2>
-      <p>Reserva directamente y obtén las mejores condiciones. Pago seguro y confirmación inmediata.</p>
+      <span class="eyebrow"><?php esc_html_e('Reservas', 'casadeltorero'); ?></span>
+      <h2 class="section-title"><?php esc_html_e('Comprueba disponibilidad', 'casadeltorero'); ?></h2>
+      <p><?php esc_html_e('Reserva directamente con nosotros y obtén las mejores condiciones. Sin intermediarios. Confirmación inmediata.', 'casadeltorero'); ?></p>
     </header>
 
     <div class="booking__engine reveal reveal-delay-1">
       <?php
-      /*
-       * Aquí va el shortcode del plugin Redfors Hotel.
-       * Sustituye [redfors_booking] por el shortcode real de tu instalación.
-       * Ejemplo habitual: [redfors id="1"] o [redfors_booking_engine]
-       */
       if (shortcode_exists('redfors_booking')) {
           echo do_shortcode('[redfors_booking]');
       } else {
-          // Placeholder visual hasta activar el plugin
           ?>
-          <div style="text-align:center; padding: 3rem; color: #7A7065; font-family: 'Inter', sans-serif;">
-            <p style="font-size:0.875rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1rem;">Motor de reservas</p>
-            <p style="font-size:1.5rem; font-family:'Cormorant Garamond',serif; margin-bottom:2rem;">Activa el plugin Redfors Hotel<br>para mostrar el motor de reservas aquí.</p>
-            <p>Mientras tanto, puedes contactarnos en <a href="mailto:info@lacasadeltorero.com" style="color:#B8965A;">info@lacasadeltorero.com</a></p>
+          <div style="text-align:center;padding:3rem;color:var(--color-muted);">
+            <p style="font-family:var(--font-sans);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem;color:var(--color-gold);">Motor de reservas</p>
+            <p style="font-family:var(--font-serif);font-size:1.5rem;margin-bottom:2rem;color:var(--color-black);">Activa el plugin Redfors Hotel<br>para mostrar el motor de reservas aquí.</p>
+            <p style="font-size:.875rem;">Contacto directo: <a href="mailto:<?php echo esc_attr(get_field('contact_email', 'option') ?: 'info@lacasadeltorero.com'); ?>" style="color:var(--color-gold)"><?php echo esc_html(get_field('contact_email', 'option') ?: 'info@lacasadeltorero.com'); ?></a></p>
           </div>
           <?php
       }
@@ -297,125 +410,136 @@
 </section>
 
 
-<!-- ════════════════════════════════════════
-     TESTIMONIALS
-════════════════════════════════════════ -->
+<?php /* ══════════════════════════════════════════
+   TESTIMONIOS — Repeater ACF
+══════════════════════════════════════════ */ ?>
 <section class="testimonials">
   <div class="container">
     <header class="testimonials__header reveal">
-      <span class="eyebrow">Opiniones</span>
-      <h2 class="section-title">Lo que dicen nuestros huéspedes</h2>
+      <span class="eyebrow"><?php esc_html_e('Opiniones', 'casadeltorero'); ?></span>
+      <h2 class="section-title"><?php esc_html_e('Lo que dicen nuestros huéspedes', 'casadeltorero'); ?></h2>
+      <div class="gold-rule"></div>
     </header>
 
     <div class="testimonials__track">
-
-      <div class="testimonial-card reveal">
-        <p class="testimonial-card__stars">★★★★★</p>
-        <p class="testimonial-card__text">Una casa absolutamente increíble. Los espacios son mágicos, la decoración impecable y la atención de los propietarios, diez sobre diez. Volveremos sin dudarlo.</p>
-        <div class="testimonial-card__author">
-          <div>
-            <p class="testimonial-card__name">María G.</p>
-            <p class="testimonial-card__origin">Madrid · Agosto 2024</p>
-          </div>
+      <?php
+      $testimonios = function_exists('get_field') ? get_field('testimonios') : null;
+      if ($testimonios) :
+        foreach ($testimonios as $i => $t) :
+          $delay = $i > 0 ? ' reveal-delay-' . min($i, 3) : '';
+          $stars = str_repeat('★', intval($t['estrellas'] ?? 5));
+      ?>
+        <div class="testimonial-card reveal<?php echo esc_attr($delay); ?>">
+          <p class="testimonial-card__stars"><?php echo esc_html($stars); ?></p>
+          <p class="testimonial-card__text">«<?php echo esc_html($t['texto']); ?>»</p>
+          <p class="testimonial-card__name"><?php echo esc_html($t['nombre']); ?></p>
+          <p class="testimonial-card__origin"><?php echo esc_html($t['origen']); ?></p>
+          <?php if (!empty($t['plataforma'])) : ?>
+            <p class="testimonial-card__platform"><?php echo esc_html($t['plataforma']); ?></p>
+          <?php endif; ?>
         </div>
-      </div>
-
-      <div class="testimonial-card reveal reveal-delay-1">
-        <p class="testimonial-card__stars">★★★★★</p>
-        <p class="testimonial-card__text">Ronda ya es preciosa, pero La Casa del Torero le añade una capa de magia especial. La piscina, los patios, la luz... todo perfecto para desconectar.</p>
-        <div class="testimonial-card__author">
-          <div>
-            <p class="testimonial-card__name">Carlos y Beatriz</p>
-            <p class="testimonial-card__origin">Valencia · Julio 2024</p>
-          </div>
+      <?php
+        endforeach;
+      else :
+        // Fallback
+        $defaults = [
+          ['★★★★★', '«Atención exquisita. La casa es preciosa y la ubicación espectacular. Las vistas a Vejer desde la terraza al amanecer son para no olvidar. Volveremos sin duda.»', 'María C.', 'Madrid · Agosto 2024', 'Tripadvisor'],
+          ['★★★★★', '«Incredible property. The landscape is breathtaking — olive trees, the white village, the sea in the distance. The hosts are wonderfully attentive and the pool is perfect.»', 'James & Sophie T.', 'London · June 2024', 'Booking.com'],
+          ['★★★★★', '«Un endroit magique. 24 hectares d\'oliveraie, une histoire authentique et des hôtes qui rendent tout parfait. À recommander absolument.»', 'Claire & Étienne M.', 'Paris · Juillet 2024', 'Airbnb'],
+        ];
+        foreach ($defaults as $i => $t) :
+          $delay = $i > 0 ? ' reveal-delay-' . $i : '';
+      ?>
+        <div class="testimonial-card reveal<?php echo esc_attr($delay); ?>">
+          <p class="testimonial-card__stars"><?php echo esc_html($t[0]); ?></p>
+          <p class="testimonial-card__text"><?php echo esc_html($t[1]); ?></p>
+          <p class="testimonial-card__name"><?php echo esc_html($t[2]); ?></p>
+          <p class="testimonial-card__origin"><?php echo esc_html($t[3]); ?></p>
+          <p class="testimonial-card__platform"><?php echo esc_html($t[4]); ?></p>
         </div>
-      </div>
-
-      <div class="testimonial-card reveal reveal-delay-2">
-        <p class="testimonial-card__stars">★★★★★</p>
-        <p class="testimonial-card__text">We stayed for a week and it felt like living in a dream. The house is stunning, incredibly well-equipped and the location is perfect. Highly recommended.</p>
-        <div class="testimonial-card__author">
-          <div>
-            <p class="testimonial-card__name">Sophie & James</p>
-            <p class="testimonial-card__origin">London · May 2024</p>
-          </div>
-        </div>
-      </div>
-
+      <?php
+        endforeach;
+      endif;
+      ?>
     </div>
   </div>
 </section>
 
 
-<!-- ════════════════════════════════════════
-     LOCATION
-════════════════════════════════════════ -->
+<?php /* ══════════════════════════════════════════
+   UBICACIÓN
+══════════════════════════════════════════ */ ?>
 <section id="ubicacion" class="location">
   <div class="container">
     <div class="location__inner">
 
       <div class="location__content reveal">
-        <span class="eyebrow">Ubicación</span>
-        <h2 class="location__title">En el corazón de Ronda</h2>
+        <span class="eyebrow"><?php esc_html_e('Ubicación', 'casadeltorero'); ?></span>
+        <h2 class="location__title"><?php echo esc_html(cdt_field('ubicacion_titulo', 'Vejer — el pueblo blanco más bello de Cádiz')); ?></h2>
         <p class="location__text">
-          Situada en uno de los enclaves más espectaculares de Andalucía, La Casa del Torero está a pocos pasos del centro histórico de Ronda y a un paso de los mejores paisajes de la Serranía de Málaga.
+          <?php echo esc_html(cdt_field('ubicacion_texto', 'La Casa del Torero se asienta sobre una colina frente al pueblo blanco de Vejer, con vistas espectaculares a la Laguna de La Janda, las marismas de Barbate y la Costa de la Luz. En días claros, la silueta de Marruecos es visible al otro lado del Estrecho.')); ?>
         </p>
 
         <div class="location__points">
-          <div class="location__point">
-            <div class="location__point-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.333 8 14 8 14s8-8.667 8-14a8 8 0 0 0-8-8z"/></svg>
+          <?php
+          $puntos = function_exists('get_field') ? get_field('puntos_ubicacion') : null;
+          if ($puntos) :
+            foreach ($puntos as $p) :
+          ?>
+            <div class="loc-point">
+              <div class="loc-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.333 8 14 8 14s8-8.667 8-14a8 8 0 0 0-8-8z"/></svg>
+              </div>
+              <div>
+                <strong><?php echo esc_html($p['nombre']); ?></strong>
+                <span><?php echo esc_html($p['distancia']); ?></span>
+              </div>
             </div>
-            <div>
-              <strong>Centro histórico de Ronda</strong>
-              <span>A 5 minutos a pie</span>
+          <?php
+            endforeach;
+          else :
+            $default_puntos = [
+              ['Centro de Vejer', 'A pocos minutos en coche'],
+              ['Playas de El Palmar, Zahara, Caños de Meca', '11 km · Costa de la Luz'],
+              ['Tarifa — surf y kitesurf', '35 km'],
+              ['Aeropuerto de Jerez (XRY)', '45 minutos en coche'],
+              ['Aeropuerto de Málaga', '1 h 30 min en coche'],
+            ];
+            foreach ($default_puntos as $p) :
+          ?>
+            <div class="loc-point">
+              <div class="loc-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.333 8 14 8 14s8-8.667 8-14a8 8 0 0 0-8-8z"/></svg>
+              </div>
+              <div>
+                <strong><?php echo esc_html($p[0]); ?></strong>
+                <span><?php echo esc_html($p[1]); ?></span>
+              </div>
             </div>
-          </div>
-          <div class="location__point">
-            <div class="location__point-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-            </div>
-            <div>
-              <strong>Puente Nuevo</strong>
-              <span>A 8 minutos a pie</span>
-            </div>
-          </div>
-          <div class="location__point">
-            <div class="location__point-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            </div>
-            <div>
-              <strong>Málaga capital</strong>
-              <span>1 hora en coche</span>
-            </div>
-          </div>
-          <div class="location__point">
-            <div class="location__point-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            </div>
-            <div>
-              <strong>Aeropuerto de Málaga</strong>
-              <span>1h 15min en coche</span>
-            </div>
-          </div>
+          <?php
+            endforeach;
+          endif;
+          ?>
         </div>
 
-        <a href="#contacto" class="btn btn--dark">Contactar</a>
+        <a href="#reservas" class="btn btn--dark"><?php esc_html_e('Reservar ahora', 'casadeltorero'); ?></a>
       </div>
 
       <div class="location__map reveal reveal-delay-1">
-        <!--
-          Sustituye las coordenadas por las reales de la propiedad.
-          También puedes usar Google Maps Embed API con tu API key.
-        -->
-        <iframe
-          src="https://www.openstreetmap.org/export/embed.html?bbox=-5.1840%2C36.7400%2C-5.1600%2C36.7500&amp;layer=mapnik&amp;marker=36.7450%2C-5.1720"
-          width="600"
-          height="480"
-          loading="lazy"
-          title="Ubicación de La Casa del Torero en Ronda"
-          allowfullscreen
-        ></iframe>
+        <?php
+        $map_embed = cdt_field('map_embed');
+        if ($map_embed) {
+            echo wp_kses($map_embed, ['iframe' => ['src' => [], 'width' => [], 'height' => [], 'title' => [], 'loading' => [], 'allowfullscreen' => [], 'style' => [], 'frameborder' => []]]);
+        } else {
+        ?>
+          <iframe
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-5.9900%2C36.2300%2C-5.9400%2C36.2700&layer=mapnik&marker=36.2516%2C-5.9699"
+            title="Vejer — La Casa del Torero"
+            width="100%" height="100%"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+        <?php } ?>
       </div>
 
     </div>
@@ -423,19 +547,25 @@
 </section>
 
 
-<!-- ════════════════════════════════════════
-     CTA BANNER
-════════════════════════════════════════ -->
+<?php /* ══════════════════════════════════════════
+   CTA BANNER
+══════════════════════════════════════════ */ ?>
 <section class="cta-banner" id="contacto">
-  <div class="cta-banner__bg" role="img" aria-label="Vista de la propiedad"></div>
-  <div class="cta-banner__overlay"></div>
+  <?php
+  $cta_bg = cdt_field('cta_bg');
+  if ($cta_bg) :
+  ?>
+    <div class="cta-banner__bg" style="background-image:url('<?php echo esc_url($cta_bg); ?>')"></div>
+  <?php endif; ?>
+
   <div class="container">
     <div class="cta-banner__content reveal">
-      <h2 class="cta-banner__title">¿Listo para vivir<br>la experiencia?</h2>
-      <p class="cta-banner__text">Cada estancia en La Casa del Torero es única. Reserva ahora y asegura tus fechas antes de que se agoten.</p>
+      <span class="eyebrow" style="color:var(--color-gold-lt)"><?php esc_html_e('Contacto & Reservas', 'casadeltorero'); ?></span>
+      <h2 class="cta-banner__title"><?php echo nl2br(esc_html(cdt_field('cta_titulo', "Vejer os espera.\n¿Cuándo venís?"))); ?></h2>
+      <p class="cta-banner__text"><?php echo esc_html(cdt_field('cta_texto', 'Cada estancia en La Casa del Torero es irrepetible. Olivos centenarios, cielos infinitos y el mar a 11 km. Reserva directamente y asegura vuestras fechas.')); ?></p>
       <div class="cta-banner__actions">
-        <a href="#reservas" class="btn btn--primary">Reservar ahora</a>
-        <a href="mailto:<?php echo esc_attr(get_theme_mod('contact_email', 'info@lacasadeltorero.com')); ?>" class="btn btn--outline">Escribirnos</a>
+        <a href="#reservas" class="btn btn--primary"><?php esc_html_e('Reservar ahora', 'casadeltorero'); ?></a>
+        <a href="mailto:<?php echo esc_attr(get_field('contact_email', 'option') ?: 'info@lacasadeltorero.com'); ?>" class="btn btn--outline"><?php esc_html_e('Escribirnos', 'casadeltorero'); ?></a>
       </div>
     </div>
   </div>

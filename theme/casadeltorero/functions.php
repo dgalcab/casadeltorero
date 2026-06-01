@@ -92,13 +92,13 @@ add_action('wp_head', function () {
         '@context'        => 'https://schema.org',
         '@type'           => 'LodgingBusiness',
         'name'            => 'La Casa del Torero',
-        'description'     => 'Casa rural de alquiler completo en Vejer de la Frontera, Cádiz. Finca histórica de 24 hectáreas entre olivos centenarios, piscina, jacuzzi y vistas a la Costa de la Luz.',
+        'description'     => 'Casa rural de alquiler completo en Vejer, Cádiz. Finca histórica de 24 hectáreas entre olivos centenarios, piscina, jacuzzi y vistas a la Costa de la Luz.',
         'url'             => home_url('/'),
         'telephone'       => get_theme_mod('contact_phone', ''),
         'email'           => get_theme_mod('contact_email', 'info@lacasadeltorero.com'),
         'address'         => [
             '@type'           => 'PostalAddress',
-            'addressLocality' => 'Vejer de la Frontera',
+            'addressLocality' => 'Vejer',
             'addressRegion'   => 'Cádiz',
             'addressCountry'  => 'ES',
         ],
@@ -120,3 +120,6 @@ add_filter('excerpt_length', fn() => 24, 999);
 
 /* ── Customizer ── */
 require get_template_directory() . '/inc/customizer.php';
+
+/* ── ACF Pro: campos del tema ── */
+require get_template_directory() . '/inc/acf-fields.php';
