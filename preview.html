@@ -275,14 +275,6 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
   animation: scrollLine 1.8s ease-in-out infinite;
 }
 
-/* Nota de vídeo (solo en preview) */
-.video-note {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-  z-index: 2; text-align: center; color: rgba(255,255,255,.22);
-  font-size: .65rem; letter-spacing: .15em; text-transform: uppercase;
-  pointer-events: none; line-height: 2;
-}
-.video-note svg { margin-inline: auto; margin-bottom: .5rem; opacity: .15; }
 
 /* ═══════════ INTRO STRIP ═══════════ */
 .intro-strip { background: var(--black); color: var(--white); padding: 2.25rem 0; }
@@ -542,33 +534,20 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 <!-- ══════════════════ HERO — VÍDEO ══════════════════ -->
 <section class="hero" aria-label="La Casa del Torero, Vejer de la Frontera">
   <div class="hero__video-wrap">
-    <!--
-      INSTRUCCIÓN WORDPRESS:
-      Sube tu vídeo a la Biblioteca de medios (MP4, máx. 20 MB, 1920×1080).
-      Reemplaza src="" con la URL del vídeo.
-      Recomendado: grabar un recorrido lento por la finca: patio, olivos, piscina, vistas a Vejer.
-    -->
     <video
       autoplay muted loop playsinline
-      poster=""
       aria-hidden="true"
-      preload="none"
+      preload="auto"
     >
-      <!-- <source src="assets/video/hero.mp4" type="video/mp4"> -->
+      <source src="assets/video/hero.mp4" type="video/mp4">
     </video>
-    <!-- Overlay de texto cuando no hay vídeo — solo en preview -->
-    <div class="video-note">
-      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-      Aquí irá el vídeo de la finca<br>
-      (olivos centenarios · piscina · vistas a Vejer · Costa de la Luz)
-    </div>
   </div>
 
   <div class="hero__overlay"></div>
   <div class="hero__deco" aria-hidden="true"></div>
 
   <div class="hero__content">
-    <span class="hero__eyebrow">Casa Rural · Hotel Boutique · Vejer de la Frontera, Cádiz</span>
+    <span class="hero__eyebrow">Casa Rural · Hotel Boutique · Vejer, Cádiz</span>
     <h1 class="hero__title">La Casa<br>del Torero</h1>
     <p class="hero__subtitle">Una finca histórica de 24 hectáreas entre olivos centenarios, a 11 km de las playas vírgenes de la Costa de la Luz.</p>
     <div class="hero__actions">

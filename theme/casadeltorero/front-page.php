@@ -45,20 +45,18 @@ get_header();
 
   <div class="hero__video-wrap">
     <?php
-    $video_url  = cdt_field('hero_video');
+    $video_url  = cdt_field('hero_video') ?: get_template_directory_uri() . '/assets/video/hero.mp4';
     $poster_url = cdt_field('hero_poster');
     $fallback   = cdt_field('hero_fallback');
     ?>
-    <?php if ($video_url) : ?>
-      <video
-        autoplay muted loop playsinline
-        <?php if ($poster_url) : ?>poster="<?php echo esc_url($poster_url); ?>"<?php endif; ?>
-        aria-hidden="true"
-        preload="none"
-      >
-        <source src="<?php echo esc_url($video_url); ?>" type="video/mp4">
-      </video>
-    <?php endif; ?>
+    <video
+      autoplay muted loop playsinline
+      <?php if ($poster_url) : ?>poster="<?php echo esc_url($poster_url); ?>"<?php endif; ?>
+      aria-hidden="true"
+      preload="auto"
+    >
+      <source src="<?php echo esc_url($video_url); ?>" type="video/mp4">
+    </video>
 
     <?php if ($fallback || !$video_url) : ?>
       <div class="hero__bg" <?php if ($fallback) : ?>style="background-image:url('<?php echo esc_url($fallback); ?>')"<?php endif; ?>></div>
