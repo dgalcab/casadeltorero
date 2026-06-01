@@ -500,6 +500,13 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 .footer__bottom { display: flex; justify-content: space-between; align-items: center; font-size: .72rem; color: rgba(255,255,255,.28); gap: 1rem; flex-wrap: wrap; }
 .footer__bottom a:hover { color: var(--gold); }
 
+
+/* ═══════════ GALLERY HOVER ═══════════ */
+.glider-track div img { transition: transform .6s ease; }
+.glider-track div:hover img { transform: scale(1.04); }
+.glider-btn { transition: background var(--ease) !important; }
+.glider-btn:hover { background: rgba(184,150,90,.85) !important; }
+
 /* ═══════════ ANIMATIONS ═══════════ */
 @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
 @keyframes scrollLine {
@@ -736,7 +743,7 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 
     <div class="space-card reveal">
       <div class="space-card__img s1">
-        <img src="assets/img/espacios/habitacion-doble.jpg" alt="Habitación Doble" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <img loading="lazy" src="assets/img/espacios/habitacion-doble.jpg" alt="Habitación Doble" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
       <div class="space-card__overlay">
         <span class="space-card__tag">Habitación doble</span>
@@ -750,7 +757,7 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 
     <div class="space-card reveal d1">
       <div class="space-card__img s2">
-        <img src="assets/img/espacios/doble-superior.jpg" alt="Doble Superior" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <img loading="lazy" src="assets/img/espacios/doble-superior.jpg" alt="Doble Superior" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
       <div class="space-card__overlay">
         <span class="space-card__tag">Habitación doble superior</span>
@@ -764,7 +771,7 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 
     <div class="space-card reveal d2">
       <div class="space-card__img s3">
-        <img src="assets/img/espacios/hab-slide-1.jpg" alt="Suite del Torero" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <img loading="lazy" src="assets/img/espacios/hab-slide-1.jpg" alt="Suite del Torero" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
       <div class="space-card__overlay">
         <span class="space-card__tag">Suite</span>
@@ -778,7 +785,7 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 
     <div class="space-card reveal d3">
       <div class="space-card__img" style="background:linear-gradient(145deg,#1e2a3a,#0d1520);">
-        <img src="assets/img/espacios/apartamento.jpg" alt="Apartamento panorámico" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <img loading="lazy" src="assets/img/espacios/apartamento.jpg" alt="Apartamento panorámico" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
       <div class="space-card__overlay">
         <span class="space-card__tag">Apartamento</span>
@@ -801,10 +808,10 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 
       <div class="about__image-wrap reveal">
         <div class="about__image-main">
-          <img src="assets/img/casa/piscina.jpg" alt="Piscina exterior de La Casa del Torero" style="width:100%;height:100%;object-fit:cover;">
+          <img loading="lazy" src="assets/img/casa/piscina.jpg" alt="Piscina exterior de La Casa del Torero" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="about__image-accent">
-          <img src="assets/img/galeria/g03.jpg" alt="Salón con chimenea" style="width:100%;height:100%;object-fit:cover;">
+          <img loading="lazy" src="assets/img/galeria/g03.jpg" alt="Salón con chimenea" style="width:100%;height:100%;object-fit:cover;">
         </div>
       </div>
 
@@ -840,7 +847,7 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
           </div>
         </div>
 
-        <a href="#espacios" class="btn btn--dark">Descubrir los espacios</a>
+        <a href="#habitaciones" class="btn btn--dark">Descubrir los espacios</a>
       </div>
 
     </div>
@@ -886,7 +893,7 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
       </div>
 
       <div class="finca__image reveal d1">
-        <img src="assets/img/casa/aerea.jpg" alt="Vista aérea de La Casa del Torero con Vejer al fondo" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <img loading="lazy" src="assets/img/casa/aerea.jpg" alt="Vista aérea de La Casa del Torero con Vejer al fondo" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
 
     </div>
@@ -927,13 +934,13 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
       <div class="experience__visual reveal d1">
         <div class="exp-grid">
           <div class="exp-img ei1">
-            <img src="assets/img/casa/finca-exterior.jpg" alt="Exterior de la finca" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img loading="lazy" src="assets/img/casa/finca-exterior.jpg" alt="Exterior de la finca" style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
           <div class="exp-img ei2">
-            <img src="assets/img/galeria/g07.jpg" alt="Detalle interior" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img loading="lazy" src="assets/img/galeria/g07.jpg" alt="Detalle interior" style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
           <div class="exp-img ei3">
-            <img src="assets/img/galeria/g04.jpg" alt="Detalle de la finca" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img loading="lazy" src="assets/img/galeria/g04.jpg" alt="Detalle de la finca" style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
         </div>
       </div>
@@ -967,13 +974,13 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 
       <div class="gastro__visual reveal d1">
         <div class="gastro__img">
-          <img src="assets/img/gastro/mesa.jpg" alt="Mesa preparada para la cena">
+          <img loading="lazy" src="assets/img/gastro/mesa.jpg" alt="Mesa preparada para la cena">
         </div>
         <div class="gastro__img">
-          <img src="assets/img/gastro/comedor.jpg" alt="Comedor de La Casa del Torero">
+          <img loading="lazy" src="assets/img/gastro/comedor.jpg" alt="Comedor de La Casa del Torero">
         </div>
         <div class="gastro__img">
-          <img src="assets/img/gastro/plato.jpg" alt="Plato del chef">
+          <img loading="lazy" src="assets/img/gastro/plato.jpg" alt="Plato del chef">
         </div>
         <div class="gastro__quote">
           <p>"Verduras de nuestra propia huerta, los mejores productos de la zona y la precisión de la cocina francesa — todo en una misma mesa."</p>
@@ -1002,34 +1009,34 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
       cursor:grab; user-select:none;
       padding: 0 clamp(1.25rem,5vw,3rem);
     ">
-      <div style="flex:0 0 auto;width:clamp(260px,38vw,580px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img src="assets/img/casa/aerea.jpg"           alt="Vista aérea de la finca"    style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"></div>
-      <div style="flex:0 0 auto;width:clamp(200px,28vw,420px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img src="assets/img/espacios/suite-principal.jpg" alt="Suite del Torero"         style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"></div>
-      <div style="flex:0 0 auto;width:clamp(200px,28vw,420px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img src="assets/img/galeria/g01.jpg"              alt=""                       style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"></div>
-      <div style="flex:0 0 auto;width:clamp(200px,28vw,420px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img src="assets/img/casa/piscina.jpg"             alt="Piscina exterior"       style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"></div>
-      <div style="flex:0 0 auto;width:clamp(200px,28vw,420px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img src="assets/img/galeria/g03.jpg"              alt=""                       style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"></div>
-      <div style="flex:0 0 auto;width:clamp(260px,38vw,580px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img src="assets/img/casa/finca-exterior.jpg"      alt="Exterior de la finca"   style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"></div>
-      <div style="flex:0 0 auto;width:clamp(200px,28vw,420px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img src="assets/img/galeria/g05.jpg"              alt=""                       style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"></div>
-      <div style="flex:0 0 auto;width:clamp(200px,28vw,420px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img src="assets/img/galeria/g07.jpg"              alt=""                       style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"></div>
-      <div style="flex:0 0 auto;width:clamp(200px,28vw,420px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img src="assets/img/galeria/g08.jpg"              alt=""                       style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"></div>
-      <div style="flex:0 0 auto;width:clamp(200px,28vw,420px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img src="assets/img/espacios/hab-slide-1.jpg"     alt="Habitación"             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"></div>
-      <div style="flex:0 0 auto;width:clamp(200px,28vw,420px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img src="assets/img/galeria/g10.jpg"              alt=""                       style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"></div>
-      <div style="flex:0 0 auto;width:clamp(260px,38vw,580px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img src="assets/img/espacios/hab-slide-2.jpg"     alt="Habitación doble"       style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"></div>
+      <div style="flex:0 0 auto;width:clamp(260px,38vw,580px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img loading="lazy" src="assets/img/casa/aerea.jpg"           alt="Vista aérea de la finca"    style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;"></div>
+      <div style="flex:0 0 auto;width:clamp(200px,28vw,420px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img loading="lazy" src="assets/img/espacios/suite-principal.jpg" alt="Suite del Torero"         style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;"></div>
+      <div style="flex:0 0 auto;width:clamp(200px,28vw,420px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img loading="lazy" src="assets/img/galeria/g01.jpg"              alt="Cocina y comedor de La Casa del Torero"                       style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;"></div>
+      <div style="flex:0 0 auto;width:clamp(200px,28vw,420px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img loading="lazy" src="assets/img/casa/piscina.jpg"             alt="Piscina exterior"       style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;"></div>
+      <div style="flex:0 0 auto;width:clamp(200px,28vw,420px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img loading="lazy" src="assets/img/galeria/g03.jpg"              alt="Salón con chimenea"                       style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;"></div>
+      <div style="flex:0 0 auto;width:clamp(260px,38vw,580px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img loading="lazy" src="assets/img/casa/finca-exterior.jpg"      alt="Exterior de la finca"   style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;"></div>
+      <div style="flex:0 0 auto;width:clamp(200px,28vw,420px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img loading="lazy" src="assets/img/galeria/g05.jpg"              alt="Detalle de la finca"                       style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;"></div>
+      <div style="flex:0 0 auto;width:clamp(200px,28vw,420px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img loading="lazy" src="assets/img/galeria/g07.jpg"              alt="Rincón interior de la casa"                       style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;"></div>
+      <div style="flex:0 0 auto;width:clamp(200px,28vw,420px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img loading="lazy" src="assets/img/galeria/g08.jpg"              alt="Mesa exterior preparada para cenar"                       style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;"></div>
+      <div style="flex:0 0 auto;width:clamp(200px,28vw,420px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img loading="lazy" src="assets/img/espacios/hab-slide-1.jpg"     alt="Habitación"             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;"></div>
+      <div style="flex:0 0 auto;width:clamp(200px,28vw,420px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img loading="lazy" src="assets/img/galeria/g10.jpg"              alt="Vista de la terraza"                       style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;"></div>
+      <div style="flex:0 0 auto;width:clamp(260px,38vw,580px);height:clamp(240px,38vw,520px);overflow:hidden;scroll-snap-align:start;"><img loading="lazy" src="assets/img/espacios/hab-slide-2.jpg"     alt="Habitación doble"       style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;"></div>
     </div>
 
     <!-- Botones prev / next -->
-    <button onclick="document.getElementById('gliderTrack').scrollBy({left:-460,behavior:'smooth'})" style="
+    <button class="glider-btn" onclick="document.getElementById('gliderTrack').scrollBy({left:-460,behavior:'smooth'})" style="
       position:absolute; top:50%; left:clamp(.5rem,2vw,1.5rem); transform:translateY(-50%);
       width:44px; height:44px; border-radius:50%; background:rgba(0,0,0,.55); border:1px solid rgba(255,255,255,.25);
       color:#fff; font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
-      transition:.3s; backdrop-filter:blur(4px); z-index:10;
-    " onmouseover="this.style.background='rgba(184,150,90,.85)'" onmouseout="this.style.background='rgba(0,0,0,.55)'">&#8592;</button>
+      backdrop-filter:blur(4px); z-index:10;
+    ">&#8592;</button>
 
-    <button onclick="document.getElementById('gliderTrack').scrollBy({left:460,behavior:'smooth'})" style="
+    <button class="glider-btn" onclick="document.getElementById('gliderTrack').scrollBy({left:460,behavior:'smooth'})" style="
       position:absolute; top:50%; right:clamp(.5rem,2vw,1.5rem); transform:translateY(-50%);
       width:44px; height:44px; border-radius:50%; background:rgba(0,0,0,.55); border:1px solid rgba(255,255,255,.25);
       color:#fff; font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
-      transition:.3s; backdrop-filter:blur(4px); z-index:10;
-    " onmouseover="this.style.background='rgba(184,150,90,.85)'" onmouseout="this.style.background='rgba(0,0,0,.55)'">&#8594;</button>
+      backdrop-filter:blur(4px); z-index:10;
+    ">&#8594;</button>
   </div>
 </section>
 
@@ -1098,21 +1105,20 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
       <div class="booking-demo">
         <div class="booking-field">
           <label>Llegada</label>
-          <input type="text" placeholder="dd / mm / aaaa" value="15/08/2025">
+          <input type="text" placeholder="dd / mm / aaaa" value="">
         </div>
         <div class="booking-field">
           <label>Salida</label>
-          <input type="text" placeholder="dd / mm / aaaa" value="22/08/2025">
+          <input type="text" placeholder="dd / mm / aaaa" value="">
         </div>
         <div class="booking-field">
           <label>Huéspedes</label>
-          <input type="text" value="6 personas">
+          <input type="text" value="">
         </div>
-        <a href="#" class="btn btn--gold" style="white-space:nowrap">Buscar</a>
+        <a href="mailto:info@lacasadeltorero.com" class="btn btn--gold" style="white-space:nowrap">Consultar</a>
       </div>
       <p class="booking-note">
-        ⚑ Motor de reservas Redfors Hotel — se mostrará aquí una vez activado el plugin en WordPress.<br>
-        Mientras tanto: <a href="mailto:info@lacasadeltorero.com" style="color:var(--gold)">info@lacasadeltorero.com</a>
+        📩 Escríbenos y te confirmamos disponibilidad en menos de 24h · <a href="mailto:info@lacasadeltorero.com" style="color:var(--gold)">info@lacasadeltorero.com</a> · <a href="tel:+34615508168" style="color:var(--gold)">+34 615 50 81 68</a>
       </p>
     </div>
   </div>
@@ -1255,7 +1261,7 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
         <ul>
           <li><a href="#la-casa">La Casa</a></li>
           <li><a href="#la-finca">La Finca</a></li>
-          <li><a href="#espacios">Espacios</a></li>
+          <li><a href="#habitaciones">Espacios</a></li>
           <li><a href="#experiencias">Experiencias</a></li>
         </ul>
       </div>
@@ -1265,8 +1271,8 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
         <ul>
           <li><a href="#reservas">Reservas</a></li>
           <li><a href="#ubicacion">Cómo llegar</a></li>
-          <li><a href="#">Normas de la casa</a></li>
-          <li><a href="#">Política de cancelación</a></li>
+          <li><a href="mailto:info@lacasadeltorero.com">Normas de la casa</a></li>
+          <li><a href="mailto:info@lacasadeltorero.com">Política de cancelación</a></li>
           <li><a href="#">Privacidad · Cookies</a></li>
         </ul>
       </div>
