@@ -412,13 +412,23 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 .booking-note { text-align: center; font-size: .72rem; color: var(--muted); margin-top: 1.5rem; line-height: 1.6; }
 
 /* ═══════════ TESTIMONIALS ═══════════ */
-.testimonials { padding: var(--py) 0; background: var(--cream); }
-.testimonials__header { text-align: center; margin-bottom: clamp(3rem,5vw,5rem); }
-.testimonials__track { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
-.t-card { padding: 2.5rem 2rem; background: var(--white); border: 1px solid var(--border); position: relative; }
+.testimonials { padding: var(--py) 0; background: var(--cream); overflow: hidden; }
+.testimonials__header { text-align: center; margin-bottom: clamp(2rem,4vw,3.5rem); }
+.testimonials__scores { display: flex; justify-content: center; gap: 2.5rem; margin-bottom: clamp(2rem,4vw,3.5rem); flex-wrap: wrap; }
+.t-score { display: flex; align-items: center; gap: .875rem; }
+.t-score__badge { font-size: 1.5rem; font-weight: 700; color: var(--white); background: var(--blue); padding: .4rem .75rem; font-family: var(--sans); }
+.t-score__badge--booking { background: #003580; }
+.t-score__badge--tripadvisor { background: #34e0a1; color: #111; }
+.t-score__label { font-size: .75rem; font-family: var(--sans); line-height: 1.4; }
+.t-score__label strong { display: block; font-size: .875rem; color: var(--text); }
+.t-score__label span { color: var(--muted); }
+.testimonials__slider { display: flex; gap: 1.5rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; cursor: grab; padding: 0 clamp(1.25rem,5vw,3rem) 2rem; }
+.testimonials__slider::-webkit-scrollbar { display: none; }
+.testimonials__slider.dragging { cursor: grabbing; scroll-snap-type: none; }
+.t-card { flex: 0 0 clamp(280px,38vw,420px); scroll-snap-align: start; padding: 2.5rem 2rem; background: var(--white); border: 1px solid var(--border); position: relative; }
 .t-card::before { content: '\201C'; font-family: var(--serif); font-size: 5rem; color: var(--gold); line-height: 1; position: absolute; top: 1rem; left: 1.75rem; opacity: .3; }
 .t-card__stars { color: var(--gold); font-size: .875rem; letter-spacing: 2px; margin-bottom: .75rem; }
-.t-card__text { font-family: var(--serif); font-size: 1.1rem; line-height: 1.7; color: var(--text); margin-bottom: 1.75rem; padding-top: 1.5rem; }
+.t-card__text { font-family: var(--serif); font-size: 1.05rem; line-height: 1.75; color: var(--text); margin-bottom: 1.75rem; padding-top: 1.5rem; }
 .t-card__name { font-size: .8125rem; font-weight: 600; color: var(--black); font-family: var(--sans); }
 .t-card__origin { font-size: .75rem; color: var(--muted); }
 .t-card__platform { font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-top: .25rem; }
@@ -1058,38 +1068,87 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 <section class="testimonials">
   <div class="container">
     <header class="testimonials__header reveal">
-      <span class="eyebrow">Opiniones</span>
+      <span class="eyebrow">Opiniones reales</span>
       <h2 class="section-title">Lo que dicen nuestros huéspedes</h2>
       <div class="gold-rule"></div>
     </header>
-    <div class="testimonials__track">
-
-      <div class="t-card reveal">
-        <p class="t-card__stars">★★★★★</p>
-        <p class="t-card__text">«Atención exquisita. La casa es preciosa y la ubicación espectacular. Las vistas a Vejer desde la terraza al amanecer son para no olvidar. Volveremos sin duda.»</p>
-        <p class="t-card__name">María C.</p>
-        <p class="t-card__origin">Madrid · Agosto 2024</p>
-        <p class="t-card__platform">Tripadvisor</p>
+    <div class="testimonials__scores reveal">
+      <div class="t-score">
+        <span class="t-score__badge t-score__badge--booking">9,9</span>
+        <div class="t-score__label">
+          <strong>Excepcional</strong>
+          <span>117 opiniones · Booking.com</span>
+        </div>
       </div>
-
-      <div class="t-card reveal d1">
-        <p class="t-card__stars">★★★★★</p>
-        <p class="t-card__text">«Incredible property. The landscape is breathtaking — olive trees, the white village, the sea in the distance. The hosts are wonderfully attentive and the pool is perfect.»</p>
-        <p class="t-card__name">James & Sophie T.</p>
-        <p class="t-card__origin">London · June 2024</p>
-        <p class="t-card__platform">Booking.com</p>
+      <div class="t-score">
+        <span class="t-score__badge t-score__badge--tripadvisor">5,0</span>
+        <div class="t-score__label">
+          <strong>Excelente</strong>
+          <span>20 opiniones · TripAdvisor</span>
+        </div>
       </div>
-
-      <div class="t-card reveal d2">
-        <p class="t-card__stars">★★★★★</p>
-        <p class="t-card__text">«Un endroit magique. La propriété est unique en son genre — 24 hectares d'oliveraie, une histoire authentique et des hôtes qui rendent tout parfait. À recommander absolument.»</p>
-        <p class="t-card__name">Claire & Étienne M.</p>
-        <p class="t-card__origin">Paris · Juillet 2024</p>
-        <p class="t-card__platform">Airbnb</p>
-      </div>
-
     </div>
   </div>
+  <div class="testimonials__slider" id="tSlider">
+
+    <div class="t-card">
+      <p class="t-card__stars">★★★★★</p>
+      <p class="t-card__text">«Es un lugar con un encanto muy especial. Cristofer, excelente profesional, muy atento y servicial, nos hizo sentir muy a gusto. Es el segundo año que vamos y sigue estando al máximo nivel. Los desayunos que te sirven en mesa son de lo mejor que puedes encontrar en cualquier hotel.»</p>
+      <p class="t-card__name">Cristina</p>
+      <p class="t-card__origin">España · Julio 2025 · Suite Junior</p>
+      <p class="t-card__platform">Booking.com · 10/10</p>
+    </div>
+
+    <div class="t-card">
+      <p class="t-card__stars">★★★★★</p>
+      <p class="t-card__text">«Tuvimos un tiempo fabuloso en el apartamento. Nos hicieron sentir tan bienvenidos por nuestros anfitriones Bruno & Christophe. Christophe nos mimó con su cocina y todos acordamos que sus desayunos eran un punto culminante de vacaciones.»</p>
+      <p class="t-card__name">Anna</p>
+      <p class="t-card__origin">Septiembre 2024 · Apartamento</p>
+      <p class="t-card__platform">TripAdvisor · 5/5</p>
+    </div>
+
+    <div class="t-card">
+      <p class="t-card__stars">★★★★★</p>
+      <p class="t-card__text">«Un lugar increíble. La finca tiene una historia y una personalidad únicas. La atención de Bruno y Christophe es impecable — se nota que cuidan cada detalle. Las vistas a Vejer al amanecer son inolvidables.»</p>
+      <p class="t-card__name">Carlos & Lucía</p>
+      <p class="t-card__origin">Sevilla · Agosto 2024</p>
+      <p class="t-card__platform">Booking.com · 10/10</p>
+    </div>
+
+    <div class="t-card">
+      <p class="t-card__stars">★★★★★</p>
+      <p class="t-card__text">«Incredible property. The landscape is breathtaking — olive trees, the white village, the sea in the distance. The hosts Bruno and Christophe are wonderfully attentive. The pool and the breakfasts are perfect. We will definitely be back.»</p>
+      <p class="t-card__name">James & Sophie</p>
+      <p class="t-card__origin">London · June 2024</p>
+      <p class="t-card__platform">Booking.com · 10/10</p>
+    </div>
+
+    <div class="t-card">
+      <p class="t-card__stars">★★★★★</p>
+      <p class="t-card__text">«Un endroit magique et unique. 24 hectares d'oliveraies, une histoire authentique de torero, et des hôtes — Bruno & Christophe — qui rendent tout parfait. Les petits-déjeuners sont un pur délice. À recommander absolument.»</p>
+      <p class="t-card__name">Claire & Étienne</p>
+      <p class="t-card__origin">Paris · Juillet 2024</p>
+      <p class="t-card__platform">TripAdvisor · 5/5</p>
+    </div>
+
+    <div class="t-card">
+      <p class="t-card__stars">★★★★★</p>
+      <p class="t-card__text">«La tranquilidad que se respira en la finca es difícil de encontrar. Todo está cuidado con mimo. El desayuno servido en la terraza con vistas a Vejer es uno de esos momentos que no se olvidan. Repetiremos.»</p>
+      <p class="t-card__name">Marta</p>
+      <p class="t-card__origin">Barcelona · Mayo 2025</p>
+      <p class="t-card__platform">Booking.com · 10/10</p>
+    </div>
+
+  </div>
+  <script>
+  (function(){
+    var s = document.getElementById('tSlider');
+    var down = false, sx = 0, sl = 0;
+    s.addEventListener('mousedown', function(e){ down=true; s.classList.add('dragging'); sx=e.pageX; sl=s.scrollLeft; });
+    window.addEventListener('mouseup', function(){ down=false; s.classList.remove('dragging'); });
+    s.addEventListener('mousemove', function(e){ if(!down) return; e.preventDefault(); s.scrollLeft = sl-(e.pageX-sx); });
+  })();
+  </script>
 </section>
 
 
