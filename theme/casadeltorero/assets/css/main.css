@@ -1,23 +1,21 @@
 /* ===========================
-   LOGO DUAL (blanco / oscuro)
+   LOGO SVG (currentColor)
 =========================== */
 
-/* Altura máxima del logo — ajusta según tu logo real */
-.site-logo img.logo { height: 52px; width: auto; display: block; transition: opacity 0.3s ease; }
-
-/* Sobre el hero (header transparente): mostramos blanco, ocultamos oscuro */
-.logo--white { display: block; }
-.logo--dark  { display: none; }
-
-/* Al hacer scroll (header blanco): mostramos oscuro, ocultamos blanco */
-#site-header.scrolled .logo--white { display: none; }
-#site-header.scrolled .logo--dark  { display: block; }
-
-/* Fallback texto si no hay logo subido */
-.logo-text { font-family: var(--font-serif); font-size: 1.35rem; letter-spacing: .02em; line-height: 1.2; color: var(--color-white); }
-.logo-text small { display: block; font-family: var(--font-sans); font-size: .58rem; letter-spacing: .26em; text-transform: uppercase; font-weight: 500; }
-#site-header.scrolled .logo-text { color: var(--color-black); }
-#site-header.scrolled .logo-text small { color: var(--color-muted); }
+/* El SVG usa currentColor: solo cambiamos 'color' para controlar el tono */
+.site-logo {
+  display: block;
+  color: var(--color-white);
+  transition: color var(--transition);
+}
+#site-header.scrolled .site-logo {
+  color: var(--color-gold);
+}
+.site-logo__svg {
+  height: 54px;
+  width: auto;
+  display: block;
+}
 
 /* Placeholder ACF cuando no hay imagen subida aún */
 .acf-placeholder {

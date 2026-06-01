@@ -13,40 +13,9 @@
 <header id="site-header" role="banner">
   <div class="container">
 
-    <!-- Logo: blanco sobre hero, oscuro al hacer scroll -->
+    <!-- Logo SVG inline — color controlado por CSS según estado del header -->
     <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo" aria-label="<?php bloginfo('name'); ?> — Inicio">
-      <?php
-      $logo_white = function_exists('get_field') ? get_field('logo_white', 'option') : null;
-      $logo_dark  = function_exists('get_field') ? get_field('logo_dark',  'option') : null;
-
-      if ($logo_white && !empty($logo_white['url'])) :
-      ?>
-        <!-- Logo blanco — visible sobre el hero oscuro -->
-        <img
-          class="logo logo--white"
-          src="<?php echo esc_url($logo_white['url']); ?>"
-          alt="<?php bloginfo('name'); ?>"
-          width="<?php echo esc_attr($logo_white['width'] ?? ''); ?>"
-          height="<?php echo esc_attr($logo_white['height'] ?? ''); ?>"
-        >
-        <?php if ($logo_dark && !empty($logo_dark['url'])) : ?>
-        <!-- Logo oscuro — visible cuando el header se vuelve blanco -->
-        <img
-          class="logo logo--dark"
-          src="<?php echo esc_url($logo_dark['url']); ?>"
-          alt="<?php bloginfo('name'); ?>"
-          width="<?php echo esc_attr($logo_dark['width'] ?? ''); ?>"
-          height="<?php echo esc_attr($logo_dark['height'] ?? ''); ?>"
-        >
-        <?php endif; ?>
-      <?php elseif (has_custom_logo()) : ?>
-        <?php the_custom_logo(); ?>
-      <?php else : ?>
-        <span class="logo-text">
-          <?php bloginfo('name'); ?>
-          <small><?php bloginfo('description'); ?></small>
-        </span>
-      <?php endif; ?>
+      <?php include get_template_directory() . '/inc/logo.php'; ?>
     </a>
 
     <button class="nav-toggle" aria-label="<?php esc_attr_e('Abrir menú', 'casadeltorero'); ?>" aria-expanded="false" aria-controls="primary-nav">
