@@ -113,7 +113,6 @@ add_action('wp_head', function () {
         'geo'             => ['@type' => 'GeoCoordinates', 'latitude' => '36.27762390730022', 'longitude' => '-5.953142849633493'],
         'amenityFeature'  => [
             ['@type' => 'LocationFeatureSpecification', 'name' => 'Piscina exterior', 'value' => true],
-            ['@type' => 'LocationFeatureSpecification', 'name' => 'Jacuzzi', 'value' => true],
             ['@type' => 'LocationFeatureSpecification', 'name' => 'WiFi gratuito', 'value' => true],
             ['@type' => 'LocationFeatureSpecification', 'name' => 'Parking gratuito', 'value' => true],
             ['@type' => 'LocationFeatureSpecification', 'name' => 'Aire acondicionado', 'value' => true],
