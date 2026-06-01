@@ -458,6 +458,29 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 .gastro__quote p { font-family: var(--serif); font-size: 1.1rem; font-style: italic; color: rgba(255,255,255,.75); line-height: 1.7; }
 @media(max-width:768px) { .gastro__inner { grid-template-columns: 1fr; } .gastro__visual { display: none; } }
 
+/* ═══════════ FAQ ═══════════ */
+.faq { padding: var(--py) 0; background: var(--cream); }
+.faq__inner { display: grid; grid-template-columns: 1fr 2fr; gap: clamp(3rem,6vw,7rem); align-items: start; }
+.faq__aside { position: sticky; top: 7rem; }
+.faq__aside .eyebrow { display: block; margin-bottom: 1rem; }
+.faq__aside h2 { margin-bottom: 1.5rem; }
+.faq__aside p { color: var(--muted); line-height: 1.7; margin-bottom: 2rem; }
+.faq__contact { display: inline-flex; align-items: center; gap: .5rem; font-family: var(--sans); font-size: .82rem; font-weight: 500; color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 2px; transition: color var(--ease); }
+.faq__contact:hover { color: var(--blue); border-color: var(--blue); }
+.faq__list { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--border); }
+.faq-item { border-bottom: 1px solid var(--border); }
+.faq-item__btn { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; padding: 1.5rem 0; background: none; border: none; cursor: pointer; text-align: left; font-family: var(--serif); font-size: 1.15rem; font-weight: 400; color: var(--text); transition: color var(--ease); }
+.faq-item__btn:hover { color: var(--gold); }
+.faq-item__icon { width: 22px; height: 22px; flex-shrink: 0; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background var(--ease), border-color var(--ease); }
+.faq-item__icon svg { width: 10px; height: 10px; fill: none; stroke: var(--muted); stroke-width: 2; transition: transform var(--ease), stroke var(--ease); }
+.faq-item.open .faq-item__icon { background: var(--gold); border-color: var(--gold); }
+.faq-item.open .faq-item__icon svg { stroke: #fff; transform: rotate(45deg); }
+.faq-item__body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s ease; }
+.faq-item.open .faq-item__body { grid-template-rows: 1fr; }
+.faq-item__body-inner { overflow: hidden; }
+.faq-item__body-inner p { padding: 0 2rem 1.5rem 0; color: var(--muted); line-height: 1.75; font-size: .95rem; }
+@media(max-width:768px) { .faq__inner { grid-template-columns: 1fr; } .faq__aside { position: static; } }
+
 /* ═══════════ LOCATION ═══════════ */
 .location { padding: var(--py) 0; background: var(--white); }
 .location__inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem,6vw,7rem); align-items: start; }
@@ -1305,6 +1328,121 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
     </div>
   </div>
 </section>
+
+
+<!-- ══════════════════ FAQ ══════════════════ -->
+<section class="faq">
+  <div class="container">
+    <div class="faq__inner">
+
+      <div class="faq__aside reveal">
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 class="section-title">Todo lo que necesitas saber</h2>
+        <p>Si no encuentras respuesta a tu pregunta, escríbenos — respondemos en menos de 24 horas.</p>
+        <a href="https://wa.me/34615508168" class="faq__contact" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Pregúntanos por WhatsApp
+        </a>
+      </div>
+
+      <div class="faq__list reveal">
+
+        <div class="faq-item">
+          <button class="faq-item__btn" aria-expanded="false">
+            ¿Se admiten mascotas?
+            <span class="faq-item__icon"><svg viewBox="0 0 12 12"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+          </button>
+          <div class="faq-item__body"><div class="faq-item__body-inner"><p>— Pendiente de confirmar con el propietario —</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-item__btn" aria-expanded="false">
+            ¿Cuál es el horario de check-in y check-out?
+            <span class="faq-item__icon"><svg viewBox="0 0 12 12"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+          </button>
+          <div class="faq-item__body"><div class="faq-item__body-inner"><p>— Pendiente de confirmar con el propietario —</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-item__btn" aria-expanded="false">
+            ¿Está incluido el desayuno?
+            <span class="faq-item__icon"><svg viewBox="0 0 12 12"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+          </button>
+          <div class="faq-item__body"><div class="faq-item__body-inner"><p>— Pendiente de confirmar con el propietario —</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-item__btn" aria-expanded="false">
+            ¿Hay un mínimo de noches?
+            <span class="faq-item__icon"><svg viewBox="0 0 12 12"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+          </button>
+          <div class="faq-item__body"><div class="faq-item__body-inner"><p>— Pendiente de confirmar con el propietario —</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-item__btn" aria-expanded="false">
+            ¿Se puede alquilar la casa completa para eventos o celebraciones?
+            <span class="faq-item__icon"><svg viewBox="0 0 12 12"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+          </button>
+          <div class="faq-item__body"><div class="faq-item__body-inner"><p>— Pendiente de confirmar con el propietario —</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-item__btn" aria-expanded="false">
+            ¿La piscina está disponible todo el año?
+            <span class="faq-item__icon"><svg viewBox="0 0 12 12"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+          </button>
+          <div class="faq-item__body"><div class="faq-item__body-inner"><p>— Pendiente de confirmar con el propietario —</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-item__btn" aria-expanded="false">
+            ¿Cuánto se tarda en llegar a la playa más cercana?
+            <span class="faq-item__icon"><svg viewBox="0 0 12 12"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+          </button>
+          <div class="faq-item__body"><div class="faq-item__body-inner"><p>Las playas vírgenes de la Costa de la Luz están a tan solo 11 km. En coche son aproximadamente 15 minutos hasta Caños de Meca y El Palmar.</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-item__btn" aria-expanded="false">
+            ¿Hay aparcamiento en la finca?
+            <span class="faq-item__icon"><svg viewBox="0 0 12 12"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+          </button>
+          <div class="faq-item__body"><div class="faq-item__body-inner"><p>Sí, la finca dispone de aparcamiento privado gratuito para todos los huéspedes.</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-item__btn" aria-expanded="false">
+            ¿Cuál es la política de cancelación?
+            <span class="faq-item__icon"><svg viewBox="0 0 12 12"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+          </button>
+          <div class="faq-item__body"><div class="faq-item__body-inner"><p>— Pendiente de confirmar con el propietario —</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-item__btn" aria-expanded="false">
+            ¿Hay WiFi en toda la finca?
+            <span class="faq-item__icon"><svg viewBox="0 0 12 12"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+          </button>
+          <div class="faq-item__body"><div class="faq-item__body-inner"><p>Sí, la finca dispone de WiFi gratuito de alta velocidad en todas las habitaciones y zonas comunes.</p></div></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  document.querySelectorAll('.faq-item__btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.faq-item');
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i){ i.classList.remove('open'); i.querySelector('.faq-item__btn').setAttribute('aria-expanded','false'); });
+      if(!isOpen){ item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+    });
+  });
+})();
+</script>
 
 
 <!-- ══════════════════ LOCATION ══════════════════ -->
