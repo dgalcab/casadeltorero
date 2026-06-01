@@ -19,7 +19,7 @@
 /* ===========================
    GALERÍA
 =========================== */
-.gallery { padding: var(--section-py) 0; background: var(--color-black); }
+.gallery { padding: var(--section-py) 0; background: var(--color-blue); }
 .gallery__header { text-align: center; margin-bottom: clamp(3rem,5vw,4rem); }
 .gallery__header .section-title { color: var(--color-white); }
 .gallery__header .eyebrow { color: var(--color-gold); }
@@ -481,7 +481,7 @@ h1, h2, h3, h4 {
    INTRO STRIP
 =========================== */
 .intro-strip {
-  background: var(--color-black);
+  background: var(--color-blue);
   color: var(--color-white);
   padding: 2.5rem 0;
 }
@@ -748,7 +748,7 @@ h1, h2, h3, h4 {
 =========================== */
 .booking {
   padding: var(--section-py) 0;
-  background: var(--color-black);
+  background: var(--color-blue);
   color: var(--color-white);
 }
 
@@ -1015,7 +1015,7 @@ h1, h2, h3, h4 {
    FOOTER
 =========================== */
 #site-footer {
-  background: var(--color-black);
+  background: var(--color-blue);
   color: rgba(255,255,255,0.6);
   padding: clamp(3.5rem, 6vw, 6rem) 0 2rem;
 }
