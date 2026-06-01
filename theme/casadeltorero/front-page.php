@@ -3,21 +3,41 @@
 <!-- ════════════════════════════════════════
      HERO
 ════════════════════════════════════════ -->
-<section class="hero" aria-label="Bienvenida">
-  <div class="hero__bg" role="img" aria-label="La Casa del Torero"></div>
+<section class="hero" aria-label="La Casa del Torero, Vejer de la Frontera">
+
+  <!-- Vídeo de fondo: sube tu MP4 a la Biblioteca de medios y actualiza la URL -->
+  <div class="hero__video-wrap">
+    <video
+      autoplay muted loop playsinline
+      poster="<?php echo esc_url(get_template_directory_uri() . '/assets/images/hero-poster.jpg'); ?>"
+      aria-hidden="true"
+      preload="none"
+    >
+      <source src="<?php echo esc_url(get_theme_mod('hero_video_url', '')); ?>" type="video/mp4">
+    </video>
+    <!-- Fallback imagen si no hay vídeo -->
+    <div class="hero__bg" style="background-image:url('<?php echo esc_url(get_template_directory_uri() . '/assets/images/hero.jpg'); ?>')"></div>
+  </div>
+
   <div class="hero__overlay"></div>
+  <div class="hero__deco" aria-hidden="true"></div>
 
   <div class="hero__content">
-    <span class="hero__eyebrow">Casa Rural · Hotel Boutique · Ronda, España</span>
+    <span class="hero__eyebrow">Casa Rural · Hotel Boutique · Vejer de la Frontera, Cádiz</span>
     <h1 class="hero__title">La Casa<br>del Torero</h1>
-    <p class="hero__subtitle">Un refugio de elegancia andaluza donde el tiempo se detiene y cada detalle cuenta una historia.</p>
+    <p class="hero__subtitle">Una finca histórica de 24 hectáreas entre olivos centenarios, a 11 km de las playas vírgenes de la Costa de la Luz.</p>
     <div class="hero__actions">
       <a href="#reservas" class="btn btn--primary">Reservar ahora</a>
-      <a href="#la-casa" class="btn btn--outline">Descubrir la casa</a>
+      <a href="#la-casa" class="btn btn--outline">Descubrir la finca</a>
     </div>
   </div>
 
-  <div class="hero__scroll" aria-hidden="true">Scroll</div>
+  <div class="hero__badge" aria-label="En días despejados se ve Marruecos">
+    <strong>Marruecos visible</strong>
+    en días despejados
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true">Descubrir</div>
 </section>
 
 

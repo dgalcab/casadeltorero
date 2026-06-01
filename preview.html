@@ -3,204 +3,435 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>La Casa del Torero — Preview</title>
+
+<!-- ═══════════════════════════════════════
+     SEO — Español (hreflang para EN/FR/DE via plugin de traducción)
+     El plugin (p.ej. TranslatePress / Polylang) añadirá automáticamente:
+     <link rel="alternate" hreflang="en" href=".../?lang=en">
+     <link rel="alternate" hreflang="fr" href=".../?lang=fr">
+     <link rel="alternate" hreflang="de" href=".../?lang=de">
+════════════════════════════════════════ -->
+<title>La Casa del Torero | Casa Rural de Lujo en Vejer de la Frontera, Cádiz</title>
+<meta name="description" content="Casa rural de alquiler completo en Vejer de la Frontera. 24 hectáreas de finca, piscina, jacuzzi, vistas a la Laguna de La Janda y a 11 km de las playas de la Costa de la Luz. Diseñada por un torero, rehabilitada con elegancia.">
+<meta name="keywords" content="casa rural Vejer de la Frontera, alquiler completo Cádiz, casa rural Costa de la Luz, hotel boutique Vejer, finca Andalucía alquiler, La Casa del Torero">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.lacasadeltorero.com/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="La Casa del Torero | Casa Rural de Lujo · Vejer de la Frontera">
+<meta property="og:description" content="Finca histórica de 24 ha en Vejer de la Frontera. Alquiler completo en exclusiva, piscina, jacuzzi y vistas únicas a la Costa de la Luz y Marruecos.">
+<meta property="og:url" content="https://www.lacasadeltorero.com/">
+<meta property="og:locale" content="es_ES">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="de_DE">
+
+<!-- Schema.org structured data — clave para SEO local y de alojamiento -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "name": "La Casa del Torero",
+  "description": "Casa rural de alquiler completo en Vejer de la Frontera, Cádiz. Finca histórica de 24 hectáreas diseñada por un torero, con piscina, jacuzzi y vistas a la Costa de la Luz.",
+  "url": "https://www.lacasadeltorero.com",
+  "telephone": "+34 600 000 000",
+  "email": "info@lacasadeltorero.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Vejer de la Frontera",
+    "addressRegion": "Cádiz",
+    "addressCountry": "ES"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "36.2516",
+    "longitude": "-5.9699"
+  },
+  "amenityFeature": [
+    {"@type": "LocationFeatureSpecification", "name": "Piscina exterior", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Jacuzzi", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "WiFi gratuito", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Parking gratuito", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Aire acondicionado", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Chimenea", "value": true}
+  ],
+  "numberOfRooms": 4,
+  "starRating": {"@type": "Rating", "ratingValue": "5"}
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
+/* ═══════════ VARIABLES ═══════════ */
 :root {
-  --color-cream:   #F7F3EE;
-  --color-white:   #FFFFFF;
-  --color-black:   #111111;
-  --color-gold:    #B8965A;
-  --color-gold-lt: #D4B483;
-  --color-text:    #2C2C2C;
-  --color-muted:   #7A7065;
-  --color-border:  #E2D9CE;
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-sans:  'Inter', system-ui, sans-serif;
-  --max-w: 1280px;
-  --section-py: clamp(4rem, 8vw, 8rem);
-  --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --cream:     #F7F3EE;
+  --white:     #FFFFFF;
+  --black:     #111111;
+  --gold:      #B8965A;
+  --gold-lt:   #D4B483;
+  --text:      #2C2C2C;
+  --muted:     #7A7065;
+  --border:    #E2D9CE;
+  --serif:     'Cormorant Garamond', Georgia, serif;
+  --sans:      'Inter', system-ui, sans-serif;
+  --max-w:     1280px;
+  --py:        clamp(4rem, 8vw, 8rem);
+  --ease:      0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
-body { font-family: var(--font-sans); color: var(--color-text); background: var(--color-white); line-height: 1.7; -webkit-font-smoothing: antialiased; }
-img { max-width: 100%; height: auto; display: block; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--text); background: var(--white); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+img, video { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
-.container { width: 100%; max-width: var(--max-w); margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 3rem); }
-h1,h2,h3,h4 { font-family: var(--font-serif); font-weight: 400; line-height: 1.15; }
-.eyebrow { font-family: var(--font-sans); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-gold); display: block; margin-bottom: 1rem; }
-.section-title { font-size: clamp(2.25rem, 4vw, 3.75rem); color: var(--color-black); }
-.section-body { font-size: 1.0625rem; color: var(--color-muted); max-width: 52ch; line-height: 1.8; }
+.container { width: 100%; max-width: var(--max-w); margin-inline: auto; padding-inline: clamp(1.25rem,5vw,3rem); }
+h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
+.eyebrow { font-family: var(--sans); font-size: .6875rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 1rem; }
+.section-title { font-size: clamp(2.25rem,4vw,3.75rem); color: var(--black); }
+.section-body { font-size: 1.0625rem; color: var(--muted); max-width: 52ch; line-height: 1.85; }
+.gold-rule { width: 40px; height: 1px; background: var(--gold); margin: 1.25rem auto 0; }
 
-/* BUTTONS */
-.btn { display: inline-flex; align-items: center; gap: .625rem; font-family: var(--font-sans); font-size: .75rem; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; padding: 1rem 2.25rem; border: 1px solid currentColor; transition: var(--transition); cursor: pointer; }
-.btn--primary { background: var(--color-gold); border-color: var(--color-gold); color: var(--color-white); }
-.btn--primary:hover { background: #9e7d48; border-color: #9e7d48; }
-.btn--outline { background: transparent; border-color: rgba(255,255,255,.6); color: var(--color-white); }
-.btn--outline:hover { background: var(--color-white); color: var(--color-black); }
-.btn--dark { background: transparent; border-color: var(--color-black); color: var(--color-black); }
-.btn--dark:hover { background: var(--color-black); color: var(--color-white); }
+/* ═══════════ BUTTONS ═══════════ */
+.btn {
+  display: inline-flex; align-items: center; gap: .625rem;
+  font-family: var(--sans); font-size: .6875rem; font-weight: 600;
+  letter-spacing: .18em; text-transform: uppercase;
+  padding: .9rem 2rem; border: 1.5px solid currentColor;
+  transition: background var(--ease), color var(--ease), border-color var(--ease);
+  cursor: pointer;
+}
+.btn--gold   { background: var(--gold); border-color: var(--gold); color: var(--white); }
+.btn--gold:hover { background: #9e7d48; border-color: #9e7d48; color: var(--white); }
+.btn--ghost  { background: transparent; border-color: rgba(255,255,255,.55); color: var(--white); }
+.btn--ghost:hover { background: var(--white); border-color: var(--white); color: var(--black); }
+.btn--dark   { background: transparent; border-color: var(--black); color: var(--black); }
+.btn--dark:hover { background: var(--black); border-color: var(--black); color: var(--white); }
 
-/* HEADER */
-#site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 0; transition: background var(--transition), padding var(--transition), box-shadow var(--transition); }
-#site-header.scrolled { background: rgba(255,255,255,.97); backdrop-filter: blur(8px); padding: 1rem 0; box-shadow: 0 1px 0 var(--color-border); }
+/* NAV CTA — fijo, nunca blanco sobre blanco */
+.nav-cta {
+  font-family: var(--sans); font-size: .65rem; font-weight: 600;
+  letter-spacing: .18em; text-transform: uppercase;
+  padding: .55rem 1.4rem;
+  border: 1.5px solid var(--gold);
+  background: var(--gold); color: var(--white);
+  transition: background var(--ease), color var(--ease);
+}
+.nav-cta:hover { background: #9e7d48; border-color: #9e7d48; color: var(--white); }
+#site-header.scrolled .nav-cta { background: var(--gold); border-color: var(--gold); color: var(--white); }
+#site-header.scrolled .nav-cta:hover { background: #9e7d48; }
+
+/* ═══════════ HEADER ═══════════ */
+#site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.5rem 0;
+  transition: background var(--ease), padding var(--ease), box-shadow var(--ease);
+}
+#site-header.scrolled {
+  background: rgba(255,255,255,.97); backdrop-filter: blur(10px);
+  padding: .875rem 0; box-shadow: 0 1px 0 var(--border);
+}
 #site-header .container { display: flex; align-items: center; justify-content: space-between; }
-.site-logo { font-family: var(--font-serif); font-size: 1.375rem; letter-spacing: .02em; color: var(--color-white); transition: color var(--transition); line-height: 1.2; }
-.site-logo span { display: block; font-size: .6rem; letter-spacing: .25em; text-transform: uppercase; }
-#site-header.scrolled .site-logo { color: var(--color-black); }
-.primary-nav { display: flex; align-items: center; gap: 2.5rem; }
-.primary-nav a { font-size: .6875rem; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.85); transition: color var(--transition); position: relative; }
-.primary-nav a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--color-gold); transition: width var(--transition); }
-.primary-nav a:hover { color: var(--color-white); }
-.primary-nav a:hover::after { width: 100%; }
-#site-header.scrolled .primary-nav a { color: var(--color-muted); }
-#site-header.scrolled .primary-nav a:hover { color: var(--color-black); }
-.nav-cta { font-size: .6875rem; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; padding: .625rem 1.5rem; border: 1px solid rgba(255,255,255,.6); color: var(--color-white); transition: var(--transition); }
-.nav-cta:hover { background: var(--color-white); border-color: var(--color-white); color: var(--color-black); }
-#site-header.scrolled .nav-cta { border-color: var(--color-gold); color: var(--color-gold); }
-#site-header.scrolled .nav-cta:hover { background: var(--color-gold); color: var(--color-white); }
-.nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-.nav-toggle span { display: block; width: 26px; height: 1.5px; background: var(--color-white); transition: var(--transition); }
-#site-header.scrolled .nav-toggle span { background: var(--color-black); }
 
-/* HERO */
-.hero { position: relative; height: 100svh; min-height: 600px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
-.hero__bg { position: absolute; inset: 0; background: linear-gradient(135deg, #1a0f08 0%, #3d2415 30%, #2a1a0e 60%, #0d0806 100%); }
-/* Textura simulada sobre el fondo */
-.hero__bg::before { content:''; position:absolute; inset:0; background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a96e' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
-.hero__overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,8,6,.3) 0%, rgba(10,8,6,.45) 50%, rgba(10,8,6,.65) 100%); }
-/* Elemento decorativo dorado */
-.hero__deco { position: absolute; width: 400px; height: 400px; border: 1px solid rgba(185,150,90,.15); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%,-50%); }
-.hero__deco::before { content:''; position:absolute; inset:20px; border: 1px solid rgba(185,150,90,.08); border-radius: 50%; }
-.hero__content { position: relative; z-index: 2; color: var(--color-white); padding-inline: 1.5rem; max-width: 800px; }
-.hero__eyebrow { font-family: var(--font-sans); font-size: .6875rem; font-weight: 500; letter-spacing: .25em; text-transform: uppercase; color: var(--color-gold-lt); display: block; margin-bottom: 1.5rem; opacity: 0; transform: translateY(16px); animation: fadeUp .9s .3s forwards; }
-.hero__title { font-family: var(--font-serif); font-size: clamp(3rem,7vw,6.5rem); font-weight: 300; line-height: 1.05; letter-spacing: -.02em; margin-bottom: 1.5rem; opacity: 0; transform: translateY(20px); animation: fadeUp .9s .55s forwards; }
-.hero__subtitle { font-size: clamp(.9375rem,1.5vw,1.125rem); color: rgba(255,255,255,.7); max-width: 44ch; margin-inline: auto; margin-bottom: 2.5rem; line-height: 1.7; opacity: 0; transform: translateY(16px); animation: fadeUp .9s .8s forwards; }
-.hero__actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; opacity: 0; transform: translateY(16px); animation: fadeUp .9s 1.05s forwards; }
-.hero__scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: .5rem; color: rgba(255,255,255,.5); font-size: .625rem; letter-spacing: .2em; text-transform: uppercase; }
-.hero__scroll::after { content: ''; width: 1px; height: 48px; background: rgba(255,255,255,.3); animation: scrollLine 1.8s ease-in-out infinite; }
+.site-logo {
+  font-family: var(--serif); font-size: 1.35rem; letter-spacing: .02em;
+  color: var(--white); transition: color var(--ease); line-height: 1.2;
+}
+.site-logo span { display: block; font-size: .58rem; letter-spacing: .26em; text-transform: uppercase; font-family: var(--sans); font-weight: 500; }
+#site-header.scrolled .site-logo { color: var(--black); }
 
-/* INTRO STRIP */
-.intro-strip { background: var(--color-black); color: var(--color-white); padding: 2.5rem 0; }
-.intro-strip__inner { display: grid; grid-template-columns: repeat(3,1fr); text-align: center; }
-.intro-strip__item { padding: 1rem 2rem; border-right: 1px solid rgba(255,255,255,.1); }
+.primary-nav { display: flex; align-items: center; gap: 2.25rem; }
+.primary-nav > a:not(.nav-cta) {
+  font-size: .65rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase;
+  color: rgba(255,255,255,.82); transition: color var(--ease); position: relative;
+}
+.primary-nav > a:not(.nav-cta)::after {
+  content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px;
+  background: var(--gold); transition: width var(--ease);
+}
+.primary-nav > a:not(.nav-cta):hover { color: var(--white); }
+.primary-nav > a:not(.nav-cta):hover::after { width: 100%; }
+#site-header.scrolled .primary-nav > a:not(.nav-cta) { color: var(--muted); }
+#site-header.scrolled .primary-nav > a:not(.nav-cta):hover { color: var(--black); }
+
+.nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 101; }
+.nav-toggle span { display: block; width: 26px; height: 1.5px; background: var(--white); transition: var(--ease); }
+#site-header.scrolled .nav-toggle span { background: var(--black); }
+
+/* ═══════════ HERO (vídeo) ═══════════ */
+.hero {
+  position: relative; height: 100svh; min-height: 620px;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; overflow: hidden;
+}
+
+/* Contenedor vídeo */
+.hero__video-wrap {
+  position: absolute; inset: 0; z-index: 0;
+}
+.hero__video-wrap video {
+  width: 100%; height: 100%; object-fit: cover;
+  /* Fallback si no hay vídeo: gradiente que simula la finca */
+}
+/* Fallback cuando no hay fichero de vídeo (preview) */
+.hero__video-wrap::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, #1a100a 0%, #3b2212 35%, #22180e 65%, #0d0a06 100%);
+  z-index: -1;
+}
+/* Patrón decorativo sobre el fondo fallback */
+.hero__video-wrap::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(ellipse 60% 50% at 70% 40%, rgba(185,150,90,.12) 0%, transparent 70%),
+    url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c9a96e' fill-opacity='0.035'%3E%3Cpath d='M40 40 L50 30 L60 40 L50 50Z'/%3E%3Cpath d='M0 0 L10 10 L0 20Z'/%3E%3Cpath d='M80 80 L70 70 L80 60Z'/%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.hero__overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(8,5,3,.28) 0%,
+    rgba(8,5,3,.48) 55%,
+    rgba(8,5,3,.68) 100%
+  );
+}
+
+/* Círculo decorativo dorado */
+.hero__deco {
+  position: absolute; z-index: 2;
+  width: 420px; height: 420px;
+  border: 1px solid rgba(185,150,90,.18); border-radius: 50%;
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  pointer-events: none;
+}
+.hero__deco::before {
+  content: ''; position: absolute; inset: 22px;
+  border: 1px solid rgba(185,150,90,.09); border-radius: 50%;
+}
+
+.hero__content {
+  position: relative; z-index: 3;
+  color: var(--white); padding-inline: 1.5rem; max-width: 820px;
+}
+.hero__eyebrow {
+  font-family: var(--sans); font-size: .6875rem; font-weight: 500;
+  letter-spacing: .26em; text-transform: uppercase; color: var(--gold-lt);
+  display: block; margin-bottom: 1.5rem;
+  opacity: 0; transform: translateY(16px); animation: fadeUp .9s .3s forwards;
+}
+.hero__title {
+  font-family: var(--serif); font-size: clamp(3rem,7vw,6.5rem);
+  font-weight: 300; line-height: 1.05; letter-spacing: -.02em; margin-bottom: 1.5rem;
+  opacity: 0; transform: translateY(20px); animation: fadeUp .9s .55s forwards;
+}
+.hero__subtitle {
+  font-size: clamp(.9375rem,1.5vw,1.125rem); color: rgba(255,255,255,.72);
+  max-width: 46ch; margin-inline: auto; margin-bottom: 2.5rem; line-height: 1.75;
+  opacity: 0; transform: translateY(16px); animation: fadeUp .9s .8s forwards;
+}
+.hero__actions {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  opacity: 0; transform: translateY(16px); animation: fadeUp .9s 1.05s forwards;
+}
+
+/* Indicador "Morocco visible" */
+.hero__badge {
+  position: absolute; bottom: 5rem; right: clamp(1.5rem,5vw,4rem); z-index: 3;
+  border: 1px solid rgba(255,255,255,.2); padding: .75rem 1.25rem;
+  color: rgba(255,255,255,.7); font-size: .65rem; letter-spacing: .16em;
+  text-transform: uppercase; text-align: center; backdrop-filter: blur(4px);
+  background: rgba(0,0,0,.2);
+  opacity: 0; animation: fadeUp .9s 1.4s forwards;
+}
+.hero__badge strong { display: block; font-family: var(--serif); font-size: 1.1rem; color: var(--white); letter-spacing: 0; text-transform: none; font-weight: 300; }
+
+.hero__scroll {
+  position: absolute; bottom: 2.25rem; left: 50%; transform: translateX(-50%);
+  z-index: 3; display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  color: rgba(255,255,255,.45); font-size: .6rem; letter-spacing: .22em; text-transform: uppercase;
+}
+.hero__scroll::after {
+  content: ''; width: 1px; height: 44px; background: rgba(255,255,255,.3);
+  animation: scrollLine 1.8s ease-in-out infinite;
+}
+
+/* Nota de vídeo (solo en preview) */
+.video-note {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  z-index: 2; text-align: center; color: rgba(255,255,255,.22);
+  font-size: .65rem; letter-spacing: .15em; text-transform: uppercase;
+  pointer-events: none; line-height: 2;
+}
+.video-note svg { margin-inline: auto; margin-bottom: .5rem; opacity: .15; }
+
+/* ═══════════ INTRO STRIP ═══════════ */
+.intro-strip { background: var(--black); color: var(--white); padding: 2.25rem 0; }
+.intro-strip__inner { display: grid; grid-template-columns: repeat(4,1fr); text-align: center; }
+.intro-strip__item { padding: .875rem 1.5rem; border-right: 1px solid rgba(255,255,255,.08); }
 .intro-strip__item:last-child { border-right: none; }
-.intro-strip__label { font-size: .625rem; letter-spacing: .2em; text-transform: uppercase; color: var(--color-gold); margin-bottom: .375rem; }
-.intro-strip__value { font-family: var(--font-serif); font-size: 1.125rem; color: rgba(255,255,255,.9); }
+.intro-strip__label { font-size: .6rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: .375rem; }
+.intro-strip__value { font-family: var(--serif); font-size: 1.1rem; color: rgba(255,255,255,.88); }
 
-/* ABOUT */
-.about { padding: var(--section-py) 0; background: var(--color-white); }
+/* ═══════════ ABOUT ═══════════ */
+.about { padding: var(--py) 0; background: var(--white); }
 .about__inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem,6vw,7rem); align-items: center; }
 .about__image-wrap { position: relative; }
-.about__image-main { width: 100%; aspect-ratio: 4/5; object-fit: cover; background: linear-gradient(145deg, #e8ddd0, #d4c4b0); display:flex; align-items:center; justify-content:center; }
-.img-placeholder { display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%; height:100%; color:var(--color-muted); font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; gap:.75rem; }
-.img-placeholder svg { opacity:.3; }
-.about__image-accent { position: absolute; bottom: -2.5rem; right: -2.5rem; width: 55%; aspect-ratio: 1; background: linear-gradient(145deg, #c4b09a, #b09880); border: 6px solid var(--color-white); box-shadow: 0 12px 40px rgba(0,0,0,.12); display:flex; align-items:center; justify-content:center; }
+.about__image-main {
+  width: 100%; aspect-ratio: 4/5; object-fit: cover;
+  background: linear-gradient(145deg, #e8ddd0, #d4c4b0);
+  display: flex; align-items: center; justify-content: center;
+}
+.img-ph { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; color: var(--muted); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; gap: .75rem; font-family: var(--sans); }
+.img-ph svg { opacity: .25; }
+.about__image-accent {
+  position: absolute; bottom: -2.5rem; right: -2.5rem; width: 54%;
+  aspect-ratio: 1; background: linear-gradient(145deg, #c4b09a, #b09880);
+  border: 6px solid var(--white); box-shadow: 0 12px 40px rgba(0,0,0,.12);
+  display: flex; align-items: center; justify-content: center;
+}
 .about__title { font-size: clamp(2rem,3.5vw,3.25rem); margin-bottom: 1.5rem; }
-.about__text { font-size: 1.0625rem; color: var(--color-muted); line-height: 1.85; margin-bottom: 1.5rem; }
-.about__detail { display: flex; align-items: flex-start; gap: 1rem; padding: 1.25rem 0; border-top: 1px solid var(--color-border); }
-.about__detail:last-of-type { border-bottom: 1px solid var(--color-border); margin-bottom: 2rem; }
-.about__detail-icon { width: 20px; height: 20px; flex-shrink: 0; margin-top: 3px; color: var(--color-gold); }
-.about__detail-text strong { display: block; font-size: .8125rem; font-weight: 600; margin-bottom: .2rem; color: var(--color-black); }
-.about__detail-text span { font-size: .875rem; color: var(--color-muted); }
+.about__text { font-size: 1.0625rem; color: var(--muted); line-height: 1.85; margin-bottom: 1.25rem; }
+.about__detail { display: flex; align-items: flex-start; gap: 1rem; padding: 1.1rem 0; border-top: 1px solid var(--border); }
+.about__detail:last-of-type { border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
+.about__detail-icon { width: 18px; height: 18px; flex-shrink: 0; margin-top: 3px; color: var(--gold); }
+.about__detail-text strong { display: block; font-size: .8rem; font-weight: 600; margin-bottom: .18rem; color: var(--black); font-family: var(--sans); }
+.about__detail-text span { font-size: .875rem; color: var(--muted); }
 
-/* SPACES */
-.spaces { padding: var(--section-py) 0; background: var(--color-cream); }
+/* ═══════════ FINCA / HISTORIA ═══════════ */
+.finca { padding: var(--py) 0; background: var(--black); color: var(--white); }
+.finca__inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem,6vw,7rem); align-items: center; }
+.finca__content .eyebrow { color: var(--gold); }
+.finca__title { font-size: clamp(2rem,3.5vw,3.25rem); color: var(--white); margin-bottom: 1.5rem; }
+.finca__text { font-size: 1.0625rem; color: rgba(255,255,255,.6); line-height: 1.85; margin-bottom: 1.25rem; }
+.finca__stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,.08); margin: 2rem 0; }
+.finca__stat { background: var(--black); padding: 1.5rem; }
+.finca__stat-number { font-family: var(--serif); font-size: 2.5rem; color: var(--gold); line-height: 1; margin-bottom: .25rem; }
+.finca__stat-label { font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.4); }
+.finca__image {
+  width: 100%; aspect-ratio: 4/5;
+  background: linear-gradient(145deg, #2d1e14, #1a1209);
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ═══════════ SPACES ═══════════ */
+.spaces { padding: var(--py) 0; background: var(--cream); }
 .spaces__header { text-align: center; margin-bottom: clamp(3rem,5vw,5rem); }
 .spaces__header .section-body { margin-inline: auto; margin-top: 1rem; }
 .spaces__grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; }
 .space-card { position: relative; overflow: hidden; cursor: pointer; }
-.space-card__img { width: 100%; aspect-ratio: 3/4; object-fit: cover; background: linear-gradient(145deg,#3d2d1e,#2a1f15); transition: transform .7s var(--transition); display:flex; align-items:center; justify-content:center; }
+.space-card__img {
+  width: 100%; aspect-ratio: 3/4; object-fit: cover;
+  transition: transform .7s ease; display: flex; align-items: center; justify-content: center;
+}
 .space-card:hover .space-card__img { transform: scale(1.05); }
-.space-card__img.s1 { background: linear-gradient(145deg,#4a3020,#2d1e12); }
-.space-card__img.s2 { background: linear-gradient(145deg,#2a2018,#1a1510); }
-.space-card__img.s3 { background: linear-gradient(145deg,#1e2d1a,#151f12); }
-.space-card__overlay { position: absolute; inset: 0; background: linear-gradient(to top,rgba(10,8,6,.75) 0%,rgba(10,8,6,0) 50%); display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem; color: var(--color-white); }
-.space-card__tag { font-size: .625rem; letter-spacing: .2em; text-transform: uppercase; color: var(--color-gold-lt); margin-bottom: .5rem; }
-.space-card__name { font-family: var(--font-serif); font-size: 1.5rem; line-height: 1.2; margin-bottom: .25rem; }
+.s1 { background: linear-gradient(145deg,#4a3020,#2d1e12); }
+.s2 { background: linear-gradient(145deg,#2a2018,#1a1510); }
+.s3 { background: linear-gradient(145deg,#1a2820,#101812); }
+.space-card__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top,rgba(8,5,3,.78) 0%,rgba(8,5,3,0) 55%);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 2rem; color: var(--white);
+}
+.space-card__tag { font-size: .6rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold-lt); margin-bottom: .5rem; }
+.space-card__name { font-family: var(--serif); font-size: 1.5rem; line-height: 1.2; margin-bottom: .25rem; }
+.space-card__size { font-size: .75rem; color: rgba(255,255,255,.5); margin-bottom: .25rem; }
 .space-card__desc { font-size: .8125rem; color: rgba(255,255,255,.65); max-height: 0; overflow: hidden; transition: max-height .4s ease, opacity .4s ease; opacity: 0; }
 .space-card:hover .space-card__desc { max-height: 80px; opacity: 1; }
 
-/* EXPERIENCE */
-.experience { padding: var(--section-py) 0; background: var(--color-white); }
+/* ═══════════ EXPERIENCE ═══════════ */
+.experience { padding: var(--py) 0; background: var(--white); }
 .experience__inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem,6vw,7rem); align-items: center; }
 .experience__title { font-size: clamp(2rem,3.5vw,3.25rem); margin-bottom: 1rem; }
-.experience__lead { font-size: 1.0625rem; color: var(--color-muted); line-height: 1.8; margin-bottom: 2.5rem; }
-.amenities-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 2rem; margin-bottom: 2.5rem; }
-.amenity { display: flex; align-items: center; gap: .75rem; font-size: .875rem; color: var(--color-text); }
-.amenity::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--color-gold); flex-shrink: 0; }
-.experience__image-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: .75rem; height: 560px; }
-.experience__image-grid .img-block { width:100%; height:100%; object-fit:cover; }
-.experience__image-grid .img-block:first-child { grid-row: span 2; }
-.img-block { background: linear-gradient(145deg,#e8ddd0,#d0c4b4); display:flex; align-items:center; justify-content:center; }
-.img-block.b2 { background: linear-gradient(145deg,#d4c4b0,#c0b09a); }
-.img-block.b3 { background: linear-gradient(145deg,#c4b49a,#b0a088); }
+.experience__lead { font-size: 1.0625rem; color: var(--muted); line-height: 1.85; margin-bottom: 2.5rem; }
+.amenities-list { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem 2rem; margin-bottom: 2.5rem; }
+.amenity { display: flex; align-items: center; gap: .75rem; font-size: .875rem; color: var(--text); }
+.amenity::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+.exp-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: .75rem; height: 560px; }
+.exp-img { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.exp-img:first-child { grid-row: span 2; }
+.ei1 { background: linear-gradient(145deg,#e8ddd0,#d0c4b4); }
+.ei2 { background: linear-gradient(145deg,#d4c4b0,#c0b09a); }
+.ei3 { background: linear-gradient(145deg,#c8b89a,#b4a088); }
 
-/* BOOKING */
-.booking { padding: var(--section-py) 0; background: var(--color-black); color: var(--color-white); }
+/* ═══════════ BOOKING ═══════════ */
+.booking { padding: var(--py) 0; background: var(--black); color: var(--white); }
 .booking__header { text-align: center; margin-bottom: clamp(2.5rem,4vw,4rem); }
-.booking__header .section-title { color: var(--color-white); }
-.booking__header p { margin-top: 1rem; font-size: 1.0625rem; color: rgba(255,255,255,.55); max-width: 44ch; margin-inline: auto; }
-.booking__engine { background: var(--color-white); color: var(--color-text); padding: clamp(2rem,4vw,3.5rem); max-width: 900px; margin-inline: auto; }
+.booking__header .section-title { color: var(--white); }
+.booking__header p { margin-top: 1rem; font-size: 1.0625rem; color: rgba(255,255,255,.5); max-width: 44ch; margin-inline: auto; line-height: 1.7; }
+.booking__engine { background: var(--white); color: var(--text); padding: clamp(2rem,4vw,3.5rem); max-width: 900px; margin-inline: auto; }
 .booking-demo { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 1rem; align-items: end; }
-.booking-field label { display: block; font-size: .625rem; letter-spacing: .15em; text-transform: uppercase; color: var(--color-muted); margin-bottom: .5rem; }
-.booking-field input { width: 100%; padding: .875rem 1rem; border: 1px solid var(--color-border); font-family: var(--font-sans); font-size: .9375rem; background: var(--color-cream); color: var(--color-text); outline: none; transition: border-color var(--transition); }
-.booking-field input:focus { border-color: var(--color-gold); }
-.booking-note { text-align:center; font-size:.75rem; color:var(--color-muted); margin-top:1.5rem; letter-spacing:.05em; }
+.booking-field label { display: block; font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-bottom: .5rem; font-family: var(--sans); }
+.booking-field input { width: 100%; padding: .875rem 1rem; border: 1px solid var(--border); font-family: var(--sans); font-size: .9375rem; background: var(--cream); color: var(--text); outline: none; transition: border-color var(--ease); }
+.booking-field input:focus { border-color: var(--gold); }
+.booking-note { text-align: center; font-size: .72rem; color: var(--muted); margin-top: 1.5rem; line-height: 1.6; }
 
-/* TESTIMONIALS */
-.testimonials { padding: var(--section-py) 0; background: var(--color-white); }
+/* ═══════════ TESTIMONIALS ═══════════ */
+.testimonials { padding: var(--py) 0; background: var(--cream); }
 .testimonials__header { text-align: center; margin-bottom: clamp(3rem,5vw,5rem); }
 .testimonials__track { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
-.testimonial-card { padding: 2.5rem 2rem; border: 1px solid var(--color-border); position: relative; }
-.testimonial-card::before { content: '\201C'; font-family: var(--font-serif); font-size: 5rem; color: var(--color-gold); line-height: 1; position: absolute; top: 1rem; left: 1.75rem; opacity: .4; }
-.testimonial-card__text { font-family: var(--font-serif); font-size: 1.125rem; line-height: 1.7; color: var(--color-text); margin-bottom: 2rem; padding-top: 1.5rem; }
-.testimonial-card__name { font-size: .875rem; font-weight: 600; color: var(--color-black); }
-.testimonial-card__origin { font-size: .75rem; color: var(--color-muted); }
-.testimonial-card__stars { color: var(--color-gold); font-size: .875rem; letter-spacing: 2px; margin-bottom: .75rem; }
+.t-card { padding: 2.5rem 2rem; background: var(--white); border: 1px solid var(--border); position: relative; }
+.t-card::before { content: '\201C'; font-family: var(--serif); font-size: 5rem; color: var(--gold); line-height: 1; position: absolute; top: 1rem; left: 1.75rem; opacity: .3; }
+.t-card__stars { color: var(--gold); font-size: .875rem; letter-spacing: 2px; margin-bottom: .75rem; }
+.t-card__text { font-family: var(--serif); font-size: 1.1rem; line-height: 1.7; color: var(--text); margin-bottom: 1.75rem; padding-top: 1.5rem; }
+.t-card__name { font-size: .8125rem; font-weight: 600; color: var(--black); font-family: var(--sans); }
+.t-card__origin { font-size: .75rem; color: var(--muted); }
+.t-card__platform { font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-top: .25rem; }
 
-/* LOCATION */
-.location { padding: var(--section-py) 0; background: var(--color-cream); }
+/* ═══════════ LOCATION ═══════════ */
+.location { padding: var(--py) 0; background: var(--white); }
 .location__inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem,6vw,7rem); align-items: start; }
 .location__title { font-size: clamp(2rem,3.5vw,3.25rem); margin-bottom: 1rem; }
-.location__text { font-size: 1.0625rem; color: var(--color-muted); line-height: 1.8; margin-bottom: 2rem; }
-.location__points { display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2.5rem; }
-.location__point { display: flex; align-items: flex-start; gap: 1rem; font-size: .9375rem; }
-.location__point-icon { width: 36px; height: 36px; background: var(--color-gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--color-white); }
-.location__point-icon svg { width: 16px; height: 16px; }
-.location__point strong { display: block; font-size: .8125rem; font-weight: 600; color: var(--color-black); margin-bottom: .15rem; }
-.location__point span { color: var(--color-muted); font-size: .875rem; }
+.location__text { font-size: 1.0625rem; color: var(--muted); line-height: 1.85; margin-bottom: 2rem; }
+.location__points { display: flex; flex-direction: column; gap: 1.1rem; margin-bottom: 2.5rem; }
+.loc-point { display: flex; align-items: flex-start; gap: .9rem; font-size: .9375rem; }
+.loc-icon { width: 34px; height: 34px; background: var(--gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--white); }
+.loc-icon svg { width: 14px; height: 14px; }
+.loc-point strong { display: block; font-size: .78rem; font-weight: 600; color: var(--black); margin-bottom: .12rem; font-family: var(--sans); }
+.loc-point span { color: var(--muted); font-size: .85rem; }
 .location__map { overflow: hidden; height: 480px; background: #e0e0e0; }
-.location__map iframe { width: 100%; height: 100%; border: none; filter: grayscale(.2) contrast(1.05); }
+.location__map iframe { width: 100%; height: 100%; border: none; filter: grayscale(.15) contrast(1.05); }
 
-/* CTA BANNER */
-.cta-banner { position: relative; padding: clamp(5rem,10vw,10rem) 0; text-align: center; overflow: hidden; background: linear-gradient(135deg,#1a0f08,#2d1a0e); }
-.cta-banner::before { content:''; position:absolute; inset:0; background-image: radial-gradient(ellipse at center, rgba(185,150,90,.15) 0%, transparent 70%); }
-.cta-banner__content { position: relative; z-index: 2; color: var(--color-white); }
-.cta-banner__title { font-family: var(--font-serif); font-size: clamp(2.5rem,5vw,4.5rem); color: var(--color-white); margin-bottom: 1rem; }
-.cta-banner__text { font-size: 1.0625rem; color: rgba(255,255,255,.7); max-width: 44ch; margin-inline: auto; margin-bottom: 2.5rem; line-height: 1.7; }
+/* ═══════════ CTA BANNER ═══════════ */
+.cta-banner {
+  position: relative; padding: clamp(5rem,10vw,10rem) 0;
+  text-align: center; overflow: hidden;
+  background: linear-gradient(135deg,#1a100a,#2d1a0e);
+}
+.cta-banner::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(185,150,90,.18) 0%, transparent 65%);
+}
+.cta-banner__content { position: relative; z-index: 2; color: var(--white); }
+.cta-banner__title { font-family: var(--serif); font-size: clamp(2.5rem,5vw,4.5rem); color: var(--white); margin-bottom: 1rem; }
+.cta-banner__text { font-size: 1.0625rem; color: rgba(255,255,255,.65); max-width: 46ch; margin-inline: auto; margin-bottom: 2.5rem; line-height: 1.75; }
 .cta-banner__actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
-/* FOOTER */
-#site-footer { background: var(--color-black); color: rgba(255,255,255,.6); padding: clamp(3.5rem,6vw,6rem) 0 2rem; }
-.footer__grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,.08); margin-bottom: 2rem; }
-.footer__brand .site-logo { color: var(--color-white); margin-bottom: 1rem; }
+/* ═══════════ FOOTER ═══════════ */
+#site-footer { background: var(--black); color: rgba(255,255,255,.55); padding: clamp(3.5rem,6vw,6rem) 0 2rem; }
+.footer__grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,.07); margin-bottom: 2rem; }
+.footer__brand .site-logo { color: var(--white); margin-bottom: 1rem; }
 .footer__brand p { font-size: .875rem; line-height: 1.7; max-width: 28ch; margin-bottom: 1.5rem; }
-.footer__social { display: flex; gap: .75rem; }
-.footer__social a { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,.15); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.5); transition: var(--transition); }
-.footer__social a:hover { border-color: var(--color-gold); color: var(--color-gold); }
-.footer__social svg { width: 14px; height: 14px; }
-.footer__col h4 { font-family: var(--font-sans); font-size: .625rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--color-white); margin-bottom: 1.25rem; }
-.footer__col ul { display: flex; flex-direction: column; gap: .75rem; }
-.footer__col ul a { font-size: .875rem; color: rgba(255,255,255,.5); transition: color var(--transition); }
-.footer__col ul a:hover { color: var(--color-gold); }
-.footer__col address { font-style: normal; font-size: .875rem; line-height: 1.8; }
-.footer__bottom { display: flex; justify-content: space-between; align-items: center; font-size: .75rem; color: rgba(255,255,255,.3); gap: 1rem; flex-wrap: wrap; }
+.footer__social { display: flex; gap: .625rem; }
+.footer__social a { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,.14); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.45); transition: var(--ease); }
+.footer__social a:hover { border-color: var(--gold); color: var(--gold); }
+.footer__social svg { width: 13px; height: 13px; }
+.footer__col h4 { font-family: var(--sans); font-size: .6rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--white); margin-bottom: 1.25rem; }
+.footer__col ul { display: flex; flex-direction: column; gap: .7rem; }
+.footer__col ul a { font-size: .875rem; color: rgba(255,255,255,.45); transition: color var(--ease); }
+.footer__col ul a:hover { color: var(--gold); }
+.footer__col address { font-style: normal; font-size: .875rem; line-height: 1.9; }
+.footer__bottom { display: flex; justify-content: space-between; align-items: center; font-size: .72rem; color: rgba(255,255,255,.28); gap: 1rem; flex-wrap: wrap; }
+.footer__bottom a:hover { color: var(--gold); }
 
-/* ANIMATIONS */
+/* ═══════════ ANIMATIONS ═══════════ */
 @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
 @keyframes scrollLine {
   0%   { transform: scaleY(0); transform-origin: top; }
@@ -208,451 +439,580 @@ h1,h2,h3,h4 { font-family: var(--font-serif); font-weight: 400; line-height: 1.1
   51%  { transform: scaleY(1); transform-origin: bottom; }
   100% { transform: scaleY(0); transform-origin: bottom; }
 }
-.reveal { opacity:0; transform:translateY(32px); transition: opacity .7s ease, transform .7s ease; }
+.reveal { opacity:0; transform:translateY(28px); transition: opacity .75s ease, transform .75s ease; }
 .reveal.visible { opacity:1; transform:translateY(0); }
-.reveal-delay-1 { transition-delay:.1s; }
-.reveal-delay-2 { transition-delay:.2s; }
+.d1 { transition-delay: .1s; }
+.d2 { transition-delay: .2s; }
+.d3 { transition-delay: .3s; }
 
-/* Decorative line for spaces section */
-.gold-line { width: 40px; height: 1px; background: var(--color-gold); margin: 1rem auto 0; }
-
-/* RESPONSIVE */
+/* ═══════════ RESPONSIVE ═══════════ */
+@media(max-width:1024px){
+  .intro-strip__inner { grid-template-columns: repeat(2,1fr); }
+  .intro-strip__item:nth-child(2) { border-right: none; }
+  .spaces__grid { grid-template-columns: 1fr 1fr; }
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .footer__brand { grid-column: span 2; }
+}
 @media(max-width:768px){
-  .primary-nav { display:none; }
+  .primary-nav { display:none; position:fixed; inset:0; background:rgba(10,8,6,.97); flex-direction:column; justify-content:center; align-items:center; gap:2rem; z-index:90; }
+  .primary-nav.open { display:flex; }
+  .primary-nav > a:not(.nav-cta) { font-size:.875rem; color:rgba(255,255,255,.75); }
+  .nav-cta { margin-top:1rem; padding:.875rem 2rem; }
   .nav-toggle { display:flex; }
-  .about__inner,.experience__inner,.location__inner { grid-template-columns:1fr; }
+  .about__inner,.finca__inner,.experience__inner,.location__inner { grid-template-columns:1fr; }
+  .about__image-accent { right:0; bottom:-1.5rem; width:44%; border-width:4px; }
   .spaces__grid { grid-template-columns:1fr; }
   .testimonials__track { grid-template-columns:1fr; }
   .intro-strip__inner { grid-template-columns:1fr; }
-  .footer__grid { grid-template-columns:1fr 1fr; }
-  .footer__brand { grid-column:span 2; }
+  .intro-strip__item { border-right:none; border-bottom:1px solid rgba(255,255,255,.08); }
+  .footer__grid { grid-template-columns:1fr; }
+  .footer__brand { grid-column:span 1; }
   .booking-demo { grid-template-columns:1fr; }
-  .experience__image-grid { height:300px; }
-}
-@media(max-width:1024px){
-  .footer__grid { grid-template-columns:1fr 1fr; gap:2rem; }
-  .footer__brand { grid-column:span 2; }
+  .exp-grid { height:320px; }
+  .hero__badge { display:none; }
+  .finca__stat-grid { grid-template-columns:1fr 1fr; }
 }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- ══════════════════ HEADER ══════════════════ -->
 <header id="site-header">
   <div class="container">
     <a href="#" class="site-logo">
       La Casa del Torero
-      <span>Casa Rural · Hotel Boutique · Ronda</span>
+      <span>Casa Rural · Hotel Boutique · Vejer de la Frontera</span>
     </a>
-    <button class="nav-toggle" aria-label="Menú">
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <nav class="primary-nav">
       <a href="#la-casa">La Casa</a>
+      <a href="#la-finca">La Finca</a>
       <a href="#espacios">Espacios</a>
       <a href="#experiencias">Experiencias</a>
-      <a href="#reservas">Reservas</a>
       <a href="#ubicacion">Ubicación</a>
       <a href="#reservas" class="nav-cta">Reservar</a>
     </nav>
   </div>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero__bg">
-    <!-- Simulación de foto con SVG de arquitectura andaluza -->
-    <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.06" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
-      <rect x="150" y="100" width="500" height="300" fill="none" stroke="#c9a96e" stroke-width=".5"/>
-      <rect x="180" y="130" width="440" height="240" fill="none" stroke="#c9a96e" stroke-width=".3"/>
-      <rect x="320" y="250" width="160" height="150" fill="none" stroke="#c9a96e" stroke-width=".5"/>
-      <path d="M 150 100 L 400 30 L 650 100" fill="none" stroke="#c9a96e" stroke-width=".5"/>
-      <circle cx="400" cy="30" r="3" fill="#c9a96e" opacity=".4"/>
-      <line x1="400" y1="0" x2="400" y2="500" stroke="#c9a96e" stroke-width=".2" opacity=".3"/>
-      <line x1="0" y1="250" x2="800" y2="250" stroke="#c9a96e" stroke-width=".2" opacity=".3"/>
-    </svg>
-  </div>
-  <div class="hero__overlay"></div>
-  <div class="hero__deco"></div>
 
-  <div class="hero__content">
-    <span class="hero__eyebrow">Casa Rural · Hotel Boutique · Ronda, Málaga</span>
-    <h1 class="hero__title">La Casa<br>del Torero</h1>
-    <p class="hero__subtitle">Un refugio de elegancia andaluza donde el tiempo se detiene y cada detalle cuenta una historia.</p>
-    <div class="hero__actions">
-      <a href="#reservas" class="btn btn--primary">Reservar ahora</a>
-      <a href="#la-casa" class="btn btn--outline">Descubrir la casa</a>
+<!-- ══════════════════ HERO — VÍDEO ══════════════════ -->
+<section class="hero" aria-label="La Casa del Torero, Vejer de la Frontera">
+  <div class="hero__video-wrap">
+    <!--
+      INSTRUCCIÓN WORDPRESS:
+      Sube tu vídeo a la Biblioteca de medios (MP4, máx. 20 MB, 1920×1080).
+      Reemplaza src="" con la URL del vídeo.
+      Recomendado: grabar un recorrido lento por la finca: patio, olivos, piscina, vistas a Vejer.
+    -->
+    <video
+      autoplay muted loop playsinline
+      poster=""
+      aria-hidden="true"
+      preload="none"
+    >
+      <!-- <source src="assets/video/hero.mp4" type="video/mp4"> -->
+    </video>
+    <!-- Overlay de texto cuando no hay vídeo — solo en preview -->
+    <div class="video-note">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+      Aquí irá el vídeo de la finca<br>
+      (olivos centenarios · piscina · vistas a Vejer · Costa de la Luz)
     </div>
   </div>
-  <div class="hero__scroll" aria-hidden="true">Scroll</div>
+
+  <div class="hero__overlay"></div>
+  <div class="hero__deco" aria-hidden="true"></div>
+
+  <div class="hero__content">
+    <span class="hero__eyebrow">Casa Rural · Hotel Boutique · Vejer de la Frontera, Cádiz</span>
+    <h1 class="hero__title">La Casa<br>del Torero</h1>
+    <p class="hero__subtitle">Una finca histórica de 24 hectáreas entre olivos centenarios, a 11 km de las playas vírgenes de la Costa de la Luz.</p>
+    <div class="hero__actions">
+      <a href="#reservas" class="btn btn--gold">Reservar ahora</a>
+      <a href="#la-casa" class="btn btn--ghost">Descubrir la finca</a>
+    </div>
+  </div>
+
+  <div class="hero__badge" aria-label="En días despejados se ve Marruecos">
+    <strong>Marruecos visible</strong>
+    en días despejados
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true">Descubrir</div>
 </section>
 
-<!-- INTRO STRIP -->
+
+<!-- ══════════════════ INTRO STRIP ══════════════════ -->
 <div class="intro-strip">
   <div class="container">
     <div class="intro-strip__inner">
       <div class="intro-strip__item">
-        <p class="intro-strip__label">Capacidad</p>
-        <p class="intro-strip__value">Hasta 10 huéspedes</p>
+        <p class="intro-strip__label">Finca</p>
+        <p class="intro-strip__value">24 hectáreas</p>
+      </div>
+      <div class="intro-strip__item">
+        <p class="intro-strip__label">Playas</p>
+        <p class="intro-strip__value">11 km · Costa de la Luz</p>
       </div>
       <div class="intro-strip__item">
         <p class="intro-strip__label">Alquiler</p>
-        <p class="intro-strip__value">Casa completa exclusiva</p>
+        <p class="intro-strip__value">Casa completa en exclusiva</p>
       </div>
       <div class="intro-strip__item">
         <p class="intro-strip__label">Ubicación</p>
-        <p class="intro-strip__value">Ronda, Málaga</p>
+        <p class="intro-strip__value">Vejer de la Frontera, Cádiz</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ABOUT -->
+
+<!-- ══════════════════ ABOUT — LA CASA ══════════════════ -->
 <section id="la-casa" class="about">
   <div class="container">
     <div class="about__inner">
+
       <div class="about__image-wrap reveal">
         <div class="about__image-main">
-          <div class="img-placeholder">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            Tu foto aquí<br>Fachada de la casa
+          <div class="img-ph">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Foto fachada principal
           </div>
         </div>
         <div class="about__image-accent">
-          <div class="img-placeholder" style="font-size:.6rem">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            Detalle
+          <div class="img-ph" style="font-size:.6rem">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Detalle interior
           </div>
         </div>
       </div>
 
-      <div class="about__content reveal reveal-delay-1">
+      <div class="about__content reveal d1">
         <span class="eyebrow">La Casa</span>
-        <h2 class="about__title">Una joya en el corazón de Andalucía</h2>
-        <p class="about__text">Situada en un enclave único, La Casa del Torero es una propiedad histórica rehabilitada con mimo y criterio donde conviven la arquitectura tradicional andaluza y los más altos estándares de confort contemporáneo.</p>
-        <p class="about__text">Cada rincón ha sido diseñado para ofrecer una experiencia verdaderamente singular: espacios luminosos, materiales nobles y una atmósfera que invita a la desconexión total.</p>
+        <h2 class="about__title">Un enclave único entre el pueblo blanco y el campo andaluz</h2>
+        <p class="about__text">
+          La Casa del Torero es una finca de 24 hectáreas diseñada por y para un torero, siguiendo el modelo de una ganadería de reses bravas donde aún hoy siguen en uso sus instalaciones: corrales, plaza de tentación con su típica palco y burladero.
+        </p>
+        <p class="about__text">
+          Situada en una de las colinas frente al pueblo blanco de Vejer, la casa ofrece unas vistas privilegiadas sobre la Laguna de La Janda, las marismas de Barbate y, en días despejados, la costa de Marruecos al otro lado del Estrecho.
+        </p>
 
         <div class="about__detail">
-          <svg class="about__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <svg class="about__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
           <div class="about__detail-text">
-            <strong>Casa completa en exclusiva</strong>
-            <span>Disfrutad de toda la propiedad solo para vosotros</span>
+            <strong>Arquitectura tradicional andaluza rehabilitada</strong>
+            <span>Encanto moderno y andaluz que acompaña cada rincón iluminado y colorido</span>
           </div>
         </div>
         <div class="about__detail">
-          <svg class="about__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <svg class="about__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           <div class="about__detail-text">
-            <strong>Check-in flexible</strong>
-            <span>Nos adaptamos a vuestros horarios</span>
+            <strong>Finca sostenible en activo</strong>
+            <span>Ganado, faisanes, perdices y conejos conviven entre olivos centenarios</span>
           </div>
         </div>
         <div class="about__detail">
-          <svg class="about__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <svg class="about__detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           <div class="about__detail-text">
-            <strong>Atención personalizada</strong>
-            <span>Siempre disponibles para lo que necesitéis</span>
+            <strong>Check-in personalizado · Atención 24 h</strong>
+            <span>Nos adaptamos a vuestros horarios y necesidades</span>
           </div>
         </div>
 
-        <a href="#espacios" class="btn btn--dark">Ver espacios</a>
+        <a href="#espacios" class="btn btn--dark">Descubrir los espacios</a>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- SPACES -->
+
+<!-- ══════════════════ FINCA / HISTORIA ══════════════════ -->
+<section id="la-finca" class="finca">
+  <div class="container">
+    <div class="finca__inner">
+
+      <div class="finca__content reveal">
+        <span class="eyebrow">La Finca</span>
+        <h2 class="finca__title">Historia viva en 24 hectáreas de campo abierto</h2>
+        <p class="finca__text">
+          Concebida como una auténtica finca taurina, La Casa del Torero conserva su esencia ganadera mientras se ha convertido en un refugio de lujo accesible. Sus olivos centenarios, su plaza de tentación y sus corrales son testigos mudos de generaciones de tradición andaluza.
+        </p>
+        <p class="finca__text">
+          Desde 2019 la propiedad funciona también como alojamiento exclusivo, combinando el alma de la finca brava con los más altos estándares de confort contemporáneo. Los productos de la huerta propia y la cocina mediterránea con toque francés completan una experiencia verdaderamente singular.
+        </p>
+
+        <div class="finca__stat-grid">
+          <div class="finca__stat">
+            <div class="finca__stat-number">24</div>
+            <div class="finca__stat-label">hectáreas de campo abierto</div>
+          </div>
+          <div class="finca__stat">
+            <div class="finca__stat-number">11</div>
+            <div class="finca__stat-label">km a las playas</div>
+          </div>
+          <div class="finca__stat">
+            <div class="finca__stat-number">4</div>
+            <div class="finca__stat-label">habitaciones y suite</div>
+          </div>
+          <div class="finca__stat">
+            <div class="finca__stat-number">∞</div>
+            <div class="finca__stat-label">vistas al horizonte</div>
+          </div>
+        </div>
+
+        <a href="#reservas" class="btn btn--gold">Consultar disponibilidad</a>
+      </div>
+
+      <div class="finca__image reveal d1">
+        <div class="img-ph" style="color:rgba(255,255,255,.2); width:100%; height:100%;">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.333 8 14 8 14s8-8.667 8-14a8 8 0 0 0-8-8z"/></svg>
+          Foto aérea de la finca / olivos centenarios
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════ SPACES ══════════════════ -->
 <section id="espacios" class="spaces">
   <div class="container">
     <header class="spaces__header reveal">
       <span class="eyebrow">Los Espacios</span>
-      <h2 class="section-title">Cada rincón, una experiencia</h2>
-      <div class="gold-line"></div>
-      <p class="section-body" style="margin-top:1.5rem">Habitaciones, salones y jardines concebidos para el descanso absoluto y el placer de estar.</p>
+      <h2 class="section-title">Cuatro habitaciones, una experiencia única</h2>
+      <div class="gold-rule"></div>
+      <p class="section-body" style="margin-top:1.5rem">Cada estancia ha sido diseñada con encanto moderno y andaluz. Todas con terraza, vistas al pueblo y acceso privado al campo.</p>
     </header>
   </div>
   <div class="spaces__grid">
+
     <div class="space-card reveal">
       <div class="space-card__img s1">
-        <div class="img-placeholder" style="color:rgba(255,255,255,.2)">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>
-          Suite Principal
+        <div class="img-ph" style="color:rgba(255,255,255,.18)">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>
         </div>
       </div>
       <div class="space-card__overlay">
-        <span class="space-card__tag">Dormitorio</span>
-        <h3 class="space-card__name">Suite Principal</h3>
-        <p class="space-card__desc">Cama king-size, baño en suite con bañera exenta y vistas al campo.</p>
+        <span class="space-card__tag">Suite</span>
+        <h3 class="space-card__name">Suite del Torero</h3>
+        <p class="space-card__size">50 m² · Hasta 4 personas</p>
+        <p class="space-card__desc">Salón privado, dormitorio, gran baño con ducha y bañera. Terraza con vistas a Vejer y acceso directo al campo.</p>
       </div>
     </div>
-    <div class="space-card reveal reveal-delay-1">
+
+    <div class="space-card reveal d1">
       <div class="space-card__img s2">
-        <div class="img-placeholder" style="color:rgba(255,255,255,.2)">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          Gran Salón
+        <div class="img-ph" style="color:rgba(255,255,255,.18)">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
         </div>
       </div>
       <div class="space-card__overlay">
-        <span class="space-card__tag">Salón</span>
-        <h3 class="space-card__name">Gran Salón</h3>
-        <p class="space-card__desc">Techos altos, chimenea de leña y sofás de diseño.</p>
+        <span class="space-card__tag">Habitación doble</span>
+        <h3 class="space-card__name">Habitación Albero</h3>
+        <p class="space-card__size">25 m² · Hasta 2 personas</p>
+        <p class="space-card__desc">Dos camas individuales, baño amplio y terraza privada con vistas al pueblo blanco de Vejer.</p>
       </div>
     </div>
-    <div class="space-card reveal reveal-delay-2">
+
+    <div class="space-card reveal d2">
       <div class="space-card__img s3">
-        <div class="img-placeholder" style="color:rgba(255,255,255,.2)">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          Patio Andaluz
+        <div class="img-ph" style="color:rgba(255,255,255,.18)">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
         </div>
       </div>
       <div class="space-card__overlay">
         <span class="space-card__tag">Exterior</span>
-        <h3 class="space-card__name">Patio Andaluz</h3>
-        <p class="space-card__desc">Piscina privada, pérgola y zona de comedor exterior.</p>
+        <h3 class="space-card__name">Jardín & Piscina</h3>
+        <p class="space-card__size">Jardín privado · Piscina exterior · Jacuzzi</p>
+        <p class="space-card__desc">Terraza de sol, salón comunitario con chimenea y jardín privado con piscina de temporada y jacuzzi.</p>
       </div>
     </div>
+
   </div>
 </section>
 
-<!-- EXPERIENCE -->
+
+<!-- ══════════════════ EXPERIENCE ══════════════════ -->
 <section id="experiencias" class="experience">
   <div class="container">
     <div class="experience__inner">
+
       <div class="experience__content reveal">
         <span class="eyebrow">La Experiencia</span>
-        <h2 class="experience__title">Todo lo que necesitáis está aquí</h2>
-        <p class="experience__lead">Desde el momento en que cruzáis la puerta, nos ocupamos de que no os falte de nada.</p>
+        <h2 class="experience__title">Todo lo que necesitáis, y lo que no esperabais</h2>
+        <p class="experience__lead">
+          Desde vuestra llegada todo está pensado para que no tengáis que pensar en nada. La finca, el campo, las vistas y la tranquilidad absoluta son los mejores anfitriones.
+        </p>
         <ul class="amenities-list">
-          <li class="amenity">Piscina privada</li>
-          <li class="amenity">Wifi de alta velocidad</li>
-          <li class="amenity">Cocina totalmente equipada</li>
+          <li class="amenity">Piscina exterior de temporada</li>
+          <li class="amenity">Jacuzzi privado</li>
+          <li class="amenity">WiFi gratuito de alta velocidad</li>
           <li class="amenity">Aire acondicionado</li>
           <li class="amenity">Chimenea de leña</li>
-          <li class="amenity">Smart TV en todas las estancias</li>
-          <li class="amenity">Ropa de cama de lujo</li>
-          <li class="amenity">Terraza con vistas</li>
-          <li class="amenity">Parking privado</li>
-          <li class="amenity">Cuna y trona disponibles</li>
-          <li class="amenity">Admite mascotas (consultar)</li>
-          <li class="amenity">Zona de barbacoa</li>
+          <li class="amenity">Salón comunitario</li>
+          <li class="amenity">Parking gratuito</li>
+          <li class="amenity">Terraza de sol</li>
+          <li class="amenity">Desayuno continental</li>
+          <li class="amenity">Huerto propio</li>
+          <li class="amenity">24 ha de campo para pasear</li>
+          <li class="amenity">Plaza de tentación histórica</li>
+          <li class="amenity">Cocina mediterránea con toque francés</li>
+          <li class="amenity">TV en todas las estancias</li>
         </ul>
         <a href="#reservas" class="btn btn--dark">Consultar disponibilidad</a>
       </div>
-      <div class="experience__visual reveal reveal-delay-1">
-        <div class="experience__image-grid">
-          <div class="img-block">
-            <div class="img-placeholder">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8" style="opacity:.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              Interior
+
+      <div class="experience__visual reveal d1">
+        <div class="exp-grid">
+          <div class="exp-img ei1">
+            <div class="img-ph">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              Salón / chimenea
             </div>
           </div>
-          <div class="img-block b2">
-            <div class="img-placeholder">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8" style="opacity:.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              Cocina
+          <div class="exp-img ei2">
+            <div class="img-ph" style="font-size:.6rem">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              Piscina
             </div>
           </div>
-          <div class="img-block b3">
-            <div class="img-placeholder">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8" style="opacity:.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              Baño
+          <div class="exp-img ei3">
+            <div class="img-ph" style="font-size:.6rem">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              Desayuno / huerto
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- BOOKING -->
+
+<!-- ══════════════════ BOOKING — REDFORS ══════════════════ -->
 <section id="reservas" class="booking">
   <div class="container">
     <header class="booking__header reveal">
       <span class="eyebrow">Reservas</span>
       <h2 class="section-title">Comprueba disponibilidad</h2>
-      <p>Reserva directamente y obtén las mejores condiciones. Pago seguro y confirmación inmediata.</p>
+      <p>Reserva directamente con nosotros y obtén las mejores condiciones. Sin intermediarios. Confirmación inmediata.</p>
     </header>
-    <div class="booking__engine reveal reveal-delay-1">
-      <!-- Demo visual del motor de reservas (Redfors se integra aquí via shortcode) -->
+    <div class="booking__engine reveal d1">
       <div class="booking-demo">
         <div class="booking-field">
           <label>Llegada</label>
-          <input type="text" placeholder="dd/mm/aaaa" value="15/08/2025">
+          <input type="text" placeholder="dd / mm / aaaa" value="15/08/2025">
         </div>
         <div class="booking-field">
           <label>Salida</label>
-          <input type="text" placeholder="dd/mm/aaaa" value="22/08/2025">
+          <input type="text" placeholder="dd / mm / aaaa" value="22/08/2025">
         </div>
         <div class="booking-field">
           <label>Huéspedes</label>
-          <input type="text" placeholder="Nº personas" value="6 personas">
+          <input type="text" value="6 personas">
         </div>
-        <a href="#" class="btn btn--primary" style="white-space:nowrap">Buscar</a>
+        <a href="#" class="btn btn--gold" style="white-space:nowrap">Buscar</a>
       </div>
-      <p class="booking-note">⚑ Este es el espacio donde aparecerá el motor de reservas Redfors una vez activado el plugin en WordPress.</p>
+      <p class="booking-note">
+        ⚑ Motor de reservas Redfors Hotel — se mostrará aquí una vez activado el plugin en WordPress.<br>
+        Mientras tanto: <a href="mailto:info@lacasadeltorero.com" style="color:var(--gold)">info@lacasadeltorero.com</a>
+      </p>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+
+<!-- ══════════════════ TESTIMONIALS ══════════════════ -->
 <section class="testimonials">
   <div class="container">
     <header class="testimonials__header reveal">
       <span class="eyebrow">Opiniones</span>
       <h2 class="section-title">Lo que dicen nuestros huéspedes</h2>
+      <div class="gold-rule"></div>
     </header>
     <div class="testimonials__track">
-      <div class="testimonial-card reveal">
-        <p class="testimonial-card__stars">★★★★★</p>
-        <p class="testimonial-card__text">Una casa absolutamente increíble. Los espacios son mágicos, la decoración impecable y la atención de los propietarios, diez sobre diez. Volveremos sin dudarlo.</p>
-        <div class="testimonial-card__author">
-          <div>
-            <p class="testimonial-card__name">María G.</p>
-            <p class="testimonial-card__origin">Madrid · Agosto 2024</p>
-          </div>
-        </div>
+
+      <div class="t-card reveal">
+        <p class="t-card__stars">★★★★★</p>
+        <p class="t-card__text">«Atención exquisita. La casa es preciosa y la ubicación espectacular. Las vistas a Vejer desde la terraza al amanecer son para no olvidar. Volveremos sin duda.»</p>
+        <p class="t-card__name">María C.</p>
+        <p class="t-card__origin">Madrid · Agosto 2024</p>
+        <p class="t-card__platform">Tripadvisor</p>
       </div>
-      <div class="testimonial-card reveal reveal-delay-1">
-        <p class="testimonial-card__stars">★★★★★</p>
-        <p class="testimonial-card__text">Ronda ya es preciosa, pero La Casa del Torero le añade una capa de magia especial. La piscina, los patios, la luz... todo perfecto para desconectar.</p>
-        <div class="testimonial-card__author">
-          <div>
-            <p class="testimonial-card__name">Carlos y Beatriz</p>
-            <p class="testimonial-card__origin">Valencia · Julio 2024</p>
-          </div>
-        </div>
+
+      <div class="t-card reveal d1">
+        <p class="t-card__stars">★★★★★</p>
+        <p class="t-card__text">«Incredible property. The landscape is breathtaking — olive trees, the white village, the sea in the distance. The hosts are wonderfully attentive and the pool is perfect.»</p>
+        <p class="t-card__name">James & Sophie T.</p>
+        <p class="t-card__origin">London · June 2024</p>
+        <p class="t-card__platform">Booking.com</p>
       </div>
-      <div class="testimonial-card reveal reveal-delay-2">
-        <p class="testimonial-card__stars">★★★★★</p>
-        <p class="testimonial-card__text">We stayed for a week and it felt like living in a dream. The house is stunning, incredibly well-equipped and the location is perfect. Highly recommended.</p>
-        <div class="testimonial-card__author">
-          <div>
-            <p class="testimonial-card__name">Sophie & James</p>
-            <p class="testimonial-card__origin">London · May 2024</p>
-          </div>
-        </div>
+
+      <div class="t-card reveal d2">
+        <p class="t-card__stars">★★★★★</p>
+        <p class="t-card__text">«Un endroit magique. La propriété est unique en son genre — 24 hectares d'oliveraie, une histoire authentique et des hôtes qui rendent tout parfait. À recommander absolument.»</p>
+        <p class="t-card__name">Claire & Étienne M.</p>
+        <p class="t-card__origin">Paris · Juillet 2024</p>
+        <p class="t-card__platform">Airbnb</p>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- LOCATION -->
+
+<!-- ══════════════════ LOCATION ══════════════════ -->
 <section id="ubicacion" class="location">
   <div class="container">
     <div class="location__inner">
+
       <div class="location__content reveal">
         <span class="eyebrow">Ubicación</span>
-        <h2 class="location__title">En el corazón de Ronda</h2>
-        <p class="location__text">Situada en uno de los enclaves más espectaculares de Andalucía, a pocos pasos del centro histórico y del famoso Puente Nuevo.</p>
+        <h2 class="location__title">Vejer de la Frontera — el pueblo blanco más bello de Cádiz</h2>
+        <p class="location__text">
+          La Casa del Torero se asienta sobre una colina frente al pueblo blanco de Vejer de la Frontera, con vistas espectaculares a la Laguna de La Janda, las marismas de Barbate y la Costa de la Luz. En días claros, la silueta de Marruecos es visible al otro lado del Estrecho.
+        </p>
+
         <div class="location__points">
-          <div class="location__point">
-            <div class="location__point-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.333 8 14 8 14s8-8.667 8-14a8 8 0 0 0-8-8z"/></svg>
+          <div class="loc-point">
+            <div class="loc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.333 8 14 8 14s8-8.667 8-14a8 8 0 0 0-8-8z"/></svg>
             </div>
-            <div><strong>Centro histórico de Ronda</strong><span>A 5 minutos a pie</span></div>
+            <div><strong>Centro de Vejer de la Frontera</strong><span>A pocos minutos en coche</span></div>
           </div>
-          <div class="location__point">
-            <div class="location__point-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          <div class="loc-point">
+            <div class="loc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 3l-6.5 18a.55.55 0 0 1-1 0L10 14l-7-.5a.55.55 0 0 1 0-1z"/></svg>
             </div>
-            <div><strong>Puente Nuevo</strong><span>A 8 minutos a pie</span></div>
+            <div><strong>Playas de la Costa de la Luz</strong><span>11 km · El Palmar, Zahara de los Atunes, Caños de Meca</span></div>
           </div>
-          <div class="location__point">
-            <div class="location__point-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <div class="loc-point">
+            <div class="loc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
             </div>
-            <div><strong>Málaga capital</strong><span>1 hora en coche</span></div>
+            <div><strong>Tarifa (surf · kitesurf)</strong><span>35 km</span></div>
           </div>
-          <div class="location__point">
-            <div class="location__point-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <div class="loc-point">
+            <div class="loc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             </div>
-            <div><strong>Aeropuerto de Málaga</strong><span>1h 15min en coche</span></div>
+            <div><strong>Aeropuerto de Jerez (XRY)</strong><span>45 minutos en coche</span></div>
+          </div>
+          <div class="loc-point">
+            <div class="loc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <div><strong>Aeropuerto de Málaga</strong><span>1 h 30 min en coche</span></div>
           </div>
         </div>
+
         <a href="#reservas" class="btn btn--dark">Reservar ahora</a>
       </div>
-      <div class="location__map reveal reveal-delay-1">
+
+      <div class="location__map reveal d1">
         <iframe
-          src="https://www.openstreetmap.org/export/embed.html?bbox=-5.1840%2C36.7400%2C-5.1600%2C36.7500&layer=mapnik&marker=36.7450%2C-5.1720"
-          title="Mapa de Ronda"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-5.9900%2C36.2300%2C-5.9400%2C36.2700&layer=mapnik&marker=36.2516%2C-5.9699"
+          title="Vejer de la Frontera — La Casa del Torero"
           loading="lazy"
           allowfullscreen
         ></iframe>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- CTA BANNER -->
+
+<!-- ══════════════════ CTA BANNER ══════════════════ -->
 <section class="cta-banner" id="contacto">
   <div class="container">
     <div class="cta-banner__content reveal">
-      <span class="eyebrow" style="color:var(--color-gold-lt)">Contacto</span>
-      <h2 class="cta-banner__title">¿Listo para vivir<br>la experiencia?</h2>
-      <p class="cta-banner__text">Cada estancia en La Casa del Torero es única. Reserva ahora y asegura tus fechas antes de que se agoten.</p>
+      <span class="eyebrow" style="color:var(--gold-lt)">Contacto & Reservas</span>
+      <h2 class="cta-banner__title">Vejer os espera.<br>¿Cuándo venís?</h2>
+      <p class="cta-banner__text">Cada estancia en La Casa del Torero es irrepetible. Olivos centenarios, cielos infinitos y el mar a 11 km. Reserva directamente y asegura vuestras fechas.</p>
       <div class="cta-banner__actions">
-        <a href="#reservas" class="btn btn--primary">Reservar ahora</a>
-        <a href="mailto:info@lacasadeltorero.com" class="btn btn--outline">Escribirnos</a>
+        <a href="#reservas" class="btn btn--gold">Reservar ahora</a>
+        <a href="mailto:info@lacasadeltorero.com" class="btn btn--ghost">Escribirnos</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
 <footer id="site-footer">
   <div class="container">
     <div class="footer__grid">
+
       <div class="footer__brand">
-        <a href="#" class="site-logo">La Casa del Torero<span>Casa Rural · Hotel Boutique · Ronda</span></a>
-        <p>Una experiencia única en el corazón de Andalucía. Tradición, confort y belleza en un entorno privilegiado.</p>
+        <a href="#" class="site-logo">
+          La Casa del Torero
+          <span>Casa Rural · Hotel Boutique · Vejer de la Frontera</span>
+        </a>
+        <p>Finca histórica de 24 hectáreas entre olivos centenarios, frente al pueblo blanco de Vejer de la Frontera, a 11 km de las playas vírgenes de la Costa de la Luz.</p>
         <div class="footer__social">
           <a href="#" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
           </a>
           <a href="#" aria-label="Facebook">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
           </a>
           <a href="#" aria-label="WhatsApp">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
           </a>
         </div>
       </div>
+
       <div class="footer__col">
         <h4>La Casa</h4>
         <ul>
-          <li><a href="#la-casa">Historia</a></li>
+          <li><a href="#la-casa">La Casa</a></li>
+          <li><a href="#la-finca">La Finca</a></li>
           <li><a href="#espacios">Espacios</a></li>
           <li><a href="#experiencias">Experiencias</a></li>
-          <li><a href="#">Galería</a></li>
         </ul>
       </div>
+
       <div class="footer__col">
         <h4>Información</h4>
         <ul>
           <li><a href="#reservas">Reservas</a></li>
+          <li><a href="#ubicacion">Cómo llegar</a></li>
           <li><a href="#">Normas de la casa</a></li>
-          <li><a href="#">Cancelación</a></li>
-          <li><a href="#">Privacidad</a></li>
-          <li><a href="#">Aviso legal</a></li>
+          <li><a href="#">Política de cancelación</a></li>
+          <li><a href="#">Privacidad · Cookies</a></li>
         </ul>
       </div>
+
       <div class="footer__col">
         <h4>Contacto</h4>
         <address>
-          Ronda, Málaga<br>Andalucía, España<br><br>
+          Vejer de la Frontera<br>
+          Cádiz, Andalucía · España<br><br>
           <a href="tel:+34600000000">+34 600 000 000</a><br>
           <a href="mailto:info@lacasadeltorero.com">info@lacasadeltorero.com</a>
         </address>
       </div>
+
     </div>
+
     <div class="footer__bottom">
-      <span>© 2025 La Casa del Torero. Todos los derechos reservados.</span>
+      <span>© 2025 La Casa del Torero · Vejer de la Frontera, Cádiz</span>
       <div>
-        <a href="#">Privacidad</a> &nbsp;·&nbsp; <a href="#">Aviso legal</a> &nbsp;·&nbsp; <a href="#">Cookies</a>
+        <a href="#">Privacidad</a> &nbsp;·&nbsp;
+        <a href="#">Aviso legal</a> &nbsp;·&nbsp;
+        <a href="#">Cookies</a>
       </div>
     </div>
   </div>
 </footer>
+
 
 <script>
 (function(){
@@ -666,11 +1026,11 @@ h1,h2,h3,h4 { font-family: var(--font-serif); font-weight: 400; line-height: 1.1
 
   // Mobile nav
   const toggle = document.querySelector('.nav-toggle');
-  const nav = document.querySelector('.primary-nav');
-  if(toggle && nav){
+  const nav    = document.querySelector('.primary-nav');
+  if (toggle && nav) {
     toggle.addEventListener('click', () => {
       const open = nav.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open);
+      toggle.setAttribute('aria-expanded', String(open));
       document.body.style.overflow = open ? 'hidden' : '';
     });
     nav.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
@@ -681,11 +1041,14 @@ h1,h2,h3,h4 { font-family: var(--font-serif); font-weight: 400; line-height: 1.1
 
   // Scroll reveal
   const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
 })();
 </script>
+
 </body>
 </html>

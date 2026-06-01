@@ -70,6 +70,51 @@ add_action('init', function () {
     }
 });
 
+/* ── SEO: hreflang para multiidioma (TranslatePress / Polylang) ──
+ * Si usas TranslatePress o Polylang estos tags se generan automáticamente.
+ * Este bloque añade las metas Open Graph básicas si no hay plugin SEO activo.
+ */
+add_action('wp_head', function () {
+    if (is_front_page()) {
+        echo '<meta property="og:type" content="website">' . "\n";
+        echo '<meta property="og:locale" content="es_ES">' . "\n";
+        echo '<meta property="og:locale:alternate" content="en_GB">' . "\n";
+        echo '<meta property="og:locale:alternate" content="fr_FR">' . "\n";
+        echo '<meta property="og:locale:alternate" content="de_DE">' . "\n";
+        echo '<meta property="og:site_name" content="' . esc_attr(get_bloginfo('name')) . '">' . "\n";
+    }
+}, 1);
+
+/* ── Schema.org JSON-LD para SEO local y de alojamiento ── */
+add_action('wp_head', function () {
+    if (!is_front_page()) return;
+    $schema = [
+        '@context'        => 'https://schema.org',
+        '@type'           => 'LodgingBusiness',
+        'name'            => 'La Casa del Torero',
+        'description'     => 'Casa rural de alquiler completo en Vejer de la Frontera, Cádiz. Finca histórica de 24 hectáreas entre olivos centenarios, piscina, jacuzzi y vistas a la Costa de la Luz.',
+        'url'             => home_url('/'),
+        'telephone'       => get_theme_mod('contact_phone', ''),
+        'email'           => get_theme_mod('contact_email', 'info@lacasadeltorero.com'),
+        'address'         => [
+            '@type'           => 'PostalAddress',
+            'addressLocality' => 'Vejer de la Frontera',
+            'addressRegion'   => 'Cádiz',
+            'addressCountry'  => 'ES',
+        ],
+        'geo'             => ['@type' => 'GeoCoordinates', 'latitude' => '36.2516', 'longitude' => '-5.9699'],
+        'amenityFeature'  => [
+            ['@type' => 'LocationFeatureSpecification', 'name' => 'Piscina exterior', 'value' => true],
+            ['@type' => 'LocationFeatureSpecification', 'name' => 'Jacuzzi', 'value' => true],
+            ['@type' => 'LocationFeatureSpecification', 'name' => 'WiFi gratuito', 'value' => true],
+            ['@type' => 'LocationFeatureSpecification', 'name' => 'Parking gratuito', 'value' => true],
+            ['@type' => 'LocationFeatureSpecification', 'name' => 'Aire acondicionado', 'value' => true],
+        ],
+        'numberOfRooms'   => 4,
+    ];
+    printf('<script type="application/ld+json">%s</script>' . "\n", wp_json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+});
+
 /* ── Excerpt length ── */
 add_filter('excerpt_length', fn() => 24, 999);
 
