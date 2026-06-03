@@ -690,8 +690,8 @@ $contact_phone_bk    = function_exists('get_field') ? (get_field('contact_phone'
       <p><?php echo esc_html($booking_text); ?></p>
     </header>
     <div class="booking__engine reveal d1">
-      <?php if ($booking_engine_code) : ?>
-        <?php echo $booking_engine_code; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- intentional third-party embed code ?>
+      <?php echo do_shortcode('[ohbe_search]'); ?>
+      <?php if (false) : // legacy fallback — no longer used ?>
       <?php else : ?>
       <div class="booking-demo">
         <div class="booking-field">
