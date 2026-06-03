@@ -54,6 +54,13 @@
   color: rgba(255,255,255,.65);
 }
 .hab-hero__meta strong { color: var(--gold-lt); font-weight: 400; }
+.hab-hero__bed {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  color: rgba(255,255,255,.85);
+}
+.hab-hero__bed svg { width: 20px; height: 20px; opacity: .75; }
 
 /* ── Body layout ── */
 .hab-body {
@@ -247,7 +254,7 @@ if (have_posts()) : while (have_posts()) : the_post();
 
 $eyebrow   = $gf('hab_eyebrow')           ?: 'Alojamiento';
 $size      = $gf('hab_size')              ?: '';
-$capacity  = $gf('hab_capacity')          ?: '';
+$bed_types = $gf('hab_bed_types')         ?: [];
 $price     = $gf('hab_price')             ?: '';
 $desc_long = $gf('hab_description_long')  ?: get_the_content();
 $amenities = $gf('hab_amenities')         ?: [];
@@ -319,9 +326,20 @@ $hero_img = $hero_img ?: $fallback_hero;
       <?php if ($size) : ?>
         <span><?php echo esc_html($size); ?></span>
       <?php endif; ?>
-      <?php if ($capacity) : ?>
-        <span><?php echo esc_html($capacity); ?></span>
-      <?php endif; ?>
+      <?php
+      $bed_svgs = [
+          'king'        => ['label' => 'King Size',        'svg' => '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 4v16"/><path d="M22 4v16"/><path d="M2 8h20"/><path d="M2 20h20"/><path d="M2 12h3v4H2zM19 12h3v4h-3z"/><path d="M5 12h14v4H5z"/></svg>'],
+          'dos_camas'   => ['label' => 'Dos camas',        'svg' => '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 4v16"/><path d="M22 4v16"/><path d="M2 8h20"/><path d="M2 20h20"/><path d="M2 12h3v4H2zM11 12h2v4h-2zM19 12h3v4h-3z"/><path d="M5 12h6v4H5zM13 12h6v4h-6z"/></svg>'],
+          'sofa_cama'   => ['label' => 'Sofá cama',        'svg' => '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"/><path d="M2 11v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H6v-2a2 2 0 0 0-4 0z"/><path d="M4 18v2M20 18v2"/></svg>'],
+          'matrimonial' => ['label' => 'Cama matrimonial', 'svg' => '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 4v16"/><path d="M22 4v16"/><path d="M2 8h20"/><path d="M2 20h20"/><path d="M2 12h3v4H2zM19 12h3v4h-3z"/><path d="M5 12h14v4H5z"/></svg>'],
+          'individual'  => ['label' => 'Cama individual',  'svg' => '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 4v16"/><path d="M21 4v16"/><path d="M3 8h18"/><path d="M3 20h18"/><path d="M3 12h3v4H3zM18 12h3v4h-3z"/><path d="M6 12h12v4H6z"/></svg>'],
+      ];
+      foreach ($bed_types as $key) :
+          $bed = $bed_svgs[$key] ?? null;
+          if (!$bed) continue;
+      ?>
+        <span class="hab-hero__bed"><?php echo $bed['svg']; ?><?php echo esc_html($bed['label']); ?></span>
+      <?php endforeach; ?>
       <?php if ($price) : ?>
         <span><strong>Desde <?php echo esc_html($price); ?></strong> / noche</span>
       <?php endif; ?>

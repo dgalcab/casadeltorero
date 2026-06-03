@@ -226,7 +226,21 @@ add_action('acf/init', function () {
         'fields'   => [
             ['key' => 'field_hab_eyebrow',          'label' => 'Tipo / Eyebrow',       'name' => 'hab_eyebrow',          'type' => 'text',     'instructions' => 'Ej: Suite, Habitación doble...'],
             ['key' => 'field_hab_size',             'label' => 'Superficie',           'name' => 'hab_size',             'type' => 'text',     'instructions' => 'Ej: 50 m²'],
-            ['key' => 'field_hab_capacity',         'label' => 'Capacidad',            'name' => 'hab_capacity',         'type' => 'text',     'instructions' => 'Ej: Hasta 4 personas'],
+            [
+                'key'     => 'field_hab_bed_types',
+                'label'   => 'Tipo de cama',
+                'name'    => 'hab_bed_types',
+                'type'    => 'checkbox',
+                'choices' => [
+                    'king'       => 'Cama King Size',
+                    'dos_camas'  => 'Dos camas',
+                    'sofa_cama'  => 'Sofá cama',
+                    'matrimonial'=> 'Cama matrimonial',
+                    'individual' => 'Cama individual',
+                ],
+                'layout'        => 'horizontal',
+                'return_format' => 'value',
+            ],
             ['key' => 'field_hab_price',            'label' => 'Precio',               'name' => 'hab_price',            'type' => 'text',     'instructions' => 'Ej: Desde 165 € / noche'],
             ['key' => 'field_hab_description_long', 'label' => 'Descripción completa', 'name' => 'hab_description_long', 'type' => 'wysiwyg'],
             [
