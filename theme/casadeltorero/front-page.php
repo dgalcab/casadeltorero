@@ -212,6 +212,12 @@ $house_feats = $house_feats_raw
       'order'          => 'ASC',
   ]);
   $has_hab = $hab_query->have_posts();
+  $hab_fallback_imgs = [
+      $img_base . '/espacios/suite-principal.jpg',
+      $img_base . '/espacios/doble-superior.jpg',
+      $img_base . '/espacios/habitacion-doble.jpg',
+      $img_base . '/espacios/apartamento.jpg',
+  ];
   ?>
 
   <div class="spaces__grid">
@@ -220,7 +226,7 @@ $house_feats = $house_feats_raw
         $idx = 0;
         while ($hab_query->have_posts()) : $hab_query->the_post();
             $dc       = $delay_classes[$idx % 4] ?? '';
-            $hab_img  = get_the_post_thumbnail_url(get_the_ID(), 'space-card');
+            $hab_img  = get_the_post_thumbnail_url(get_the_ID(), 'large') ?: ($hab_fallback_imgs[$idx] ?? $hab_fallback_imgs[0]);
             $hab_tag  = $has_acf ? get_field('hab_eyebrow')  : '';
             $hab_size = $has_acf ? get_field('hab_size')     : '';
             $hab_cap  = $has_acf ? get_field('hab_capacity') : '';
@@ -229,9 +235,7 @@ $house_feats = $house_feats_raw
     ?>
         <div class="space-card reveal <?php echo esc_attr($dc); ?>">
           <div class="space-card__img s<?php echo ($idx % 3) + 1; ?>">
-            <?php if ($hab_img) : ?>
-              <img loading="lazy" src="<?php echo esc_url($hab_img); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" style="width:100%;height:100%;object-fit:cover;display:block;">
-            <?php endif; ?>
+            <img loading="lazy" src="<?php echo esc_url($hab_img); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">
           </div>
           <div class="space-card__overlay">
             <?php if ($hab_tag) : ?><span class="space-card__tag"><?php echo esc_html($hab_tag); ?></span><?php endif; ?>
@@ -403,7 +407,7 @@ $stats = ($finca_stats && is_array($finca_stats)) ? array_map(fn($s) => ['value'
           <?php endforeach; ?>
         </div>
 
-        <a href="#reservas" class="btn btn--gold">Consultar disponibilidad</a>
+        <a href="<?php echo esc_url(home_url('/reservas/')); ?>" class="btn btn--gold">Consultar disponibilidad</a>
       </div>
 
       <div class="finca__image reveal d1">
@@ -445,7 +449,7 @@ $amenities_list = $exp_amenities
             <li class="amenity"><?php echo esc_html($am); ?></li>
           <?php endforeach; ?>
         </ul>
-        <a href="#reservas" class="btn btn--dark">Consultar disponibilidad</a>
+        <a href="<?php echo esc_url(home_url('/reservas/')); ?>" class="btn btn--dark">Consultar disponibilidad</a>
       </div>
 
       <div class="experience__visual reveal d1">
@@ -786,7 +790,7 @@ $distances = ($loc_distances && is_array($loc_distances))
           <?php endforeach; ?>
         </div>
 
-        <a href="#reservas" class="btn btn--dark">Reservar ahora</a>
+        <a href="<?php echo esc_url(home_url('/reservas/')); ?>" class="btn btn--dark">Reservar ahora</a>
       </div>
 
       <div class="location__map reveal d1">
@@ -808,7 +812,7 @@ $distances = ($loc_distances && is_array($loc_distances))
 $cta_title    = $gf('cta_title')    ?: 'Vejer os espera.<br>¿Cuándo venís?';
 $cta_text     = $gf('cta_text')     ?: 'Cada estancia en La Casa del Torero es irrepetible. Olivos centenarios, cielos infinitos y el mar a 11 km. Reserva directamente y asegura vuestras fechas.';
 $cta_btn_text = $gf('cta_btn_text') ?: 'Reservar ahora';
-$cta_btn_url  = $gf('cta_btn_url')  ?: '#reservas';
+$cta_btn_url  = $gf('cta_btn_url')  ?: home_url('/reservas/');
 $cta_email    = function_exists('get_field') ? (get_field('contact_email', 'option') ?: 'info@lacasadeltorero.com') : 'info@lacasadeltorero.com';
 ?>
 <section class="cta-banner" id="contacto">
