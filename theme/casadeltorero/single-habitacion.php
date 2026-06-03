@@ -258,13 +258,31 @@ $slug_fallbacks = [
 $slug = get_post_field('post_name');
 $fallback_hero = $slug_fallbacks[$slug] ?? ($img_base . '/espacios/hab-slide-1.jpg');
 
-/* Fallback gallery images when no ACF gallery */
-$fallback_slides = [
-  $fallback_hero,
-  $img_base . '/espacios/hab-slide-2.jpg',
-  $img_base . '/espacios/suite-2.jpg',
-  $img_base . '/espacios/suite-bano.jpg',
+/* Fallback gallery images per slug */
+$gallery_fallbacks = [
+    'suite-del-torero'       => [
+        $img_base . '/espacios/suite-principal.jpg',
+        $img_base . '/espacios/suite-2.jpg',
+        $img_base . '/espacios/suite-3.jpg',
+        $img_base . '/espacios/suite-bano.jpg',
+    ],
+    'doble-superior'         => [
+        $img_base . '/espacios/doble-superior.jpg',
+        $img_base . '/espacios/hab-slide-1.jpg',
+        $img_base . '/espacios/hab-slide-2.jpg',
+    ],
+    'habitacion-doble'       => [
+        $img_base . '/espacios/habitacion-doble.jpg',
+        $img_base . '/espacios/hab-slide-1.jpg',
+        $img_base . '/espacios/hab-slide-2.jpg',
+    ],
+    'apartamento-panoramico' => [
+        $img_base . '/espacios/apartamento.jpg',
+        $img_base . '/espacios/hab-slide-1.jpg',
+        $img_base . '/espacios/hab-slide-2.jpg',
+    ],
 ];
+$fallback_slides = $gallery_fallbacks[$slug] ?? [ $fallback_hero, $img_base . '/espacios/hab-slide-1.jpg' ];
 
 /* Hero image: featured image → first ACF gallery image → slug fallback */
 $hero_img = get_the_post_thumbnail_url(null, 'hero');
