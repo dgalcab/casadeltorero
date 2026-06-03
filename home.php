@@ -1,7 +1,8 @@
 <?php get_header(); ?>
 
 <style>
-.blog-archive { padding: var(--py) 0; background: var(--cream); }
+.blog-archive { background: var(--cream); }
+.blog-archive .container { padding-top: var(--py); padding-bottom: var(--py); }
 .blog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; padding: var(--py) 0; }
 .blog-card { background: var(--white); display: flex; flex-direction: column; transition: box-shadow var(--ease); }
 .blog-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,.1); }
