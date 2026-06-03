@@ -9,68 +9,7 @@ get_header(); ?>
 <style>
 /* ══ HABITACIONES PAGE ══════════════════════════════════════ */
 
-/* ── Hero ── */
-.habs-hero {
-  position: relative;
-  min-height: clamp(420px, 55vw, 600px);
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  text-align: center;
-  overflow: hidden;
-  background: var(--blue);
-  padding-bottom: clamp(3.5rem, 6vw, 6rem);
-  padding-top: clamp(7rem, 12vw, 10rem);
-}
-.habs-hero__bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  opacity: .2;
-}
-.habs-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at center bottom, rgba(184,150,90,.12) 0%, transparent 65%);
-  pointer-events: none;
-  z-index: 1;
-}
-.habs-hero__content {
-  position: relative;
-  z-index: 2;
-  color: var(--white);
-  padding-inline: 1.5rem;
-  max-width: 720px;
-}
-.habs-hero__eyebrow {
-  font-family: var(--sans);
-  font-size: .6875rem;
-  font-weight: 500;
-  letter-spacing: .26em;
-  text-transform: uppercase;
-  color: var(--gold-lt);
-  display: block;
-  margin-bottom: 1.25rem;
-}
-.habs-hero__title {
-  font-family: var(--serif);
-  font-size: clamp(2.75rem, 6vw, 5.5rem);
-  font-weight: 300;
-  line-height: 1.05;
-  letter-spacing: -.02em;
-  color: var(--white);
-  margin-bottom: 1.25rem;
-}
-.habs-hero__subtitle {
-  font-size: clamp(.9375rem, 1.5vw, 1.0625rem);
-  color: rgba(255,255,255,.7);
-  max-width: 52ch;
-  margin-inline: auto;
-  line-height: 1.8;
-}
-.habs-hero .gold-rule { margin-top: 1.75rem; }
+/* hero → uses shared .page-hero from main.css */
 
 /* ── Intro ── */
 .habs-intro {
@@ -206,12 +145,11 @@ $img_base = get_template_directory_uri() . '/assets/img';
 ?>
 
 <!-- ══════════ HERO ══════════ -->
-<section class="habs-hero" aria-label="Las Habitaciones de La Casa del Torero">
-  <div class="habs-hero__bg" style="background-image:url('<?php echo esc_url($img_base); ?>/espacios/hab-slide-1.jpg')"></div>
-  <div class="habs-hero__content reveal">
-    <span class="habs-hero__eyebrow">Nuestras estancias</span>
-    <h1 class="habs-hero__title">Las Habitaciones</h1>
-    <p class="habs-hero__subtitle">Cuatro espacios únicos, cada uno con su propio carácter. Todas con terraza privada, vistas a Vejer y acceso al campo.</p>
+<section class="page-hero" style="--hero-bg:url('<?php echo esc_url($img_base); ?>/espacios/hab-slide-1.jpg')" aria-label="Las Habitaciones de La Casa del Torero">
+  <div class="container page-hero__inner reveal">
+    <span class="eyebrow">Nuestras estancias</span>
+    <h1>Las Habitaciones</h1>
+    <p>Cuatro espacios únicos, cada uno con su propio carácter. Todas con terraza privada, vistas a Vejer y acceso al campo.</p>
     <div class="gold-rule"></div>
   </div>
 </section>

@@ -63,45 +63,7 @@ $use_cpt = $cpt_query->have_posts();
 ?>
 
 <style>
-/* ── Reservas hero ── */
-.reservas-hero {
-  position: relative;
-  background: var(--blue);
-  padding: clamp(6rem,10vw,10rem) 0 clamp(4rem,6vw,6rem);
-  text-align: center;
-  overflow: hidden;
-}
-.reservas-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url('<?php echo esc_url($img_base); ?>/casa/piscina.jpg');
-  background-size: cover;
-  background-position: center 60%;
-  opacity: .18;
-}
-.reservas-hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(28,74,89,.45) 0%, rgba(28,74,89,.1) 100%);
-}
-.reservas-hero__inner { position: relative; z-index: 1; }
-.reservas-hero .eyebrow { color: var(--gold-lt); display: block; margin-bottom: 1rem; }
-.reservas-hero h1 {
-  font-family: var(--serif);
-  font-size: clamp(3rem,6vw,5rem);
-  color: var(--white);
-  font-weight: 300;
-  margin-bottom: 1.25rem;
-}
-.reservas-hero p {
-  color: rgba(255,255,255,.6);
-  font-size: 1.0625rem;
-  max-width: 50ch;
-  margin-inline: auto;
-  line-height: 1.75;
-}
+/* hero → uses shared .page-hero from main.css */
 
 /* ── Motor general ── */
 .reservas-engine-section {
@@ -217,11 +179,12 @@ $use_cpt = $cpt_query->have_posts();
 </style>
 
 <!-- HERO -->
-<section class="reservas-hero">
-  <div class="container reservas-hero__inner">
+<section class="page-hero" style="--hero-bg:url('<?php echo esc_url($img_base); ?>/casa/piscina.jpg')">
+  <div class="container page-hero__inner">
     <span class="eyebrow">Reserva directa · Sin intermediarios</span>
     <h1>Reserva tu estancia</h1>
     <p>Comprueba disponibilidad y reserva directamente con nosotros.<br>Siempre obtendrás las mejores tarifas y condiciones.</p>
+    <div class="gold-rule"></div>
   </div>
 </section>
 

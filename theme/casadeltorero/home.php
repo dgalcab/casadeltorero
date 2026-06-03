@@ -2,7 +2,7 @@
 
 <style>
 .blog-archive { padding: var(--py) 0; background: var(--cream); }
-.blog-archive__header { position: relative; background: var(--blue); color: #fff; text-align: center; padding: clamp(4rem,8vw,8rem) 0 clamp(3rem,6vw,6rem); overflow: hidden; }
+.blog-archive__header { position: relative; background: var(--blue); color: #fff; text-align: center; padding: clamp(6rem,10vw,10rem) 0 clamp(4rem,6vw,6rem); overflow: hidden; }
 .blog-archive__header::before { content: ''; position: absolute; inset: 0; background-image: url('<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/casa/finca-exterior.jpg'); background-size: cover; background-position: center; opacity: .15; pointer-events: none; }
 .blog-archive__header > .container { position: relative; z-index: 1; }
 .blog-archive__header .eyebrow { color: var(--gold-lt); }

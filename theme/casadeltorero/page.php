@@ -1,9 +1,7 @@
 <?php get_header(); ?>
 
 <style>
-.page-hero-simple { background: var(--blue); padding: clamp(5rem,8vw,8rem) 0 clamp(3rem,5vw,5rem); text-align: center; }
-.page-hero-simple h1 { font-family: var(--serif); font-size: clamp(2.5rem,5vw,4rem); color: var(--white); font-weight: 300; }
-.page-hero-simple .eyebrow { color: var(--gold-lt); display: block; margin-bottom: 1rem; }
+/* hero → uses shared .page-hero from main.css */
 .page-body-wrap { background: var(--white); padding: var(--py) 0; }
 .page-body { max-width: 780px; margin-inline: auto; padding: 0 1.5rem; }
 .page-body h2, .page-body h3 { font-family: var(--serif); color: var(--text); margin: 2rem 0 .75rem; }
@@ -14,12 +12,15 @@
 .page-body a:hover { color: var(--blue); }
 </style>
 
-<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+<?php
+$img_uri = get_template_directory_uri() . '/assets/img';
+if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-<section class="page-hero-simple" aria-label="<?php echo esc_attr(get_the_title()); ?>">
-  <div class="container">
+<section class="page-hero" style="--hero-bg:url('<?php echo esc_url($img_uri); ?>/casa/aerea.jpg')" aria-label="<?php echo esc_attr(get_the_title()); ?>">
+  <div class="container page-hero__inner">
     <span class="eyebrow">La Casa del Torero</span>
     <h1 class="reveal"><?php the_title(); ?></h1>
+    <div class="gold-rule"></div>
   </div>
 </section>
 

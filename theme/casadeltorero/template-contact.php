@@ -17,39 +17,7 @@ $facebook  = $go('social_facebook')  ?: 'https://www.facebook.com/casadeltorerov
 ?>
 
 <style>
-/* ── Contact hero ── */
-.contact-hero {
-  position: relative;
-  background: var(--blue);
-  padding: clamp(6rem,10vw,10rem) 0 clamp(4rem,6vw,6rem);
-  text-align: center;
-  overflow: hidden;
-}
-.contact-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url('<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/casa/aerea.jpg');
-  background-size: cover;
-  background-position: center;
-  opacity: .18;
-}
-.contact-hero__inner { position: relative; z-index: 1; }
-.contact-hero .eyebrow { color: var(--gold-lt); display: block; margin-bottom: 1rem; }
-.contact-hero h1 {
-  font-family: var(--serif);
-  font-size: clamp(3rem,6vw,5rem);
-  color: var(--white);
-  font-weight: 300;
-  margin-bottom: 1.25rem;
-}
-.contact-hero p {
-  color: rgba(255,255,255,.6);
-  font-size: 1.0625rem;
-  max-width: 46ch;
-  margin-inline: auto;
-  line-height: 1.75;
-}
+/* hero → uses shared .page-hero from main.css */
 
 /* ── Contact body ── */
 .contact-body { background: var(--cream); padding: var(--py) 0; }
@@ -186,11 +154,12 @@ $facebook  = $go('social_facebook')  ?: 'https://www.facebook.com/casadeltorerov
 </style>
 
 <!-- HERO -->
-<section class="contact-hero">
-  <div class="container contact-hero__inner">
+<section class="page-hero" style="--hero-bg:url('<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/casa/aerea.jpg')">
+  <div class="container page-hero__inner">
     <span class="eyebrow">Estamos encantados de atenderte</span>
     <h1>Contacto</h1>
     <p>Para reservas, consultas o simplemente para conocernos mejor. Respondemos en menos de 24 horas.</p>
+    <div class="gold-rule"></div>
   </div>
 </section>
 

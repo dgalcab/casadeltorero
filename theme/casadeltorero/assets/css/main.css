@@ -700,3 +700,42 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 .contact-map { margin-top: clamp(3rem,5vw,5rem); }
 .contact-map iframe { border-radius: 4px; display: block; }
 @media(min-width:640px){ .contact-form__form { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem 1.5rem; } }
+
+/* ══════════════════════════════════════════
+   SHARED PAGE HERO  (all secondary pages)
+   Usage: <section class="page-hero" style="--hero-bg:url(path/to/img.jpg)">
+   ══════════════════════════════════════════ */
+.page-hero {
+  position: relative;
+  background: var(--blue);
+  padding: clamp(6rem,10vw,10rem) 0 clamp(4rem,6vw,6rem);
+  text-align: center;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--hero-bg);
+  background-size: cover;
+  background-position: center;
+  opacity: .18;
+  pointer-events: none;
+}
+.page-hero__inner { position: relative; z-index: 1; }
+.page-hero .eyebrow { color: var(--gold-lt); display: block; margin-bottom: 1rem; }
+.page-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(3rem,6vw,5rem);
+  color: var(--white);
+  font-weight: 300;
+  margin-bottom: 1.25rem;
+}
+.page-hero p {
+  color: rgba(255,255,255,.6);
+  font-size: 1.0625rem;
+  max-width: 50ch;
+  margin-inline: auto;
+  line-height: 1.75;
+}
+.page-hero .gold-rule { margin: 1.5rem auto 0; }
