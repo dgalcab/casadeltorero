@@ -118,6 +118,44 @@ $use_cpt = $cpt_query->have_posts();
 }
 .ohbe-wrap { background: var(--white); padding: clamp(2rem,4vw,3rem); border: 1px solid var(--border); }
 
+/* ── OHBE widget overrides ── */
+/* Ocultar header/logo propio del motor */
+.ohbe-header, .ohbe-logo, .ohbe_header, .ohbe_logo,
+[class*="ohbe-header"], [class*="ohbe-logo"],
+[class*="ohbe_header"], [class*="ohbe_logo"],
+.be-header, .be-logo, .booking-engine-header,
+.ohbe-wrap > div > header, .ohbe-wrap header { display: none !important; }
+
+/* Sustituir azul corporativo OHBE por nuestros colores */
+/* Botones primarios → dorado */
+.ohbe-wrap [class*="btn-primary"], .ohbe-wrap [class*="button-primary"],
+.ohbe-wrap button[type="submit"], .ohbe-wrap .btn-reservar,
+.ohbe-wrap [class*="btn_primary"], .ohbe-wrap [class*="submit"],
+.ohbe-wrap [class*="reservar"], .ohbe-wrap [class*="Reservar"],
+.ohbe-wrap [style*="background-color: #0056b3"],
+.ohbe-wrap [style*="background:#0056b3"] {
+  background: var(--gold) !important;
+  border-color: var(--gold) !important;
+  color: var(--white) !important;
+}
+/* Links y acentos azules → nuestro azul */
+.ohbe-wrap a, .ohbe-wrap [class*="text-primary"],
+.ohbe-wrap [class*="color-primary"] {
+  color: var(--blue) !important;
+}
+/* Encabezados dentro del widget */
+.ohbe-wrap h1, .ohbe-wrap h2, .ohbe-wrap h3,
+.ohbe-wrap [class*="room-title"], .ohbe-wrap [class*="hab-title"] {
+  font-family: var(--serif) !important;
+  color: var(--blue) !important;
+}
+/* Botón "Reservar" barra superior que se monta sobre el header */
+.ohbe-wrap [class*="sticky"], .ohbe-wrap [class*="fixed-top"],
+.ohbe-wrap [class*="navbar"], .ohbe-wrap nav {
+  position: static !important;
+  z-index: 1 !important;
+}
+
 /* ── Rooms grid ── */
 .reservas-rooms { background: var(--white); padding: var(--py) 0; }
 .reservas-rooms__header { text-align: center; margin-bottom: clamp(3rem,5vw,5rem); }
