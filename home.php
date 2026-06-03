@@ -27,17 +27,15 @@
 @media(max-width:640px){ .blog-grid { grid-template-columns: 1fr; } }
 </style>
 
+<section class="page-hero" style="--hero-bg:url('<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/casa/piscina.jpg')">
+  <div class="container page-hero__inner">
+    <span class="eyebrow">Inspiración · Experiencias · Guías</span>
+    <h1>El Blog</h1>
+    <div class="gold-rule"></div>
+  </div>
+</section>
+
 <main class="blog-archive">
-
-  <!-- Header -->
-  <section class="page-hero" style="--hero-bg:url('<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/casa/piscina.jpg')">
-    <div class="container page-hero__inner">
-      <span class="eyebrow">Inspiración · Experiencias · Guías</span>
-      <h1>El Blog</h1>
-      <div class="gold-rule"></div>
-    </div>
-  </section>
-
   <!-- Grid -->
   <div class="container">
     <?php if ( have_posts() ) : ?>
