@@ -155,3 +155,14 @@ require get_template_directory() . '/inc/customizer.php';
 
 /* ── ACF Pro: campos del tema ── */
 require get_template_directory() . '/inc/acf-fields.php';
+
+/* ── OHBE: when booking engine takes over the page, load minimal wrapper ── */
+add_filter('template_include', function ($template) {
+    if ( isset($_GET['ohbe']) && $_GET['ohbe'] === 'booking' ) {
+        $minimal = get_template_directory() . '/template-ohbe-wrapper.php';
+        if ( file_exists($minimal) ) {
+            return $minimal;
+        }
+    }
+    return $template;
+}, 99);
