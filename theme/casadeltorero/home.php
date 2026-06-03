@@ -2,9 +2,11 @@
 
 <style>
 .blog-archive { padding: var(--py) 0; background: var(--cream); }
-.blog-archive__header { background: var(--blue); color: #fff; text-align: center; padding: clamp(4rem,8vw,8rem) 0 clamp(3rem,6vw,6rem); }
-.blog-archive__header .eyebrow { color: rgba(255,255,255,.55); }
-.blog-archive__header h1 { font-family: var(--serif); font-size: clamp(2.5rem,5vw,4rem); color: #fff; margin-top: .75rem; }
+.blog-archive__header { position: relative; background: var(--blue); color: #fff; text-align: center; padding: clamp(4rem,8vw,8rem) 0 clamp(3rem,6vw,6rem); overflow: hidden; }
+.blog-archive__header::before { content: ''; position: absolute; inset: 0; background-image: url('<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/casa/finca-exterior.jpg'); background-size: cover; background-position: center; opacity: .15; pointer-events: none; }
+.blog-archive__header > .container { position: relative; z-index: 1; }
+.blog-archive__header .eyebrow { color: var(--gold-lt); }
+.blog-archive__header h1 { font-family: var(--serif); font-size: clamp(2.5rem,5vw,4rem); color: var(--white); margin-top: .75rem; }
 .blog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; padding: var(--py) 0; }
 .blog-card { background: var(--white); display: flex; flex-direction: column; transition: box-shadow var(--ease); }
 .blog-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,.1); }
@@ -45,7 +47,7 @@
     <?php if ( have_posts() ) : ?>
     <div class="blog-grid">
       <?php while ( have_posts() ) : the_post(); ?>
-      <article class="blog-card" id="post-<?php the_ID(); ?>">
+      <article class="blog-card reveal" id="post-<?php the_ID(); ?>">
 
         <!-- Featured image -->
         <div class="blog-card__img">

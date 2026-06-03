@@ -23,12 +23,8 @@
 .post-body a { color: var(--gold); text-decoration: underline; }
 .post-body a:hover { color: var(--blue); }
 
-/* ── Post CTA ── */
-.post-cta { background: var(--blue); color: #fff; padding: clamp(3rem,6vw,5rem) clamp(1.5rem,5vw,4rem); text-align: center; }
-.post-cta .eyebrow { color: rgba(255,255,255,.5); margin-bottom: .5rem; }
-.post-cta h2 { font-family: var(--serif); font-size: clamp(1.75rem,3vw,2.75rem); color: #fff; margin: .75rem 0 1rem; }
-.post-cta p { color: rgba(255,255,255,.7); max-width: 48ch; margin: 0 auto 2rem; line-height: 1.7; }
-.post-cta__actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+/* ── Related posts heading ── */
+.related-posts__eyebrow { display: block; margin-bottom: .5rem; }
 
 /* ── Author bio ── */
 .post-author { max-width: 740px; margin: 0 auto; padding: 0 1.5rem 3rem; display: flex; gap: 1.5rem; align-items: flex-start; border-top: 1px solid var(--border); padding-top: 2rem; }
@@ -87,7 +83,7 @@ $whatsapp  = $go('social_whatsapp') ?: '34615508168';
 </div>
 
 <!-- ══ ARTICLE BODY ══ -->
-<article class="post-body" id="post-<?php the_ID(); ?>">
+<article class="post-body reveal" id="post-<?php the_ID(); ?>">
   <?php the_content(); ?>
 </article>
 
@@ -108,13 +104,15 @@ $whatsapp  = $go('social_whatsapp') ?: '34615508168';
 <?php endwhile; ?>
 
 <!-- ══ CTA ══ -->
-<section class="post-cta" aria-label="Reserva tu estancia">
-  <div class="container">
+<section class="cta-banner post-cta" aria-label="Reserva tu estancia">
+  <div class="cta-banner__bg" style="background-image:url('<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/casa/aerea.jpg')"></div>
+  <div class="container cta-banner__inner reveal">
     <span class="eyebrow">Tu próxima escapada</span>
-    <h2><?php echo esc_html( $cta_title ); ?></h2>
-    <p><?php echo esc_html( $cta_text ); ?></p>
-    <div class="post-cta__actions">
-      <a href="<?php echo esc_url( home_url( '/#habitaciones' ) ); ?>" class="btn btn--gold">Ver habitaciones</a>
+    <h2 class="cta-banner__title"><?php echo esc_html( $cta_title ); ?></h2>
+    <div class="gold-rule"></div>
+    <p class="cta-banner__text"><?php echo esc_html( $cta_text ); ?></p>
+    <div class="cta-banner__actions">
+      <a href="<?php echo esc_url( home_url( '/reservas/' ) ); ?>" class="btn btn--gold">Ver disponibilidad</a>
       <a href="https://wa.me/<?php echo esc_attr( $whatsapp ); ?>" class="btn btn--ghost" target="_blank" rel="noopener noreferrer">WhatsApp</a>
     </div>
   </div>
@@ -140,9 +138,10 @@ $related = new WP_Query( [
 ] );
 
 if ( $related->have_posts() ) : ?>
-<section class="related-posts">
+<section class="related-posts reveal">
   <div class="container">
-    <h3 class="related-posts__heading">Más artículos</h3>
+    <span class="eyebrow related-posts__eyebrow">Sigue leyendo</span>
+    <h2 class="related-posts__heading">Más artículos</h2>
     <div class="related-grid">
       <?php while ( $related->have_posts() ) : $related->the_post(); ?>
       <article class="related-card">

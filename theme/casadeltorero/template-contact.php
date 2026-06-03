@@ -336,4 +336,19 @@ $facebook  = $go('social_facebook')  ?: 'https://www.facebook.com/casadeltorerov
     allowfullscreen></iframe>
 </div>
 
+<!-- CTA -->
+<section class="cta-banner" aria-label="Reserva tu estancia">
+  <div class="cta-banner__bg" style="background-image:url('<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/casa/aerea.jpg')"></div>
+  <div class="container cta-banner__inner reveal">
+    <span class="eyebrow">Reserva directa</span>
+    <h2 class="cta-banner__title">¿Lista para vivir la experiencia?</h2>
+    <div class="gold-rule"></div>
+    <p class="cta-banner__text">Reserva tu estancia en La Casa del Torero. Directamente con nosotros, sin intermediarios y con las mejores condiciones.</p>
+    <div class="cta-banner__actions">
+      <a href="<?php echo esc_url(home_url('/reservas/')); ?>" class="btn btn--gold">Ver disponibilidad</a>
+      <a href="<?php echo esc_url(home_url('/habitaciones/')); ?>" class="btn btn--ghost">Ver habitaciones</a>
+    </div>
+  </div>
+</section>
+
 <?php get_footer(); ?>
