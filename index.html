@@ -335,6 +335,13 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 .spaces__header { text-align: center; margin-bottom: clamp(3rem,5vw,5rem); }
 .spaces__header .section-body { margin-inline: auto; margin-top: 1rem; }
 .spaces__grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5px; }
+@media(max-width:768px) {
+  .spaces__grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; gap: 1.5px; cursor: grab; padding-right: 18vw; }
+  .spaces__grid::-webkit-scrollbar { display: none; }
+  .spaces__grid.dragging { cursor: grabbing; scroll-snap-type: none; }
+  .spaces__grid .space-card { flex: 0 0 72vw; scroll-snap-align: start; }
+  .spaces__grid .space-card__img { aspect-ratio: 3/4; }
+}
 .space-card { position: relative; overflow: hidden; cursor: pointer; }
 .space-card__img {
   width: 100%; aspect-ratio: 3/4; object-fit: cover;
@@ -584,7 +591,7 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 @media(max-width:1024px){
   .intro-strip__inner { grid-template-columns: repeat(2,1fr); }
   .intro-strip__item:nth-child(2) { border-right: none; }
-  .spaces__grid { grid-template-columns: 1fr 1fr; }
+  /* spaces slider on mobile — no grid override needed */
   .modality__grid { grid-template-columns: 1fr; }
   .footer__grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
   .footer__brand { grid-column: span 2; }
@@ -602,7 +609,7 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
   .nav-toggle { display:flex; }
   .about__inner,.finca__inner,.experience__inner,.location__inner { grid-template-columns:1fr; }
   .about__image-accent { right:0; bottom:-1.5rem; width:44%; border-width:4px; }
-  .spaces__grid { grid-template-columns:1fr; }
+  /* spaces uses flex slider on mobile */
   .testimonials__track { grid-template-columns:1fr; }
   .intro-strip__inner { grid-template-columns:1fr; }
   .intro-strip__item { border-right:none; border-bottom:1px solid rgba(255,255,255,.08); }
@@ -857,20 +864,22 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
   </div>
   <div class="spaces__grid">
 
+    <!-- Suite del Torero -->
     <div class="space-card reveal">
-      <div class="space-card__img s1">
-        <img loading="lazy" src="assets/img/espacios/habitacion-doble.jpg" alt="Habitación Doble" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="space-card__img s3">
+        <img loading="lazy" src="assets/img/espacios/hab-slide-1.jpg" alt="Suite del Torero" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
       <div class="space-card__overlay">
-        <span class="space-card__tag">Habitación doble</span>
-        <h3 class="space-card__name">Habitación Doble</h3>
-        <p class="space-card__size">25 m² · Hasta 2 personas</p>
-        <p class="space-card__price">Desde 140 € / noche</p>
-        <p class="space-card__desc">Amplio cuarto de baño. Terraza con vista a Vejer. Acceso al campo.</p>
+        <span class="space-card__tag">Suite</span>
+        <h3 class="space-card__name">Suite del Torero</h3>
+        <p class="space-card__size">50 m² · Hasta 4 personas</p>
+        <p class="space-card__price">Desde 165 € / noche</p>
+        <p class="space-card__desc">Gran cuarto de baño. Terrazas con vistas a Vejer. Acceso directo al campo.</p>
         <a href="#reservas" class="space-card__cta">Reservar</a>
       </div>
     </div>
 
+    <!-- Doble Superior -->
     <div class="space-card reveal d1">
       <div class="space-card__img s2">
         <img loading="lazy" src="assets/img/espacios/doble-superior.jpg" alt="Doble Superior" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -885,20 +894,22 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
       </div>
     </div>
 
+    <!-- Habitación Doble -->
     <div class="space-card reveal d2">
-      <div class="space-card__img s3">
-        <img loading="lazy" src="assets/img/espacios/hab-slide-1.jpg" alt="Suite del Torero" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="space-card__img s1">
+        <img loading="lazy" src="assets/img/espacios/habitacion-doble.jpg" alt="Habitación Doble" style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
       <div class="space-card__overlay">
-        <span class="space-card__tag">Suite</span>
-        <h3 class="space-card__name">Suite del Torero</h3>
-        <p class="space-card__size">50 m² · Hasta 4 personas</p>
-        <p class="space-card__price">Desde 165 € / noche</p>
-        <p class="space-card__desc">Gran cuarto de baño. Terrazas con vistas a Vejer. Acceso directo al campo.</p>
+        <span class="space-card__tag">Habitación doble</span>
+        <h3 class="space-card__name">Habitación Doble</h3>
+        <p class="space-card__size">25 m² · Hasta 2 personas</p>
+        <p class="space-card__price">Desde 140 € / noche</p>
+        <p class="space-card__desc">Amplio cuarto de baño. Terraza con vista a Vejer. Acceso al campo.</p>
         <a href="#reservas" class="space-card__cta">Reservar</a>
       </div>
     </div>
 
+    <!-- Apartamento Panorámico -->
     <div class="space-card reveal d3">
       <div class="space-card__img" style="background:linear-gradient(145deg,#1e2a3a,#0d1520);">
         <img loading="lazy" src="assets/img/espacios/apartamento.jpg" alt="Apartamento panorámico" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -915,6 +926,16 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 
   </div>
 </section>
+<script>
+(function(){
+  var g = document.querySelector('.spaces__grid');
+  if(!g) return;
+  var down=false, sx=0, sl=0;
+  g.addEventListener('mousedown', function(e){ down=true; g.classList.add('dragging'); sx=e.pageX; sl=g.scrollLeft; });
+  window.addEventListener('mouseup', function(){ down=false; g.classList.remove('dragging'); });
+  g.addEventListener('mousemove', function(e){ if(!down) return; e.preventDefault(); g.scrollLeft=sl-(e.pageX-sx); });
+})();
+</script>
 
 
 <!-- ══════════════════ ABOUT — LA CASA ══════════════════ -->
