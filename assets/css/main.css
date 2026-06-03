@@ -69,6 +69,10 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
   background: rgba(255,255,255,.97); backdrop-filter: blur(10px);
   padding: .875rem 0; box-shadow: 0 1px 0 var(--border);
 }
+#site-header.solid {
+  background: var(--blue);
+  padding: .875rem 0; box-shadow: 0 2px 12px rgba(0,0,0,.25);
+}
 #site-header .container { display: flex; align-items: center; justify-content: space-between; }
 
 .site-logo {
