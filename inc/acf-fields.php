@@ -83,8 +83,7 @@ add_action('acf/init', function () {
         'key'      => 'group_home_hero',
         'title'    => 'Home — Hero',
         'location' => [
-            [['param' => 'page_template', 'operator' => '==', 'value' => 'front-page.php']],
-            [['param' => 'page',          'operator' => '==', 'value' => 'front_page']],
+            [['param' => 'page_type', 'operator' => '==', 'value' => 'front_page']],
         ],
         'fields' => [
             ['key' => 'field_hero_video',       'label' => 'Vídeo hero',    'name' => 'hero_video',       'type' => 'file',     'return_format' => 'url', 'mime_types' => 'mp4'],
@@ -107,8 +106,7 @@ add_action('acf/init', function () {
         'key'      => 'group_home_sections',
         'title'    => 'Home — Secciones',
         'location' => [
-            [['param' => 'page_template', 'operator' => '==', 'value' => 'front-page.php']],
-            [['param' => 'page',          'operator' => '==', 'value' => 'front_page']],
+            [['param' => 'page_type', 'operator' => '==', 'value' => 'front_page']],
         ],
         'fields' => [
             // Tab: Intro Strip
