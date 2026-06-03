@@ -15,7 +15,7 @@ $price        = $gf('hab_price')      ?: '';
 $desc_long    = $gf('hab_description_long') ?: get_the_content();
 $features     = $gf('hab_features')   ?: [];
 $gallery      = $gf('hab_gallery')    ?: [];
-$booking_url  = $gf('hab_booking_url') ?: home_url('/#reservas');
+$ohbe_id      = $gf('hab_ohbe_id') ?: '';
 
 $phone    = $go('contact_phone')   ?: '+34 615 508 168';
 $wa_raw   = $go('social_whatsapp') ?: '34615508168';
@@ -122,7 +122,15 @@ $wa_url   = 'https://wa.me/' . preg_replace('/\D/', '', $wa_raw);
             <p class="hab-sidebar__price"><?php echo esc_html($price); ?></p>
             <p class="hab-sidebar__per">por noche</p>
           <?php endif; ?>
-          <a href="<?php echo esc_url($booking_url); ?>" class="btn btn--gold btn--full">Reservar esta habitación</a>
+
+          <?php if ($ohbe_id) : ?>
+            <div class="hab-sidebar__engine">
+              <?php echo do_shortcode('[ohbe_search acco_id="' . esc_attr($ohbe_id) . '"]'); ?>
+            </div>
+          <?php else : ?>
+            <a href="<?php echo esc_url(home_url('/reservas/')); ?>" class="btn btn--gold btn--full">Reservar esta habitación</a>
+          <?php endif; ?>
+
           <div class="hab-sidebar__contact">
             <p>¿Preguntas?</p>
             <a href="tel:<?php echo esc_attr(str_replace(' ', '', $phone)); ?>"><?php echo esc_html($phone); ?></a>

@@ -244,8 +244,8 @@ add_action('acf/init', function () {
                     ['key' => 'field_hab_image_alt', 'label' => 'Alt',    'name' => 'hab_image_alt', 'type' => 'text'],
                 ],
             ],
-            ['key' => 'field_hab_booking_url', 'label' => 'URL reserva Redfors', 'name' => 'hab_booking_url', 'type' => 'url',
-                'instructions' => 'URL directa de reserva en Redfors para esta habitación'],
+            ['key' => 'field_hab_ohbe_id', 'label' => 'OHBE acco_id', 'name' => 'hab_ohbe_id', 'type' => 'text',
+                'instructions' => 'ID de la habitación en el motor de reservas OHBE (acco_id). Doble=14, Doble Superior=13, Suite=16, Apartamento=15'],
         ],
     ]);
 
