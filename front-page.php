@@ -11,14 +11,14 @@ $go = fn($k) => $has_acf ? get_field($k, 'option') : null;
 
 <!-- ══════════ HERO ══════════ -->
 <?php
-$hero_video     = $gf('hero_video');
+$hero_video     = $gf('hero_video') ?: 'https://new.lacasadeltorero.com/wp-content/uploads/2026/06/La-Casa-del-Torero_25mb.mp4';
 $hero_eyebrow   = $gf('hero_eyebrow')   ?: 'Casa Rural · Hotel Boutique · Vejer, Cádiz';
 $hero_title     = $gf('hero_title')     ?: 'La Casa del Torero';
 $hero_subtitle  = $gf('hero_subtitle')  ?: 'Una finca histórica de 24 hectáreas entre olivos centenarios, a 11 km de las playas vírgenes de la Costa de la Luz.';
-$hero_cta1_text = $gf('hero_cta1_text') ?: 'Reservar habitación';
-$hero_cta1_url  = $gf('hero_cta1_url')  ?: '#habitaciones';
-$hero_cta2_text = $gf('hero_cta2_text') ?: 'Alquilar la casa completa';
-$hero_cta2_url  = $gf('hero_cta2_url')  ?: '#casa-completa';
+$hero_cta1_text = $gf('hero_cta1_text') ?: 'Ver habitaciones';
+$hero_cta1_url  = $gf('hero_cta1_url')  ?: home_url('/habitaciones/');
+$hero_cta2_text = $gf('hero_cta2_text') ?: 'Reservar';
+$hero_cta2_url  = $gf('hero_cta2_url')  ?: home_url('/reservas/');
 $badge_title    = $gf('hero_badge_title') ?: 'Marruecos visible';
 $badge_text     = $gf('hero_badge_text')  ?: 'en días despejados';
 ?>
@@ -366,7 +366,7 @@ $about_image_accent= $gf('about_image_accent');
           </div>
         </div>
 
-        <a href="#habitaciones" class="btn btn--dark">Descubrir los espacios</a>
+        <a href="<?php echo esc_url(home_url('/habitaciones/')); ?>" class="btn btn--dark">Descubrir los espacios</a>
       </div>
 
     </div>
@@ -511,7 +511,6 @@ $contact_email = function_exists('get_field') ? (get_field('contact_email', 'opt
             <span class="gastro__tag"><?php echo esc_html($tag); ?></span>
           <?php endforeach; ?>
         </div>
-        <a href="mailto:<?php echo esc_attr($contact_email); ?>" class="btn btn--ghost">Consultar menús y disponibilidad</a>
       </div>
 
       <div class="gastro__visual reveal d1">
