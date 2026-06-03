@@ -1,234 +1,251 @@
 <?php
-/**
- * ACF Pro — Registro de todos los campos del tema.
- *
- * Estructura:
- *  - Options Page  : ajustes globales (logo, contacto, redes)
- *  - Front Page    : hero, about, finca, espacios (repeater), experiencias,
- *                    testimonios (repeater), ubicación (repeater), CTA
- */
 defined('ABSPATH') || exit;
+
+if (!function_exists('acf_add_local_field_group')) {
+    return;
+}
 
 add_action('acf/init', function () {
 
-    if (!function_exists('acf_add_local_field_group')) return;
-
-    /* ═══════════════════════════════════════════════
-       OPTIONS PAGE — Ajustes globales
-    ═══════════════════════════════════════════════ */
+    /* ══════════════════════════════════════════════
+       GROUP 1 — Options Page: Ajustes globales
+    ══════════════════════════════════════════════ */
     acf_add_local_field_group([
-        'key'      => 'group_options',
+        'key'      => 'group_options_global',
         'title'    => 'Ajustes globales',
-        'location' => [[ ['param' => 'options_page', 'operator' => '==', 'value' => 'casadeltorero-settings'] ]],
+        'location' => [[['param' => 'options_page', 'operator' => '==', 'value' => 'casadeltorero-settings']]],
         'fields'   => [
 
-            // ── Logo
-            ['key' => 'field_logo_white',  'label' => 'Logo blanco (header + footer)',  'name' => 'logo_white',  'type' => 'image', 'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => 'SVG o PNG transparente. Se usa sobre fondos oscuros.'],
-            ['key' => 'field_logo_dark',   'label' => 'Logo oscuro (header al hacer scroll)', 'name' => 'logo_dark', 'type' => 'image', 'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => 'Versión oscura/negra del logo para el header blanco.'],
+            // Tab: Logo
+            ['key' => 'field_tab_logo', 'label' => 'Logo', 'name' => '', 'type' => 'tab'],
+            ['key' => 'field_logo_white', 'label' => 'Logo blanco (sobre fondos oscuros)', 'name' => 'logo_white', 'type' => 'image', 'return_format' => 'array'],
+            ['key' => 'field_logo_dark',  'label' => 'Logo oscuro (sobre fondos claros)',  'name' => 'logo_dark',  'type' => 'image', 'return_format' => 'array'],
 
-            // ── Contacto
-            ['key' => 'field_opt_tab_contact', 'label' => 'Contacto', 'name' => '', 'type' => 'tab'],
-            ['key' => 'field_contact_phone',   'label' => 'Teléfono',      'name' => 'contact_phone',   'type' => 'text',     'default_value' => '+34 600 000 000'],
-            ['key' => 'field_contact_email',   'label' => 'Email',          'name' => 'contact_email',   'type' => 'email',    'default_value' => 'info@lacasadeltorero.com'],
-            ['key' => 'field_contact_whatsapp','label' => 'WhatsApp (solo número, sin +)', 'name' => 'contact_whatsapp', 'type' => 'text', 'default_value' => '34600000000'],
-            ['key' => 'field_contact_address', 'label' => 'Dirección',      'name' => 'contact_address', 'type' => 'textarea', 'rows' => 3, 'default_value' => "Vejer de la Frontera\nCádiz, Andalucía · España"],
+            // Tab: Contacto
+            ['key' => 'field_tab_contacto', 'label' => 'Contacto', 'name' => '', 'type' => 'tab'],
+            ['key' => 'field_contact_phone',   'label' => 'Teléfono',  'name' => 'contact_phone',   'type' => 'text',     'default_value' => '+34615508168'],
+            ['key' => 'field_contact_email',   'label' => 'Email',     'name' => 'contact_email',   'type' => 'email',    'default_value' => 'info@lacasadeltorero.com'],
+            ['key' => 'field_contact_address', 'label' => 'Dirección', 'name' => 'contact_address', 'type' => 'textarea', 'rows' => 3],
 
-            // ── Redes sociales
-            ['key' => 'field_opt_tab_social', 'label' => 'Redes sociales', 'name' => '', 'type' => 'tab'],
-            ['key' => 'field_social_instagram', 'label' => 'Instagram URL', 'name' => 'social_instagram', 'type' => 'url'],
-            ['key' => 'field_social_facebook',  'label' => 'Facebook URL',  'name' => 'social_facebook',  'type' => 'url'],
-            ['key' => 'field_social_tiktok',    'label' => 'TikTok URL',    'name' => 'social_tiktok',    'type' => 'url'],
+            // Tab: Redes sociales
+            ['key' => 'field_tab_social', 'label' => 'Redes sociales', 'name' => '', 'type' => 'tab'],
+            ['key' => 'field_social_instagram', 'label' => 'Instagram', 'name' => 'social_instagram', 'type' => 'url'],
+            ['key' => 'field_social_facebook',  'label' => 'Facebook',  'name' => 'social_facebook',  'type' => 'url'],
+            ['key' => 'field_social_whatsapp',  'label' => 'WhatsApp',  'name' => 'social_whatsapp',  'type' => 'text',
+                'default_value' => '34615508168', 'instructions' => 'Solo números, sin + ni espacios'],
 
-            // ── SEO
-            ['key' => 'field_opt_tab_seo', 'label' => 'SEO', 'name' => '', 'type' => 'tab'],
-            ['key' => 'field_seo_description', 'label' => 'Meta description (ES)', 'name' => 'seo_description', 'type' => 'textarea', 'rows' => 3,
-             'default_value' => 'Casa rural de alquiler completo en Vejer, Cádiz. Finca histórica de 24 hectáreas, piscina, jacuzzi y vistas a la Costa de la Luz.'],
+            // Tab: Prestige bar
+            ['key' => 'field_tab_prestige', 'label' => 'Prestige bar', 'name' => '', 'type' => 'tab'],
+            [
+                'key' => 'field_prestige_items', 'label' => 'Plataformas prestige', 'name' => 'prestige_items',
+                'type' => 'repeater', 'button_label' => 'Añadir plataforma',
+                'sub_fields' => [
+                    ['key' => 'field_prestige_name',      'label' => 'Nombre',      'name' => 'prestige_name',      'type' => 'text'],
+                    ['key' => 'field_prestige_url',       'label' => 'URL',         'name' => 'prestige_url',       'type' => 'url'],
+                    ['key' => 'field_prestige_logo',      'label' => 'Logo',        'name' => 'prestige_logo',      'type' => 'image', 'return_format' => 'array'],
+                    ['key' => 'field_prestige_text_only', 'label' => 'Solo texto',  'name' => 'prestige_text_only', 'type' => 'true_false',
+                        'instructions' => 'Activa si no hay logo disponible'],
+                ],
+            ],
+
+            // Tab: Testimonios
+            ['key' => 'field_tab_testimonios', 'label' => 'Testimonios', 'name' => '', 'type' => 'tab'],
+            [
+                'key' => 'field_testimonials', 'label' => 'Testimonios', 'name' => 'testimonials',
+                'type' => 'repeater', 'button_label' => 'Añadir testimonio',
+                'sub_fields' => [
+                    ['key' => 'field_testimonial_text',     'label' => 'Texto',      'name' => 'testimonial_text',     'type' => 'textarea'],
+                    ['key' => 'field_testimonial_author',   'label' => 'Autor',      'name' => 'testimonial_author',   'type' => 'text'],
+                    ['key' => 'field_testimonial_origin',   'label' => 'Origen',     'name' => 'testimonial_origin',   'type' => 'text'],
+                    ['key' => 'field_testimonial_platform', 'label' => 'Plataforma', 'name' => 'testimonial_platform', 'type' => 'select',
+                        'choices' => ['booking' => 'Booking.com', 'tripadvisor' => 'TripAdvisor']],
+                    ['key' => 'field_testimonial_score',    'label' => 'Puntuación', 'name' => 'testimonial_score',    'type' => 'text'],
+                ],
+            ],
+
+            // Tab: FAQ
+            ['key' => 'field_tab_faq', 'label' => 'FAQ', 'name' => '', 'type' => 'tab'],
+            [
+                'key' => 'field_faq_items', 'label' => 'Preguntas frecuentes', 'name' => 'faq_items',
+                'type' => 'repeater', 'button_label' => 'Añadir pregunta',
+                'sub_fields' => [
+                    ['key' => 'field_faq_question', 'label' => 'Pregunta', 'name' => 'faq_question', 'type' => 'text'],
+                    ['key' => 'field_faq_answer',   'label' => 'Respuesta','name' => 'faq_answer',   'type' => 'textarea'],
+                ],
+            ],
         ],
     ]);
 
-
-    /* ═══════════════════════════════════════════════
-       FRONT PAGE — Todas las secciones
-    ═══════════════════════════════════════════════ */
+    /* ══════════════════════════════════════════════
+       GROUP 2 — Home: Hero
+    ══════════════════════════════════════════════ */
     acf_add_local_field_group([
-        'key'      => 'group_frontpage',
-        'title'    => 'Contenido — Portada',
-        'location' => [[ ['param' => 'page_type', 'operator' => '==', 'value' => 'front_page'] ]],
-        'menu_order' => 0,
+        'key'      => 'group_home_hero',
+        'title'    => 'Home — Hero',
+        'location' => [
+            [['param' => 'page_template', 'operator' => '==', 'value' => 'front-page.php']],
+            [['param' => 'page',          'operator' => '==', 'value' => 'front_page']],
+        ],
         'fields' => [
+            ['key' => 'field_hero_video',       'label' => 'Vídeo hero',    'name' => 'hero_video',       'type' => 'file',     'return_format' => 'url', 'mime_types' => 'mp4'],
+            ['key' => 'field_hero_eyebrow',     'label' => 'Eyebrow',       'name' => 'hero_eyebrow',     'type' => 'text',     'default_value' => 'Casa Rural · Hotel Boutique · Vejer, Cádiz'],
+            ['key' => 'field_hero_title',       'label' => 'Título',        'name' => 'hero_title',       'type' => 'text',     'default_value' => 'La Casa del Torero'],
+            ['key' => 'field_hero_subtitle',    'label' => 'Subtítulo',     'name' => 'hero_subtitle',    'type' => 'textarea', 'default_value' => 'Una finca histórica de 24 hectáreas entre olivos centenarios, a 11 km de las playas vírgenes de la Costa de la Luz.'],
+            ['key' => 'field_hero_cta1_text',   'label' => 'CTA 1 texto',   'name' => 'hero_cta1_text',   'type' => 'text',     'default_value' => 'Reservar habitación'],
+            ['key' => 'field_hero_cta1_url',    'label' => 'CTA 1 URL',     'name' => 'hero_cta1_url',    'type' => 'text',     'default_value' => '#habitaciones'],
+            ['key' => 'field_hero_cta2_text',   'label' => 'CTA 2 texto',   'name' => 'hero_cta2_text',   'type' => 'text',     'default_value' => 'Alquilar la casa completa'],
+            ['key' => 'field_hero_cta2_url',    'label' => 'CTA 2 URL',     'name' => 'hero_cta2_url',    'type' => 'text',     'default_value' => '#casa-completa'],
+            ['key' => 'field_hero_badge_title', 'label' => 'Badge título',  'name' => 'hero_badge_title', 'type' => 'text',     'default_value' => 'Marruecos visible'],
+            ['key' => 'field_hero_badge_text',  'label' => 'Badge texto',   'name' => 'hero_badge_text',  'type' => 'text',     'default_value' => 'en días despejados'],
+        ],
+    ]);
 
-            /* ── HERO ── */
-            ['key' => 'field_fp_tab_hero', 'label' => '🎬 Hero', 'name' => '', 'type' => 'tab'],
+    /* ══════════════════════════════════════════════
+       GROUP 3 — Home: Secciones
+    ══════════════════════════════════════════════ */
+    acf_add_local_field_group([
+        'key'      => 'group_home_sections',
+        'title'    => 'Home — Secciones',
+        'location' => [
+            [['param' => 'page_template', 'operator' => '==', 'value' => 'front-page.php']],
+            [['param' => 'page',          'operator' => '==', 'value' => 'front_page']],
+        ],
+        'fields' => [
+            // Tab: Intro Strip
+            ['key' => 'field_tab_intro', 'label' => 'Intro Strip', 'name' => '', 'type' => 'tab'],
+            ['key' => 'field_intro_item_1_label', 'label' => 'Item 1 etiqueta', 'name' => 'intro_item_1_label', 'type' => 'text', 'default_value' => 'Finca'],
+            ['key' => 'field_intro_item_1_value', 'label' => 'Item 1 valor',    'name' => 'intro_item_1_value', 'type' => 'text', 'default_value' => '24 hectáreas'],
+            ['key' => 'field_intro_item_2_label', 'label' => 'Item 2 etiqueta', 'name' => 'intro_item_2_label', 'type' => 'text', 'default_value' => 'Playas'],
+            ['key' => 'field_intro_item_2_value', 'label' => 'Item 2 valor',    'name' => 'intro_item_2_value', 'type' => 'text', 'default_value' => '11 km · Costa de la Luz'],
+            ['key' => 'field_intro_item_3_label', 'label' => 'Item 3 etiqueta', 'name' => 'intro_item_3_label', 'type' => 'text', 'default_value' => 'Modalidades'],
+            ['key' => 'field_intro_item_3_value', 'label' => 'Item 3 valor',    'name' => 'intro_item_3_value', 'type' => 'text', 'default_value' => 'Por habitación · Casa completa'],
+            ['key' => 'field_intro_item_4_label', 'label' => 'Item 4 etiqueta', 'name' => 'intro_item_4_label', 'type' => 'text', 'default_value' => 'Ubicación'],
+            ['key' => 'field_intro_item_4_value', 'label' => 'Item 4 valor',    'name' => 'intro_item_4_value', 'type' => 'text', 'default_value' => 'Vejer de la Frontera, Cádiz'],
 
-            ['key' => 'field_hero_video', 'label' => 'Vídeo de fondo (MP4)',
-             'name' => 'hero_video', 'type' => 'file',
-             'return_format' => 'url', 'mime_types' => 'mp4,webm',
-             'instructions' => 'Sube un vídeo MP4 en 1920×1080. Máx. recomendado: 20 MB. Sin audio.'],
+            // Tab: Modalidades
+            ['key' => 'field_tab_modality', 'label' => 'Modalidades', 'name' => '', 'type' => 'tab'],
+            ['key' => 'field_modality_title',          'label' => 'Título',                     'name' => 'modality_title',          'type' => 'text',     'default_value' => '¿Cómo quieres vivirlo?'],
+            ['key' => 'field_modality_subtitle',       'label' => 'Subtítulo',                  'name' => 'modality_subtitle',       'type' => 'textarea'],
+            ['key' => 'field_modality_rooms_price',    'label' => 'Precio por habitación',      'name' => 'modality_rooms_price',    'type' => 'text',     'default_value' => 'Desde 140 €'],
+            ['key' => 'field_modality_rooms_features', 'label' => 'Características habitación', 'name' => 'modality_rooms_features', 'type' => 'textarea', 'instructions' => 'Una característica por línea'],
+            ['key' => 'field_modality_house_price',    'label' => 'Precio casa completa',       'name' => 'modality_house_price',    'type' => 'text',     'default_value' => 'Desde 50 €'],
+            ['key' => 'field_modality_house_features', 'label' => 'Características casa',       'name' => 'modality_house_features', 'type' => 'textarea', 'instructions' => 'Una característica por línea'],
 
-            ['key' => 'field_hero_poster', 'label' => 'Imagen de carga del vídeo (poster)',
-             'name' => 'hero_poster', 'type' => 'image',
-             'return_format' => 'url', 'preview_size' => 'medium',
-             'instructions' => 'Se muestra mientras carga el vídeo. Usa una foto bonita de la finca.'],
+            // Tab: La Casa
+            ['key' => 'field_tab_about', 'label' => 'La Casa', 'name' => '', 'type' => 'tab'],
+            ['key' => 'field_about_eyebrow',      'label' => 'Eyebrow',          'name' => 'about_eyebrow',      'type' => 'text'],
+            ['key' => 'field_about_title',        'label' => 'Título',           'name' => 'about_title',        'type' => 'text'],
+            ['key' => 'field_about_text_1',       'label' => 'Texto 1',          'name' => 'about_text_1',       'type' => 'wysiwyg'],
+            ['key' => 'field_about_text_2',       'label' => 'Texto 2',          'name' => 'about_text_2',       'type' => 'wysiwyg'],
+            ['key' => 'field_about_image_main',   'label' => 'Imagen principal', 'name' => 'about_image_main',   'type' => 'image', 'return_format' => 'array'],
+            ['key' => 'field_about_image_accent', 'label' => 'Imagen acento',    'name' => 'about_image_accent', 'type' => 'image', 'return_format' => 'array'],
 
-            ['key' => 'field_hero_fallback', 'label' => 'Imagen de fondo (fallback sin vídeo)',
-             'name' => 'hero_fallback', 'type' => 'image',
-             'return_format' => 'url', 'preview_size' => 'medium'],
-
-            ['key' => 'field_hero_title',    'label' => 'Título hero',    'name' => 'hero_title',    'type' => 'text',     'default_value' => 'La Casa del Torero'],
-            ['key' => 'field_hero_subtitle', 'label' => 'Subtítulo hero', 'name' => 'hero_subtitle', 'type' => 'textarea', 'rows' => 2,
-             'default_value' => 'Una finca histórica de 24 hectáreas entre olivos centenarios, a 11 km de las playas vírgenes de la Costa de la Luz.'],
-
-
-            /* ── LA CASA ── */
-            ['key' => 'field_fp_tab_casa', 'label' => '🏠 La Casa', 'name' => '', 'type' => 'tab'],
-
-            ['key' => 'field_casa_foto_principal', 'label' => 'Foto principal (vertical 4:5)',
-             'name' => 'casa_foto_principal', 'type' => 'image',
-             'return_format' => 'array', 'preview_size' => 'medium',
-             'instructions' => 'Recomendado: 800×1000 px. Fachada o interior principal.'],
-
-            ['key' => 'field_casa_foto_detalle', 'label' => 'Foto detalle (cuadrada, superpuesta)',
-             'name' => 'casa_foto_detalle', 'type' => 'image',
-             'return_format' => 'array', 'preview_size' => 'medium',
-             'instructions' => 'Recomendado: 600×600 px. Detalle de interior, patio o jardín.'],
-
-            ['key' => 'field_casa_titulo',  'label' => 'Título sección La Casa', 'name' => 'casa_titulo',  'type' => 'text',
-             'default_value' => 'Un enclave único entre el pueblo blanco y el campo andaluz'],
-            ['key' => 'field_casa_texto1',  'label' => 'Párrafo 1', 'name' => 'casa_texto1', 'type' => 'wysiwyg', 'toolbar' => 'basic', 'media_upload' => 0],
-            ['key' => 'field_casa_texto2',  'label' => 'Párrafo 2', 'name' => 'casa_texto2', 'type' => 'wysiwyg', 'toolbar' => 'basic', 'media_upload' => 0],
-
-
-            /* ── LA FINCA ── */
-            ['key' => 'field_fp_tab_finca', 'label' => '🌿 La Finca', 'name' => '', 'type' => 'tab'],
-
-            ['key' => 'field_finca_foto', 'label' => 'Foto finca (vertical 4:5)',
-             'name' => 'finca_foto', 'type' => 'image',
-             'return_format' => 'array', 'preview_size' => 'medium',
-             'instructions' => 'Foto aérea, olivos, plaza de tentación o panorámica del campo.'],
-
-            ['key' => 'field_finca_titulo', 'label' => 'Título',  'name' => 'finca_titulo', 'type' => 'text',
-             'default_value' => 'Historia viva en 24 hectáreas de campo abierto'],
-            ['key' => 'field_finca_texto1', 'label' => 'Párrafo 1', 'name' => 'finca_texto1', 'type' => 'wysiwyg', 'toolbar' => 'basic', 'media_upload' => 0],
-            ['key' => 'field_finca_texto2', 'label' => 'Párrafo 2', 'name' => 'finca_texto2', 'type' => 'wysiwyg', 'toolbar' => 'basic', 'media_upload' => 0],
-
-
-            /* ── ESPACIOS (Repeater) ── */
-            ['key' => 'field_fp_tab_espacios', 'label' => '🛏 Espacios', 'name' => '', 'type' => 'tab'],
-
+            // Tab: La Finca
+            ['key' => 'field_tab_finca', 'label' => 'La Finca', 'name' => '', 'type' => 'tab'],
+            ['key' => 'field_finca_eyebrow', 'label' => 'Eyebrow', 'name' => 'finca_eyebrow', 'type' => 'text'],
+            ['key' => 'field_finca_title',   'label' => 'Título',   'name' => 'finca_title',   'type' => 'text'],
+            ['key' => 'field_finca_text',    'label' => 'Texto',    'name' => 'finca_text',    'type' => 'wysiwyg'],
+            ['key' => 'field_finca_image',   'label' => 'Imagen',   'name' => 'finca_image',   'type' => 'image', 'return_format' => 'array'],
             [
-                'key'        => 'field_espacios',
-                'label'      => 'Habitaciones y espacios',
-                'name'       => 'espacios',
-                'type'       => 'repeater',
-                'layout'     => 'block',
-                'button_label' => '+ Añadir espacio',
-                'instructions' => 'Arrastra para reordenar. Recomendado: mínimo 3 espacios.',
+                'key' => 'field_finca_stats', 'label' => 'Estadísticas', 'name' => 'finca_stats',
+                'type' => 'repeater',
                 'sub_fields' => [
-                    ['key' => 'field_espacio_foto',      'label' => 'Foto (3:4 vertical)', 'name' => 'foto',      'type' => 'image',    'return_format' => 'array', 'preview_size' => 'medium', 'instructions' => 'Recomendado: 800×1067 px'],
-                    ['key' => 'field_espacio_tag',       'label' => 'Etiqueta (ej: Suite / Habitación / Exterior)', 'name' => 'tag', 'type' => 'text'],
-                    ['key' => 'field_espacio_nombre',    'label' => 'Nombre del espacio',  'name' => 'nombre',    'type' => 'text'],
-                    ['key' => 'field_espacio_tamanyo',   'label' => 'Tamaño / capacidad (ej: 50 m² · Hasta 4 personas)', 'name' => 'tamanyo', 'type' => 'text'],
-                    ['key' => 'field_espacio_descripcion','label' => 'Descripción breve',  'name' => 'descripcion','type' => 'textarea', 'rows' => 2],
+                    ['key' => 'field_finca_stat_value', 'label' => 'Valor',    'name' => 'finca_stat_value', 'type' => 'text'],
+                    ['key' => 'field_finca_stat_label', 'label' => 'Etiqueta', 'name' => 'finca_stat_label', 'type' => 'text'],
                 ],
             ],
 
+            // Tab: Gastronomía
+            ['key' => 'field_tab_gastro', 'label' => 'Gastronomía', 'name' => '', 'type' => 'tab'],
+            ['key' => 'field_gastro_eyebrow',  'label' => 'Eyebrow',         'name' => 'gastro_eyebrow',  'type' => 'text',     'default_value' => 'Gastronomía'],
+            ['key' => 'field_gastro_title',    'label' => 'Título',          'name' => 'gastro_title',    'type' => 'text'],
+            ['key' => 'field_gastro_text',     'label' => 'Texto',           'name' => 'gastro_text',     'type' => 'wysiwyg'],
+            ['key' => 'field_gastro_features', 'label' => 'Características', 'name' => 'gastro_features', 'type' => 'textarea', 'instructions' => 'Una por línea'],
+            ['key' => 'field_gastro_image_1',  'label' => 'Imagen 1',        'name' => 'gastro_image_1',  'type' => 'image', 'return_format' => 'array'],
+            ['key' => 'field_gastro_image_2',  'label' => 'Imagen 2',        'name' => 'gastro_image_2',  'type' => 'image', 'return_format' => 'array'],
+            ['key' => 'field_gastro_image_3',  'label' => 'Imagen 3',        'name' => 'gastro_image_3',  'type' => 'image', 'return_format' => 'array'],
 
-            /* ── EXPERIENCIAS ── */
-            ['key' => 'field_fp_tab_exp', 'label' => '✨ Experiencias', 'name' => '', 'type' => 'tab'],
+            // Tab: Experiencias
+            ['key' => 'field_tab_exp', 'label' => 'Experiencias', 'name' => '', 'type' => 'tab'],
+            ['key' => 'field_exp_title',     'label' => 'Título',       'name' => 'exp_title',     'type' => 'text'],
+            ['key' => 'field_exp_lead',      'label' => 'Lead',         'name' => 'exp_lead',      'type' => 'textarea'],
+            ['key' => 'field_exp_amenities', 'label' => 'Amenidades',   'name' => 'exp_amenities', 'type' => 'textarea', 'instructions' => 'Una amenidad por línea'],
+            ['key' => 'field_exp_image_1',   'label' => 'Imagen 1',     'name' => 'exp_image_1',   'type' => 'image', 'return_format' => 'array'],
+            ['key' => 'field_exp_image_2',   'label' => 'Imagen 2',     'name' => 'exp_image_2',   'type' => 'image', 'return_format' => 'array'],
+            ['key' => 'field_exp_image_3',   'label' => 'Imagen 3',     'name' => 'exp_image_3',   'type' => 'image', 'return_format' => 'array'],
 
-            ['key' => 'field_exp_foto_grande', 'label' => 'Foto grande (izquierda)',
-             'name' => 'exp_foto_grande', 'type' => 'image',
-             'return_format' => 'array', 'preview_size' => 'medium',
-             'instructions' => 'Recomendado: 600×800 px. Salón, chimenea o zona de estar.'],
-
-            ['key' => 'field_exp_foto_2', 'label' => 'Foto derecha arriba',
-             'name' => 'exp_foto_2', 'type' => 'image',
-             'return_format' => 'array', 'preview_size' => 'medium',
-             'instructions' => 'Recomendado: 600×390 px. Piscina, desayuno o jacuzzi.'],
-
-            ['key' => 'field_exp_foto_3', 'label' => 'Foto derecha abajo',
-             'name' => 'exp_foto_3', 'type' => 'image',
-             'return_format' => 'array', 'preview_size' => 'medium',
-             'instructions' => 'Recomendado: 600×390 px. Huerto, detalle o exterior.'],
-
+            // Tab: Galería
+            ['key' => 'field_tab_gallery', 'label' => 'Galería', 'name' => '', 'type' => 'tab'],
             [
-                'key'        => 'field_amenities',
-                'label'      => 'Lista de servicios / amenities',
-                'name'       => 'amenities',
-                'type'       => 'repeater',
-                'layout'     => 'table',
-                'button_label' => '+ Añadir servicio',
+                'key' => 'field_gallery_items', 'label' => 'Imágenes galería', 'name' => 'gallery_items',
+                'type' => 'repeater',
                 'sub_fields' => [
-                    ['key' => 'field_amenity_texto', 'label' => 'Servicio', 'name' => 'texto', 'type' => 'text'],
+                    ['key' => 'field_gallery_image', 'label' => 'Imagen', 'name' => 'gallery_image', 'type' => 'image', 'return_format' => 'array'],
+                    ['key' => 'field_gallery_alt',   'label' => 'Alt',    'name' => 'gallery_alt',   'type' => 'text'],
                 ],
             ],
 
+            // Tab: Reservas
+            ['key' => 'field_tab_booking', 'label' => 'Reservas', 'name' => '', 'type' => 'tab'],
+            ['key' => 'field_booking_title',       'label' => 'Título',               'name' => 'booking_title',       'type' => 'text',     'default_value' => 'Comprueba disponibilidad'],
+            ['key' => 'field_booking_text',        'label' => 'Texto',                'name' => 'booking_text',        'type' => 'textarea'],
+            ['key' => 'field_booking_engine_code', 'label' => 'Código motor Redfors', 'name' => 'booking_engine_code', 'type' => 'textarea',
+                'instructions' => 'Pega aquí el código del motor de reservas Redfors'],
 
-            /* ── GALERÍA ── */
-            ['key' => 'field_fp_tab_galeria', 'label' => '📷 Galería', 'name' => '', 'type' => 'tab'],
-
-            ['key' => 'field_galeria',
-             'label' => 'Galería de fotos (arrastra para ordenar)',
-             'name'  => 'galeria',
-             'type'  => 'gallery',
-             'return_format' => 'array',
-             'preview_size'  => 'medium',
-             'insert'        => 'append',
-             'instructions'  => 'Sube todas las fotos de la casa. Arrastra para reordenar. Se mostrarán en la galería de la web.',
-            ],
-
-
-            /* ── TESTIMONIOS (Repeater) ── */
-            ['key' => 'field_fp_tab_testimonios', 'label' => '⭐ Testimonios', 'name' => '', 'type' => 'tab'],
-
+            // Tab: Ubicación
+            ['key' => 'field_tab_location', 'label' => 'Ubicación', 'name' => '', 'type' => 'tab'],
+            ['key' => 'field_location_title',   'label' => 'Título',      'name' => 'location_title',   'type' => 'text'],
+            ['key' => 'field_location_text',    'label' => 'Texto',       'name' => 'location_text',    'type' => 'wysiwyg'],
+            ['key' => 'field_location_map_url', 'label' => 'URL del mapa','name' => 'location_map_url', 'type' => 'url',
+                'instructions' => 'URL del embed de Google Maps'],
             [
-                'key'        => 'field_testimonios',
-                'label'      => 'Opiniones de huéspedes',
-                'name'       => 'testimonios',
-                'type'       => 'repeater',
-                'layout'     => 'block',
-                'button_label' => '+ Añadir testimonio',
+                'key' => 'field_location_distances', 'label' => 'Distancias', 'name' => 'location_distances',
+                'type' => 'repeater',
                 'sub_fields' => [
-                    ['key' => 'field_test_texto',     'label' => 'Texto de la opinión', 'name' => 'texto',     'type' => 'textarea', 'rows' => 3],
-                    ['key' => 'field_test_nombre',    'label' => 'Nombre',              'name' => 'nombre',    'type' => 'text'],
-                    ['key' => 'field_test_origen',    'label' => 'Ciudad y fecha',      'name' => 'origen',    'type' => 'text',     'placeholder' => 'Madrid · Agosto 2024'],
-                    ['key' => 'field_test_plataforma','label' => 'Plataforma',          'name' => 'plataforma','type' => 'select',
-                     'choices' => ['Tripadvisor' => 'Tripadvisor', 'Booking.com' => 'Booking.com', 'Airbnb' => 'Airbnb', 'Google' => 'Google', 'Directo' => 'Directo']],
-                    ['key' => 'field_test_estrellas', 'label' => 'Estrellas',           'name' => 'estrellas', 'type' => 'select',
-                     'choices' => ['5' => '★★★★★', '4' => '★★★★', '3' => '★★★'], 'default_value' => '5'],
+                    ['key' => 'field_distance_place', 'label' => 'Lugar',     'name' => 'distance_place', 'type' => 'text'],
+                    ['key' => 'field_distance_km',    'label' => 'Distancia', 'name' => 'distance_km',    'type' => 'text'],
                 ],
             ],
 
+            // Tab: CTA Banner
+            ['key' => 'field_tab_cta', 'label' => 'CTA Banner', 'name' => '', 'type' => 'tab'],
+            ['key' => 'field_cta_title',    'label' => 'Título',     'name' => 'cta_title',    'type' => 'text'],
+            ['key' => 'field_cta_text',     'label' => 'Texto',      'name' => 'cta_text',     'type' => 'textarea'],
+            ['key' => 'field_cta_btn_text', 'label' => 'Botón texto','name' => 'cta_btn_text', 'type' => 'text'],
+            ['key' => 'field_cta_btn_url',  'label' => 'Botón URL',  'name' => 'cta_btn_url',  'type' => 'text'],
+        ],
+    ]);
 
-            /* ── UBICACIÓN ── */
-            ['key' => 'field_fp_tab_ubicacion', 'label' => '📍 Ubicación', 'name' => '', 'type' => 'tab'],
-
-            ['key' => 'field_ubicacion_titulo', 'label' => 'Título sección', 'name' => 'ubicacion_titulo', 'type' => 'text',
-             'default_value' => 'Vejer — el pueblo blanco más bello de Cádiz'],
-            ['key' => 'field_ubicacion_texto',  'label' => 'Texto descriptivo', 'name' => 'ubicacion_texto', 'type' => 'textarea', 'rows' => 4],
-            ['key' => 'field_map_embed',        'label' => 'Código embed del mapa (iframe)', 'name' => 'map_embed', 'type' => 'textarea', 'rows' => 4,
-             'instructions' => 'Pega el código <iframe> de Google Maps o OpenStreetMap.'],
-
+    /* ══════════════════════════════════════════════
+       GROUP 4 — Habitación CPT
+    ══════════════════════════════════════════════ */
+    acf_add_local_field_group([
+        'key'      => 'group_habitacion',
+        'title'    => 'Habitación',
+        'location' => [[['param' => 'post_type', 'operator' => '==', 'value' => 'habitacion']]],
+        'fields'   => [
+            ['key' => 'field_hab_eyebrow',          'label' => 'Tipo / Eyebrow',       'name' => 'hab_eyebrow',          'type' => 'text',     'instructions' => 'Ej: Suite, Habitación doble...'],
+            ['key' => 'field_hab_size',             'label' => 'Superficie',           'name' => 'hab_size',             'type' => 'text',     'instructions' => 'Ej: 50 m²'],
+            ['key' => 'field_hab_capacity',         'label' => 'Capacidad',            'name' => 'hab_capacity',         'type' => 'text',     'instructions' => 'Ej: Hasta 4 personas'],
+            ['key' => 'field_hab_price',            'label' => 'Precio',               'name' => 'hab_price',            'type' => 'text',     'instructions' => 'Ej: Desde 165 € / noche'],
+            ['key' => 'field_hab_description_long', 'label' => 'Descripción completa', 'name' => 'hab_description_long', 'type' => 'wysiwyg'],
             [
-                'key'        => 'field_puntos_ubicacion',
-                'label'      => 'Puntos de interés',
-                'name'       => 'puntos_ubicacion',
-                'type'       => 'repeater',
-                'layout'     => 'table',
-                'button_label' => '+ Añadir punto',
+                'key' => 'field_hab_features', 'label' => 'Características', 'name' => 'hab_features',
+                'type' => 'repeater', 'button_label' => 'Añadir característica',
                 'sub_fields' => [
-                    ['key' => 'field_punto_nombre',   'label' => 'Lugar',    'name' => 'nombre',   'type' => 'text'],
-                    ['key' => 'field_punto_distancia','label' => 'Distancia','name' => 'distancia','type' => 'text', 'placeholder' => '11 km · 15 min'],
+                    ['key' => 'field_hab_feature', 'label' => 'Característica', 'name' => 'hab_feature', 'type' => 'text'],
                 ],
             ],
-
-
-            /* ── CTA BANNER ── */
-            ['key' => 'field_fp_tab_cta', 'label' => '📣 CTA Banner', 'name' => '', 'type' => 'tab'],
-
-            ['key' => 'field_cta_bg',    'label' => 'Imagen de fondo del banner', 'name' => 'cta_bg',    'type' => 'image', 'return_format' => 'url', 'preview_size' => 'medium'],
-            ['key' => 'field_cta_titulo','label' => 'Título',                      'name' => 'cta_titulo','type' => 'text',  'default_value' => "Vejer os espera.\n¿Cuándo venís?"],
-            ['key' => 'field_cta_texto', 'label' => 'Texto',                       'name' => 'cta_texto', 'type' => 'textarea', 'rows' => 2],
+            [
+                'key' => 'field_hab_gallery', 'label' => 'Galería', 'name' => 'hab_gallery',
+                'type' => 'repeater', 'button_label' => 'Añadir foto',
+                'sub_fields' => [
+                    ['key' => 'field_hab_image',     'label' => 'Imagen', 'name' => 'hab_image',     'type' => 'image', 'return_format' => 'array'],
+                    ['key' => 'field_hab_image_alt', 'label' => 'Alt',    'name' => 'hab_image_alt', 'type' => 'text'],
+                ],
+            ],
+            ['key' => 'field_hab_booking_url', 'label' => 'URL reserva Redfors', 'name' => 'hab_booking_url', 'type' => 'url',
+                'instructions' => 'URL directa de reserva en Redfors para esta habitación'],
         ],
     ]);
 

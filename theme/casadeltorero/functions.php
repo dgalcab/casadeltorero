@@ -59,9 +59,34 @@ add_action('widgets_init', function () {
 
 /* ── Image sizes ── */
 add_action('after_setup_theme', function () {
-    add_image_size('hero',        1920, 1080, true);
-    add_image_size('space-card',   800, 1066, true);
-    add_image_size('experience',   800,  600, true);
+    add_image_size('hero',              1920, 1080, true);
+    add_image_size('space-card',         800, 1066, true);
+    add_image_size('experience',         800,  600, true);
+    add_image_size('habitacion-gallery', 1200,  900, true);
+});
+
+/* ── CPT: Habitacion ── */
+add_action('init', function () {
+    register_post_type('habitacion', [
+        'labels' => [
+            'name'               => __('Habitaciones', 'casadeltorero'),
+            'singular_name'      => __('Habitación', 'casadeltorero'),
+            'add_new'            => __('Añadir habitación', 'casadeltorero'),
+            'add_new_item'       => __('Añadir habitación', 'casadeltorero'),
+            'edit_item'          => __('Editar habitación', 'casadeltorero'),
+            'view_item'          => __('Ver habitación', 'casadeltorero'),
+            'all_items'          => __('Todas las habitaciones', 'casadeltorero'),
+            'search_items'       => __('Buscar habitaciones', 'casadeltorero'),
+            'not_found'          => __('No se encontraron habitaciones', 'casadeltorero'),
+        ],
+        'public'       => true,
+        'show_in_rest' => true,
+        'has_archive'  => true,
+        'supports'     => ['title', 'editor', 'thumbnail', 'excerpt', 'page-attributes'],
+        'rewrite'      => ['slug' => 'habitaciones'],
+        'menu_icon'    => 'dashicons-bed',
+        'menu_position' => 5,
+    ]);
 });
 
 /* ── ACF options page (if ACF Pro available) ── */

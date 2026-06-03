@@ -1,14 +1,28 @@
 <?php get_header(); ?>
 
-<main id="main" class="site-main" style="padding-top: 100px;">
-  <div class="container" style="padding-top: var(--section-py); padding-bottom: var(--section-py); max-width: 800px;">
-    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-      <article <?php post_class(); ?>>
-        <h1 style="font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 2rem;"><?php the_title(); ?></h1>
-        <div class="entry-content" style="font-size: 1.0625rem; line-height: 1.8; color: var(--color-muted);"><?php the_content(); ?></div>
-      </article>
-    <?php endwhile; endif; ?>
+<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+
+<section class="page-hero">
+  <?php if (has_post_thumbnail()) : ?>
+    <div class="page-hero__img">
+      <?php the_post_thumbnail('hero', ['loading' => 'lazy', 'alt' => esc_attr(get_the_title())]); ?>
+    </div>
+  <?php endif; ?>
+  <div class="page-hero__content">
+    <div class="container">
+      <h1 class="page-hero__title"><?php the_title(); ?></h1>
+    </div>
+  </div>
+</section>
+
+<main id="main" class="page-content">
+  <div class="container">
+    <div class="page-content__body">
+      <?php the_content(); ?>
+    </div>
   </div>
 </main>
+
+<?php endwhile; endif; ?>
 
 <?php get_footer(); ?>

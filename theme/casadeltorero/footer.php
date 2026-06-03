@@ -1,92 +1,101 @@
-<footer id="site-footer" role="contentinfo">
-  <div class="container">
+<?php
+$phone     = function_exists('get_field') ? get_field('contact_phone', 'option') : '';
+$email     = function_exists('get_field') ? get_field('contact_email', 'option') : '';
+$address   = function_exists('get_field') ? get_field('contact_address', 'option') : '';
+$instagram = function_exists('get_field') ? get_field('social_instagram', 'option') : '';
+$facebook  = function_exists('get_field') ? get_field('social_facebook', 'option') : '';
+$whatsapp  = function_exists('get_field') ? get_field('social_whatsapp', 'option') : '';
 
+$phone     = $phone     ?: '+34615508168';
+$email     = $email     ?: 'info@lacasadeltorero.com';
+$address   = $address   ?: "DS Abejaruco, Pol. 65 Parc. 85\nCañada Ancha · 11150 Vejer de la Frontera\nCádiz, Andalucía · España";
+$instagram = $instagram ?: 'https://www.instagram.com/casadeltorerovejer/';
+$facebook  = $facebook  ?: 'https://www.facebook.com/casadeltorerovejer';
+$whatsapp  = $whatsapp  ?: '34615508168';
+$wa_url    = 'https://wa.me/' . preg_replace('/\D/', '', $whatsapp);
+?>
+
+<footer id="site-footer">
+  <div class="container">
     <div class="footer__grid">
 
-      <!-- Brand -->
       <div class="footer__brand">
-        <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo">
-          <?php bloginfo('name'); ?>
-          <span><?php bloginfo('description'); ?></span>
+        <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo" aria-label="La Casa del Torero">
+          <?php get_template_part('inc/logo'); ?>
+          <span class="site-logo__name">La Casa del Torero<em>Vejer · Cádiz</em></span>
         </a>
-        <p>Una experiencia única en el corazón de Andalucía. Tradición, confort y belleza en un entorno privilegiado.</p>
+        <p>Finca histórica de 24 hectáreas entre olivos centenarios, frente al pueblo blanco de Vejer de la Frontera, a 11 km de las playas vírgenes de la Costa de la Luz.</p>
         <div class="footer__social">
-          <!-- Instagram -->
-          <a href="<?php echo esc_url(get_theme_mod('social_instagram', '#')); ?>" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+          <a href="<?php echo esc_url($instagram); ?>" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
           </a>
-          <!-- Facebook -->
-          <a href="<?php echo esc_url(get_theme_mod('social_facebook', '#')); ?>" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          <a href="<?php echo esc_url($facebook); ?>" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
           </a>
-          <!-- WhatsApp -->
-          <a href="https://wa.me/<?php echo esc_attr(get_theme_mod('contact_whatsapp', '')); ?>" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <a href="<?php echo esc_url($wa_url); ?>" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
           </a>
         </div>
       </div>
 
-      <!-- Nav -->
       <div class="footer__col">
-        <h4><?php esc_html_e('La Casa', 'casadeltorero'); ?></h4>
-        <?php
-        wp_nav_menu([
-            'theme_location' => 'footer',
-            'container'      => false,
-            'items_wrap'     => '<ul>%3$s</ul>',
-            'fallback_cb'    => function () {
-                $links = ['#la-casa' => 'Historia', '#espacios' => 'Espacios', '#experiencias' => 'Experiencias', '#galeria' => 'Galería'];
-                echo '<ul>';
-                foreach ($links as $url => $label) {
-                    printf('<li><a href="%s">%s</a></li>', esc_attr($url), esc_html($label));
-                }
-                echo '</ul>';
-            },
-        ]);
-        ?>
-      </div>
-
-      <!-- Info -->
-      <div class="footer__col">
-        <h4><?php esc_html_e('Información', 'casadeltorero'); ?></h4>
+        <h4>La Casa</h4>
         <ul>
-          <li><a href="#reservas"><?php esc_html_e('Reservas', 'casadeltorero'); ?></a></li>
-          <li><a href="#normas"><?php esc_html_e('Normas de la casa', 'casadeltorero'); ?></a></li>
-          <li><a href="#politica-cancelacion"><?php esc_html_e('Cancelación', 'casadeltorero'); ?></a></li>
-          <li><a href="/politica-de-privacidad/"><?php esc_html_e('Privacidad', 'casadeltorero'); ?></a></li>
-          <li><a href="/aviso-legal/"><?php esc_html_e('Aviso legal', 'casadeltorero'); ?></a></li>
+          <li><a href="<?php echo esc_url(home_url('/#la-casa')); ?>">La Casa</a></li>
+          <li><a href="<?php echo esc_url(home_url('/#la-finca')); ?>">La Finca</a></li>
+          <li><a href="<?php echo esc_url(home_url('/#habitaciones')); ?>">Espacios</a></li>
+          <li><a href="<?php echo esc_url(home_url('/#experiencias')); ?>">Experiencias</a></li>
         </ul>
       </div>
 
-      <!-- Contact -->
       <div class="footer__col">
-        <h4><?php esc_html_e('Contacto', 'casadeltorero'); ?></h4>
+        <h4>Información</h4>
+        <ul>
+          <li><a href="<?php echo esc_url(home_url('/#reservas')); ?>">Reservas</a></li>
+          <li><a href="<?php echo esc_url(home_url('/#ubicacion')); ?>">Cómo llegar</a></li>
+          <?php
+          wp_nav_menu([
+              'theme_location' => 'footer',
+              'container'      => false,
+              'items_wrap'     => '%3$s',
+              'fallback_cb'    => function () {
+                  echo '<li><a href="' . esc_url(home_url('/condiciones-reserva/')) . '">Condiciones de reserva</a></li>';
+                  echo '<li><a href="' . esc_url(home_url('/politica-cancelacion/')) . '">Política de cancelación</a></li>';
+                  echo '<li><a href="' . esc_url(home_url('/politica-privacidad/')) . '">Privacidad · Cookies</a></li>';
+              },
+          ]);
+          ?>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Contacto</h4>
         <address>
-          <?php echo wp_kses_post(get_theme_mod('contact_address', 'Dirección de la casa<br>Provincia, España')); ?>
-          <br><br>
-          <a href="tel:<?php echo esc_attr(get_theme_mod('contact_phone', '')); ?>">
-            <?php echo esc_html(get_theme_mod('contact_phone', 'Teléfono')); ?>
-          </a>
-          <br>
-          <a href="mailto:<?php echo esc_attr(get_theme_mod('contact_email', 'info@lacasadeltorero.com')); ?>">
-            <?php echo esc_html(get_theme_mod('contact_email', 'info@lacasadeltorero.com')); ?>
-          </a>
+          <?php echo nl2br(esc_html($address)); ?><br><br>
+          <a href="tel:<?php echo esc_attr(str_replace(' ', '', $phone)); ?>"><?php echo esc_html($phone); ?></a>
+          &nbsp;·&nbsp;
+          <a href="<?php echo esc_url($wa_url); ?>" target="_blank" rel="noopener">WhatsApp</a><br>
+          <a href="mailto:<?php echo esc_attr($email); ?>"><?php echo esc_html($email); ?></a>
         </address>
+        <?php if (is_active_sidebar('footer-widget')) : ?>
+          <div class="footer__widget" style="margin-top:1.5rem;">
+            <?php dynamic_sidebar('footer-widget'); ?>
+          </div>
+        <?php endif; ?>
       </div>
 
-    </div><!-- /.footer__grid -->
-
-    <div class="footer__bottom">
-      <span>&copy; <?php echo esc_html(date('Y')); ?> <?php bloginfo('name'); ?>. <?php esc_html_e('Todos los derechos reservados.', 'casadeltorero'); ?></span>
-      <div>
-        <a href="/politica-de-privacidad/"><?php esc_html_e('Privacidad', 'casadeltorero'); ?></a>
-        &nbsp;·&nbsp;
-        <a href="/aviso-legal/"><?php esc_html_e('Aviso legal', 'casadeltorero'); ?></a>
-        &nbsp;·&nbsp;
-        <a href="/cookies/"><?php esc_html_e('Cookies', 'casadeltorero'); ?></a>
-      </div>
     </div>
 
+    <div class="footer__bottom">
+      <span>&copy; <?php echo esc_html(date('Y')); ?> La Casa del Torero · Vejer de la Frontera, Cádiz</span>
+      <div>
+        <a href="<?php echo esc_url(home_url('/politica-privacidad/')); ?>">Privacidad</a>
+        &nbsp;·&nbsp;
+        <a href="<?php echo esc_url(home_url('/condiciones-reserva/')); ?>">Condiciones</a>
+        &nbsp;·&nbsp;
+        <a href="<?php echo esc_url(home_url('/politica-cancelacion/')); ?>">Cancelación</a>
+      </div>
+    </div>
   </div>
 </footer>
 
