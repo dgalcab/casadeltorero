@@ -164,7 +164,7 @@ $house_feats = $house_feats_raw
           <?php endforeach; ?>
         </ul>
         <div class="modality-card__actions">
-          <a href="#reservas" class="btn btn--gold">Ver habitaciones y reservar</a>
+          <a href="#habitaciones" class="btn btn--gold">Ver habitaciones y reservar</a>
         </div>
       </div>
 
@@ -257,7 +257,7 @@ $house_feats = $house_feats_raw
             <p class="space-card__size">50 m² · Hasta 4 personas</p>
             <p class="space-card__price">Desde 165 € / noche</p>
             <p class="space-card__desc">Gran cuarto de baño. Terrazas con vistas a Vejer. Acceso directo al campo.</p>
-            <a href="#reservas" class="space-card__cta">Reservar</a>
+            <a href="<?php echo esc_url(home_url('/habitaciones/')); ?>" class="space-card__cta">Ver habitación</a>
           </div>
         </div>
         <div class="space-card reveal d1">
@@ -270,7 +270,7 @@ $house_feats = $house_feats_raw
             <p class="space-card__size">33 m² · Hasta 2 personas</p>
             <p class="space-card__price">Desde 140 € / noche</p>
             <p class="space-card__desc">Amplio cuarto de baño. Terraza con vista a Vejer. Acceso al campo.</p>
-            <a href="#reservas" class="space-card__cta">Reservar</a>
+            <a href="<?php echo esc_url(home_url('/habitaciones/')); ?>" class="space-card__cta">Ver habitación</a>
           </div>
         </div>
         <div class="space-card reveal d2">
@@ -283,7 +283,7 @@ $house_feats = $house_feats_raw
             <p class="space-card__size">25 m² · Hasta 2 personas</p>
             <p class="space-card__price">Desde 140 € / noche</p>
             <p class="space-card__desc">Amplio cuarto de baño. Terraza con vista a Vejer. Acceso al campo.</p>
-            <a href="#reservas" class="space-card__cta">Reservar</a>
+            <a href="<?php echo esc_url(home_url('/habitaciones/')); ?>" class="space-card__cta">Ver habitación</a>
           </div>
         </div>
         <div class="space-card reveal d3">
@@ -296,7 +296,7 @@ $house_feats = $house_feats_raw
             <p class="space-card__size">2 habitaciones · Cocina · Salón</p>
             <p class="space-card__price">Desde 250 € / noche</p>
             <p class="space-card__desc">Cocina equipada, salón de estar y vistas panorámicas. Máxima independencia.</p>
-            <a href="#reservas" class="space-card__cta">Reservar</a>
+            <a href="<?php echo esc_url(home_url('/habitaciones/')); ?>" class="space-card__cta">Ver habitación</a>
           </div>
         </div>
     <?php endif; ?>
@@ -691,30 +691,6 @@ $contact_phone_bk    = function_exists('get_field') ? (get_field('contact_phone'
     </header>
     <div class="booking__engine reveal d1">
       <?php echo do_shortcode('[ohbe_search]'); ?>
-      <?php if (false) : // legacy fallback — no longer used ?>
-      <?php else : ?>
-      <div class="booking-demo">
-        <div class="booking-field">
-          <label for="bk-llegada">Llegada</label>
-          <input type="text" id="bk-llegada" placeholder="dd / mm / aaaa">
-        </div>
-        <div class="booking-field">
-          <label for="bk-salida">Salida</label>
-          <input type="text" id="bk-salida" placeholder="dd / mm / aaaa">
-        </div>
-        <div class="booking-field">
-          <label for="bk-huespedes">Huéspedes</label>
-          <input type="text" id="bk-huespedes">
-        </div>
-        <a href="mailto:<?php echo esc_attr($contact_email_bk); ?>" class="btn btn--gold" style="white-space:nowrap">Consultar</a>
-      </div>
-      <p class="booking-note">
-        📩 Escríbenos y te confirmamos disponibilidad en menos de 24h ·
-        <a href="mailto:<?php echo esc_attr($contact_email_bk); ?>" style="color:var(--gold)"><?php echo esc_html($contact_email_bk); ?></a>
-        ·
-        <a href="tel:<?php echo esc_attr(str_replace(' ', '', $contact_phone_bk)); ?>" style="color:var(--gold)"><?php echo esc_html($contact_phone_bk); ?></a>
-      </p>
-      <?php endif; ?>
     </div>
   </div>
 </section>
