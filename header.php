@@ -8,7 +8,7 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<header id="site-header" class="site-header">
+<header id="site-header" class="site-header<?php echo is_front_page() ? '' : ' scrolled'; ?>">
   <div class="container">
     <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo" aria-label="La Casa del Torero">
       <?php get_template_part('inc/logo'); ?>
