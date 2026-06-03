@@ -164,7 +164,7 @@ $house_feats = $house_feats_raw
           <?php endforeach; ?>
         </ul>
         <div class="modality-card__actions">
-          <a href="#habitaciones" class="btn btn--gold">Ver habitaciones y reservar</a>
+          <a href="<?php echo esc_url(home_url('/habitaciones/')); ?>" class="btn btn--gold">Ver habitaciones y reservar</a>
         </div>
       </div>
 
