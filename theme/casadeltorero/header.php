@@ -34,7 +34,7 @@
           },
       ]);
       ?>
-      <a href="<?php echo esc_url(home_url('/#reservas')); ?>" class="btn btn--gold nav-cta">Reservar</a>
+      <a href="<?php echo esc_url(home_url('/reservas/')); ?>" class="btn btn--gold nav-cta">Reservar</a>
     </nav>
   </div>
 </header>

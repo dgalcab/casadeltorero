@@ -674,23 +674,18 @@ $default_testimonials = [
 </section>
 
 
-<!-- ══════════ BOOKING — REDFORS ══════════ -->
-<?php
-$booking_title       = $gf('booking_title')       ?: 'Comprueba disponibilidad';
-$booking_text        = $gf('booking_text')        ?: 'Reserva directamente con nosotros y obtén las mejores condiciones. Sin intermediarios. Confirmación inmediata.';
-$booking_engine_code = $gf('booking_engine_code') ?: '';
-$contact_email_bk    = function_exists('get_field') ? (get_field('contact_email', 'option') ?: 'info@lacasadeltorero.com') : 'info@lacasadeltorero.com';
-$contact_phone_bk    = function_exists('get_field') ? (get_field('contact_phone', 'option') ?: '+34615508168') : '+34615508168';
-?>
+<!-- ══════════ RESERVAS CTA ══════════ -->
 <section id="reservas" class="booking">
   <div class="container">
-    <header class="booking__header reveal">
+    <div class="booking__header reveal">
       <span class="eyebrow">Reservas</span>
-      <h2 class="section-title"><?php echo esc_html($booking_title); ?></h2>
-      <p><?php echo esc_html($booking_text); ?></p>
-    </header>
-    <div class="booking__engine reveal d1">
-      <?php echo do_shortcode('[ohbe_search]'); ?>
+      <h2 class="section-title">¿Cuándo nos visitas?</h2>
+      <div class="gold-rule"></div>
+      <p>Reserva directamente con nosotros y obtén las mejores condiciones. Sin intermediarios. Confirmación inmediata.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem;">
+        <a href="<?php echo esc_url(home_url('/reservas/')); ?>" class="btn btn--gold">Comprobar disponibilidad</a>
+        <a href="<?php echo esc_url(home_url('/contacto/')); ?>" class="btn btn--ghost">Contactar</a>
+      </div>
     </div>
   </div>
 </section>
@@ -817,7 +812,7 @@ $cta_btn_url  = $gf('cta_btn_url')  ?: '#reservas';
 $cta_email    = function_exists('get_field') ? (get_field('contact_email', 'option') ?: 'info@lacasadeltorero.com') : 'info@lacasadeltorero.com';
 ?>
 <section class="cta-banner" id="contacto">
-  <div class="cta-banner__bg"></div>
+  <div class="cta-banner__bg" style="background-image:url('<?php echo esc_url($img_base); ?>/casa/aerea.jpg')"></div>
   <div class="container">
     <div class="cta-banner__content reveal">
       <span class="eyebrow" style="color:var(--gold-lt)">Contacto &amp; Reservas</span>

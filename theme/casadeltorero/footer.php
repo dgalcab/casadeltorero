@@ -51,7 +51,7 @@ $wa_url    = 'https://wa.me/' . preg_replace('/\D/', '', $whatsapp);
       <div class="footer__col">
         <h4>Información</h4>
         <ul>
-          <li><a href="<?php echo esc_url(home_url('/#reservas')); ?>">Reservas</a></li>
+          <li><a href="<?php echo esc_url(home_url('/reservas/')); ?>">Reservas</a></li>
           <li><a href="<?php echo esc_url(home_url('/#ubicacion')); ?>">Cómo llegar</a></li>
           <?php
           wp_nav_menu([
