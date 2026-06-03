@@ -1,0 +1,38 @@
+name: Deploy theme to deploy branch
+
+on:
+  push:
+    branches:
+      - claude/stoic-heisenberg-qFK19
+    paths:
+      - 'theme/casadeltorero/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Push theme files to deploy branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Create orphan deploy branch or fetch it
+          git fetch origin deploy 2>/dev/null && git checkout deploy || git checkout --orphan deploy
+
+          # Remove everything except git
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+
+          # Checkout theme files from source branch
+          git checkout origin/claude/stoic-heisenberg-qFK19 -- theme/casadeltorero/
+
+          # Move theme files to root
+          mv theme/casadeltorero/* .
+          mv theme/casadeltorero/.* . 2>/dev/null || true
+          rm -rf theme/
+
+          git add -A
+          git commit -m "deploy: sync from claude/stoic-heisenberg-qFK19 $(date '+%Y-%m-%d %H:%M')" || echo "Nothing to commit"
+          git push origin deploy --force
