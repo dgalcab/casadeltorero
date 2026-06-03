@@ -78,7 +78,13 @@ $use_cpt = $cpt_query->have_posts();
   background-image: url('<?php echo esc_url($img_base); ?>/casa/piscina.jpg');
   background-size: cover;
   background-position: center 60%;
-  opacity: .2;
+  opacity: .18;
+}
+.reservas-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(28,74,89,.45) 0%, rgba(28,74,89,.1) 100%);
 }
 .reservas-hero__inner { position: relative; z-index: 1; }
 .reservas-hero .eyebrow { color: var(--gold-lt); display: block; margin-bottom: 1rem; }
@@ -214,8 +220,8 @@ $use_cpt = $cpt_query->have_posts();
 <section class="reservas-hero">
   <div class="container reservas-hero__inner">
     <span class="eyebrow">Reserva directa · Sin intermediarios</span>
-    <h1>Reservar</h1>
-    <p>Comprueba disponibilidad y reserva directamente con nosotros. Siempre obtendrás las mejores tarifas y condiciones.</p>
+    <h1>Reserva tu estancia</h1>
+    <p>Comprueba disponibilidad y reserva directamente con nosotros.<br>Siempre obtendrás las mejores tarifas y condiciones.</p>
   </div>
 </section>
 
@@ -224,7 +230,7 @@ $use_cpt = $cpt_query->have_posts();
   <div class="container">
     <h2 class="reveal">Comprueba disponibilidad</h2>
     <p class="section-sub reveal">Busca entre todas nuestras estancias para las fechas que necesitas</p>
-    <div class="ohbe-wrap reveal">
+    <div class="ohbe-wrap reveal" style="margin-top:2.5rem;">
       <?php echo do_shortcode('[ohbe_search]'); ?>
     </div>
   </div>
