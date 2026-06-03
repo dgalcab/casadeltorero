@@ -112,9 +112,9 @@
   margin-bottom: 1.25rem;
 }
 
-/* ── Features ── */
-.hab-features { margin-bottom: 3rem; }
-.hab-features__heading {
+/* ── Amenities ── */
+.hab-amenities { margin-bottom: 3rem; }
+.hab-amenities__heading {
   font-family: var(--serif);
   font-size: clamp(1.25rem, 2vw, 1.5rem);
   margin-bottom: 1.5rem;
@@ -122,24 +122,34 @@
   padding-bottom: .75rem;
   border-bottom: 1px solid var(--border);
 }
-.hab-features__grid {
+.hab-amenities__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: .75rem 2rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem 1rem;
 }
-.hab-features__item {
+.hab-amenities__item {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: .75rem;
-  font-size: .875rem;
-  color: var(--text);
+  gap: .5rem;
+  text-align: center;
 }
-.hab-features__item::before {
-  content: '';
-  width: 18px;
-  height: 2px;
-  background: var(--gold);
-  flex-shrink: 0;
+.hab-amenities__icon {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold);
+}
+.hab-amenities__icon svg { width: 28px; height: 28px; }
+.hab-amenities__label {
+  font-size: .75rem;
+  color: var(--text);
+  line-height: 1.3;
+}
+@media (max-width: 768px) {
+  .hab-amenities__grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 480px) {
+  .hab-amenities__grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ── Sidebar ── */
@@ -240,7 +250,7 @@ $size      = $gf('hab_size')              ?: '';
 $capacity  = $gf('hab_capacity')          ?: '';
 $price     = $gf('hab_price')             ?: '';
 $desc_long = $gf('hab_description_long')  ?: get_the_content();
-$features  = $gf('hab_features')          ?: [];
+$amenities = $gf('hab_amenities')         ?: [];
 $gallery   = $gf('hab_gallery')           ?: [];
 $ohbe_id   = $gf('hab_ohbe_id')           ?: '';
 
@@ -366,16 +376,33 @@ $hero_img = $hero_img ?: $fallback_hero;
         <?php endif; ?>
 
 
-        <!-- Features grid -->
-        <?php if (!empty($features)) : ?>
-        <div class="hab-features reveal">
-          <h3 class="hab-features__heading">Incluido en tu estancia</h3>
-          <div class="hab-features__grid">
-            <?php foreach ($features as $feat) :
-              $label = is_array($feat) ? ($feat['hab_feature'] ?? '') : $feat;
-              if (!$label) continue;
+        <!-- Amenities grid -->
+        <?php
+        $amenity_map = [
+            'calefaccion' => ['label' => 'Calefacción',        'svg' => '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>'],
+            'aire'        => ['label' => 'Aire acondicionado', 'svg' => '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="8" rx="2"/><path d="M12 11v10"/><path d="m9 17 3 3 3-3"/><path d="M8 15H5a2 2 0 0 0 0 4h3M16 15h3a2 2 0 0 1 0 4h-3"/></svg>'],
+            'tv'          => ['label' => 'Televisión',         'svg' => '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 20h8M12 18v2"/></svg>'],
+            'descanso'    => ['label' => 'Área de descanso',  'svg' => '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"/><path d="M3 11v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H7v-2a2 2 0 0 0-4 0z"/><path d="M5 18v2M19 18v2"/></svg>'],
+            'ducha'       => ['label' => 'Ducha',              'svg' => '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 4h2a2 2 0 0 1 2 2v2H4V4zM8 8a8 8 0 0 1 8 8"/><line x1="10" y1="16" x2="10.01" y2="16"/><line x1="14" y1="16" x2="14.01" y2="16"/><line x1="18" y1="16" x2="18.01" y2="16"/><line x1="10" y1="20" x2="10.01" y2="20"/><line x1="14" y1="20" x2="14.01" y2="20"/><line x1="18" y1="20" x2="18.01" y2="20"/></svg>'],
+            'aseo'        => ['label' => 'Artículos de aseo', 'svg' => '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8l-5-5z"/><path d="M9 3v5h9"/><path d="M7 13h10M7 17h6"/></svg>'],
+            'albornoz'    => ['label' => 'Albornoz',           'svg' => '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg>'],
+            'secador'     => ['label' => 'Secador',            'svg' => '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 7h5l3 3-3 3H3V7z"/><path d="M8 10h13"/><path d="M18 7v6"/><path d="M15 5c0 1.66-1.34 3-3 3"/><path d="M15 15c0-1.66-1.34-3-3-3"/></svg>'],
+            'parking'     => ['label' => 'Parking',            'svg' => '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg>'],
+            'piscina'     => ['label' => 'Piscina',            'svg' => '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 12c.5-1 1.5-1 2-1s1.5 0 2 1 1.5 1 2 1 1.5 0 2-1 1.5-1 2-1 1.5 0 2 1 1.5 1 2 1 1.5 0 2-1"/><path d="M2 17c.5-1 1.5-1 2-1s1.5 0 2 1 1.5 1 2 1 1.5 0 2-1 1.5-1 2-1 1.5 0 2 1 1.5 1 2 1 1.5 0 2-1"/><path d="M4 4v5M8 4v5M12 4v5"/><circle cx="18" cy="5" r="2"/><path d="M20 7v2"/></svg>'],
+            'wifi'        => ['label' => 'WiFi',               'svg' => '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/></svg>'],
+        ];
+        if (!empty($amenities)) : ?>
+        <div class="hab-amenities reveal">
+          <h3 class="hab-amenities__heading">Incluido en tu estancia</h3>
+          <div class="hab-amenities__grid">
+            <?php foreach ($amenities as $key) :
+              $item = $amenity_map[$key] ?? null;
+              if (!$item) continue;
             ?>
-              <div class="hab-features__item"><?php echo esc_html($label); ?></div>
+              <div class="hab-amenities__item">
+                <div class="hab-amenities__icon"><?php echo $item['svg']; ?></div>
+                <span class="hab-amenities__label"><?php echo esc_html($item['label']); ?></span>
+              </div>
             <?php endforeach; ?>
           </div>
         </div>

@@ -22,12 +22,6 @@ add_action('after_setup_theme', function () {
     ]);
 });
 
-/* ── Favicon SVG ── */
-add_action('wp_head', function () {
-    $uri = get_template_directory_uri();
-    echo '<link rel="icon" type="image/svg+xml" href="' . esc_url($uri) . '/assets/favicon.svg">' . "\n";
-}, 1);
-
 /* ── Enqueue assets ── */
 add_action('wp_enqueue_scripts', function () {
     $ver = wp_get_theme()->get('Version');
