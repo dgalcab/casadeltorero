@@ -248,28 +248,39 @@ $phone   = $go('contact_phone')   ?: '+34 615 508 168';
 $wa_raw  = $go('social_whatsapp') ?: '34615508168';
 $wa_url  = 'https://wa.me/' . preg_replace('/\D/', '', $wa_raw);
 
+/* Fallback images per room slug */
+$slug_fallbacks = [
+    'suite-del-torero'       => $img_base . '/espacios/suite-principal.jpg',
+    'doble-superior'         => $img_base . '/espacios/doble-superior.jpg',
+    'habitacion-doble'       => $img_base . '/espacios/habitacion-doble.jpg',
+    'apartamento-panoramico' => $img_base . '/espacios/apartamento.jpg',
+];
+$slug = get_post_field('post_name');
+$fallback_hero = $slug_fallbacks[$slug] ?? ($img_base . '/espacios/hab-slide-1.jpg');
+
 /* Fallback gallery images when no ACF gallery */
 $fallback_slides = [
-  $img_base . '/espacios/hab-slide-1.jpg',
+  $fallback_hero,
   $img_base . '/espacios/hab-slide-2.jpg',
   $img_base . '/espacios/suite-2.jpg',
   $img_base . '/espacios/suite-bano.jpg',
 ];
+
+/* Hero image: featured image → first ACF gallery image → slug fallback */
+$hero_img = get_the_post_thumbnail_url(null, 'hero');
+if ( ! $hero_img && ! empty($gallery) ) {
+    $first = $gallery[0]['hab_image'] ?? null;
+    $hero_img = is_array($first) ? ($first['url'] ?? '') : $first;
+}
+$hero_img = $hero_img ?: $fallback_hero;
 ?>
 
 <!-- ══════════ HERO ══════════ -->
 <section class="hab-hero" aria-label="<?php echo esc_attr(get_the_title()); ?>">
-  <?php if (has_post_thumbnail()) : ?>
-    <img class="hab-hero__img"
-         src="<?php echo get_the_post_thumbnail_url(null, 'hero'); ?>"
-         alt="<?php echo esc_attr(get_the_title()); ?>"
-         loading="eager">
-  <?php else : ?>
-    <img class="hab-hero__img"
-         src="<?php echo esc_url($img_base); ?>/espacios/suite-principal.jpg"
-         alt="<?php echo esc_attr(get_the_title()); ?>"
-         loading="eager">
-  <?php endif; ?>
+  <img class="hab-hero__img"
+       src="<?php echo esc_url($hero_img); ?>"
+       alt="<?php echo esc_attr(get_the_title()); ?>"
+       loading="eager">
 
   <div class="hab-hero__overlay"></div>
 
