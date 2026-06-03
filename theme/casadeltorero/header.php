@@ -24,13 +24,17 @@
       wp_nav_menu([
           'theme_location' => 'primary',
           'container'      => false,
-          'items_wrap'     => '%3$s',
+          'menu_class'     => 'primary-nav__list',
+          'items_wrap'     => '<ul class="%2$s">%3$s</ul>',
+          'depth'          => 1,
           'fallback_cb'    => function () {
-              echo '<a href="' . esc_url(home_url('/#habitaciones')) . '">Habitaciones</a>';
-              echo '<a href="' . esc_url(home_url('/#la-casa')) . '">La Casa</a>';
-              echo '<a href="' . esc_url(home_url('/#gastronomia')) . '">Gastronomía</a>';
-              echo '<a href="' . esc_url(home_url('/#experiencias')) . '">Experiencias</a>';
-              echo '<a href="' . esc_url(home_url('/#ubicacion')) . '">Ubicación</a>';
+              echo '<ul class="primary-nav__list">';
+              echo '<li><a href="' . esc_url(home_url('/#habitaciones')) . '">Habitaciones</a></li>';
+              echo '<li><a href="' . esc_url(home_url('/#la-casa')) . '">La Casa</a></li>';
+              echo '<li><a href="' . esc_url(home_url('/#gastronomia')) . '">Gastronomía</a></li>';
+              echo '<li><a href="' . esc_url(home_url('/#experiencias')) . '">Experiencias</a></li>';
+              echo '<li><a href="' . esc_url(home_url('/#ubicacion')) . '">Ubicación</a></li>';
+              echo '</ul>';
           },
       ]);
       ?>
