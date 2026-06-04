@@ -149,3 +149,106 @@ require get_template_directory() . '/inc/customizer.php';
 
 /* ── ACF Pro: campos del tema ── */
 require get_template_directory() . '/inc/acf-fields.php';
+
+/* ══════════════════════════════════════════════
+   SEGURIDAD
+══════════════════════════════════════════════ */
+
+/* Ocultar versión de WordPress */
+remove_action('wp_head', 'wp_generator');
+add_filter('the_generator', '__return_empty_string');
+
+/* Desactivar XML-RPC */
+add_filter('xmlrpc_enabled', '__return_false');
+add_filter('xmlrpc_methods', function () { return []; });
+
+/* Eliminar cabeceras que revelan info del servidor */
+remove_action('wp_head', 'wp_shortlink_wp_head');
+remove_action('wp_head', 'wlwmanifest_link');
+remove_action('wp_head', 'rsd_link');
+remove_action('wp_head', 'wp_resource_hints', 2);
+add_filter('x_pingback', '__return_false');
+header_remove('X-Powered-By');
+
+/* Desactivar comentarios globalmente */
+add_action('init', function () {
+    foreach (get_post_types() as $pt) {
+        if (post_type_supports($pt, 'comments')) {
+            remove_post_type_support($pt, 'comments');
+            remove_post_type_support($pt, 'trackbacks');
+        }
+    }
+});
+add_filter('comments_open',   '__return_false', 20, 2);
+add_filter('pings_open',      '__return_false', 20, 2);
+add_filter('comments_array',  '__return_empty_array', 10, 2);
+add_action('admin_menu', function () {
+    remove_menu_page('edit-comments.php');
+});
+add_action('wp_before_admin_bar_render', function () {
+    global $wp_admin_bar;
+    $wp_admin_bar->remove_menu('comments');
+});
+
+/* Proteger la pantalla de login: limitar intentos fallidos vía cookie */
+add_action('wp_login_failed', function ($user_login) {
+    $ip  = sanitize_text_field($_SERVER['REMOTE_ADDR'] ?? '');
+    $key = 'login_fail_' . md5($ip);
+    $count = (int) get_transient($key);
+    set_transient($key, $count + 1, 15 * MINUTE_IN_SECONDS);
+});
+add_filter('authenticate', function ($user, $username, $password) {
+    if (empty($username) && empty($password)) return $user;
+    $ip    = sanitize_text_field($_SERVER['REMOTE_ADDR'] ?? '');
+    $key   = 'login_fail_' . md5($ip);
+    $count = (int) get_transient($key);
+    if ($count >= 5) {
+        return new WP_Error('too_many_attempts', __('Demasiados intentos fallidos. Espera 15 minutos.'));
+    }
+    return $user;
+}, 30, 3);
+
+/* Manejador del formulario de contacto */
+add_action('admin_post_nopriv_casadeltorero_contact', 'casadeltorero_handle_contact');
+add_action('admin_post_casadeltorero_contact',        'casadeltorero_handle_contact');
+function casadeltorero_handle_contact() {
+    /* Verificar nonce */
+    if (!isset($_POST['_contact_nonce']) || !wp_verify_nonce($_POST['_contact_nonce'], 'casadeltorero_contact')) {
+        wp_die('Solicitud no válida.', 403);
+    }
+
+    /* Honeypot antispam */
+    if (!empty($_POST['cf_website'])) {
+        wp_redirect(home_url('/contacto/?sent=1'));
+        exit;
+    }
+
+    /* Sanitizar */
+    $name    = sanitize_text_field($_POST['cf_name']    ?? '');
+    $email   = sanitize_email($_POST['cf_email']        ?? '');
+    $phone   = sanitize_text_field($_POST['cf_phone']   ?? '');
+    $guests  = sanitize_text_field($_POST['cf_guests']  ?? '');
+    $checkin = sanitize_text_field($_POST['cf_checkin'] ?? '');
+    $checkout= sanitize_text_field($_POST['cf_checkout']?? '');
+    $message = sanitize_textarea_field($_POST['cf_message'] ?? '');
+
+    /* Validar campos obligatorios */
+    if (empty($name) || !is_email($email)) {
+        wp_redirect(home_url('/contacto/?error=1'));
+        exit;
+    }
+
+    /* Enviar email */
+    $to      = get_option('admin_email');
+    $subject = 'Nueva consulta de ' . $name . ' — La Casa del Torero';
+    $body    = "Nombre: $name\nEmail: $email\nTeléfono: $phone\n"
+             . "Personas: $guests\nLlegada: $checkin\nSalida: $checkout\n\n$message";
+    $headers = [
+        'Content-Type: text/plain; charset=UTF-8',
+        'Reply-To: ' . $name . ' <' . $email . '>',
+    ];
+    wp_mail($to, $subject, $body, $headers);
+
+    wp_redirect(home_url('/contacto/?sent=1'));
+    exit;
+}
