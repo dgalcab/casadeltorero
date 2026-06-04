@@ -2,15 +2,15 @@
 
 <style>
 .blog-archive { background: var(--cream); }
-.blog-archive .container { padding-top: var(--py); padding-bottom: var(--py); }
-.blog-intro { background: var(--white); border-bottom: 1px solid var(--border); }
-.blog-intro .container { padding-top: 4rem; padding-bottom: 4rem; }
+.blog-archive .container { padding-top: 0; padding-bottom: var(--py); }
+.blog-intro { background: var(--white); border-bottom: 1px solid var(--border); margin-bottom: 0; }
+.blog-intro .container { padding-top: 3.5rem; padding-bottom: 3.5rem; }
 .blog-intro__inner { max-width: 820px; margin: 0 auto; text-align: center; }
 .blog-intro__title { font-family: var(--serif); font-size: clamp(1.5rem,3vw,2.1rem); line-height: 1.25; margin: 1rem 0 1.25rem; color: var(--blue); }
 .blog-intro__body { text-align: left; margin-top: 2rem; display: grid; gap: 1.25rem; }
 .blog-intro__body p { font-size: .95rem; line-height: 1.85; color: var(--text); }
 .blog-intro__body strong { color: var(--blue); font-weight: 600; }
-.blog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; padding: var(--py) 0; }
+.blog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; padding-top: 2.5rem; padding-bottom: var(--py); }
 .blog-card { background: var(--white); display: flex; flex-direction: column; transition: box-shadow var(--ease); }
 .blog-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,.1); }
 .blog-card__img { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; overflow: hidden; }
@@ -42,24 +42,23 @@
   </div>
 </section>
 
-<main class="blog-archive">
-
-  <!-- ── Intro editorial SEO ── -->
-  <div class="blog-intro">
-    <div class="container">
-      <div class="blog-intro__inner reveal">
-        <span class="eyebrow">Casa rural de lujo · Vejer de la Frontera, Cádiz</span>
-        <h2 class="blog-intro__title">La Casa del Torero: una finca histórica en el corazón de Andalucía</h2>
-        <div class="gold-rule"></div>
-        <div class="blog-intro__body">
-          <p><strong>La Casa del Torero</strong> es una <strong>casa rural de lujo en Vejer de la Frontera</strong> con 24 hectáreas de campo abierto entre olivos centenarios, a tan solo 11 km de las playas vírgenes de la Costa de la Luz. Una finca histórica diseñada por un torero, hoy reconvertida en un alojamiento boutique que combina la autenticidad andaluza con el confort más cuidado.</p>
-          <p>La finca ofrece cuatro espacios únicos — la <strong>Suite del Torero</strong>, la <strong>Habitación Doble Superior</strong>, la <strong>Habitación Doble</strong> y el <strong>Apartamento independiente</strong> — todos con desayuno continental incluido, terraza privada y vistas al campo. También es posible <strong>alquilar la casa completa</strong> para celebraciones, retiros o escapadas en grupo de hasta 10 personas con total exclusividad.</p>
-          <p>A 15 minutos de playas como El Palmar, Zahora o Caños de Meca, y a un paso del casco histórico de Vejer — uno de los pueblos más bonitos de España —, La Casa del Torero es el punto de partida perfecto para descubrir la Costa de la Luz, la gastronomía de la Bahía de Cádiz y los paisajes únicos de la sierra del Aljibe. En este blog encontrarás inspiración para tu estancia: qué ver, qué comer, qué vivir.</p>
-        </div>
+<!-- ── Intro editorial SEO ── -->
+<div class="blog-intro">
+  <div class="container">
+    <div class="blog-intro__inner reveal">
+      <span class="eyebrow">Casa rural de lujo · Vejer de la Frontera, Cádiz</span>
+      <h2 class="blog-intro__title">La Casa del Torero: una finca histórica en el corazón de Andalucía</h2>
+      <div class="gold-rule"></div>
+      <div class="blog-intro__body">
+        <p><strong>La Casa del Torero</strong> es una <strong>casa rural de lujo en Vejer de la Frontera</strong> con 24 hectáreas de campo abierto entre olivos centenarios, a tan solo 11 km de las playas vírgenes de la Costa de la Luz. Una finca histórica diseñada por un torero, hoy reconvertida en un alojamiento boutique que combina la autenticidad andaluza con el confort más cuidado.</p>
+        <p>La finca ofrece cuatro espacios únicos — la <strong>Suite del Torero</strong>, la <strong>Habitación Doble Superior</strong>, la <strong>Habitación Doble</strong> y el <strong>Apartamento independiente</strong> — todos con desayuno continental incluido, terraza privada y vistas al campo. También es posible <strong>alquilar la casa completa</strong> para celebraciones, retiros o escapadas en grupo de hasta 10 personas con total exclusividad.</p>
+        <p>A 15 minutos de playas como El Palmar, Zahora o Caños de Meca, y a un paso del casco histórico de Vejer — uno de los pueblos más bonitos de España —, La Casa del Torero es el punto de partida perfecto para descubrir la Costa de la Luz, la gastronomía de la Bahía de Cádiz y los paisajes únicos de la sierra del Aljibe. En este blog encontrarás inspiración para tu estancia: qué ver, qué comer, qué vivir.</p>
       </div>
     </div>
   </div>
+</div>
 
+<main class="blog-archive">
   <!-- Grid -->
   <div class="container">
     <?php if ( have_posts() ) : ?>
