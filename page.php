@@ -36,13 +36,13 @@ if (have_posts()) : while (have_posts()) : the_post(); ?>
 <section class="cta-banner" aria-label="Reserva tu estancia">
   <div class="cta-banner__bg" style="background-image:url('<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/casa/aerea.jpg')"></div>
   <div class="container cta-banner__inner reveal">
-    <span class="eyebrow">Reserva directa</span>
-    <h2 class="cta-banner__title">¿Listo para reservar?</h2>
+    <span class="eyebrow"><?php esc_html_e('Reserva directa', 'casadeltorero'); ?></span>
+    <h2 class="cta-banner__title"><?php esc_html_e('¿Listo para reservar?', 'casadeltorero'); ?></h2>
     <div class="gold-rule"></div>
-    <p class="cta-banner__text">Comprueba disponibilidad y reserva directamente con nosotros, sin intermediarios y con las mejores condiciones.</p>
+    <p class="cta-banner__text"><?php esc_html_e('Comprueba disponibilidad y reserva directamente con nosotros, sin intermediarios y con las mejores condiciones.', 'casadeltorero'); ?></p>
     <div class="cta-banner__actions">
-      <a href="<?php echo esc_url(home_url('/reservas/')); ?>" class="btn btn--gold">Ver disponibilidad</a>
-      <a href="<?php echo esc_url(home_url('/contacto/')); ?>" class="btn btn--ghost">Contactar</a>
+      <a href="<?php echo esc_url(home_url('/reservas/')); ?>" class="btn btn--gold"><?php esc_html_e('Ver disponibilidad', 'casadeltorero'); ?></a>
+      <a href="<?php echo esc_url(home_url('/contacto/')); ?>" class="btn btn--ghost"><?php esc_html_e('Contactar', 'casadeltorero'); ?></a>
     </div>
   </div>
 </section>

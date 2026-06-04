@@ -156,9 +156,9 @@ $facebook  = $go('social_facebook')  ?: 'https://www.facebook.com/casadeltorerov
 <!-- HERO -->
 <section class="page-hero" style="--hero-bg:url('<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/casa/aerea.jpg')">
   <div class="container page-hero__inner">
-    <span class="eyebrow">Estamos encantados de atenderte</span>
-    <h1>Contacto</h1>
-    <p>Para reservas, consultas o simplemente para conocernos mejor. Respondemos en menos de 24 horas.</p>
+    <span class="eyebrow"><?php esc_html_e('Estamos encantados de atenderte', 'casadeltorero'); ?></span>
+    <h1><?php esc_html_e('Contacto', 'casadeltorero'); ?></h1>
+    <p><?php esc_html_e('Para reservas, consultas o simplemente para conocernos mejor. Respondemos en menos de 24 horas.', 'casadeltorero'); ?></p>
     <div class="gold-rule"></div>
   </div>
 </section>
@@ -170,8 +170,8 @@ $facebook  = $go('social_facebook')  ?: 'https://www.facebook.com/casadeltorerov
 
       <!-- LEFT: info -->
       <aside class="contact-aside reveal">
-        <h2 class="contact-aside__title">Hablemos</h2>
-        <p class="contact-aside__lead">Puedes contactarnos por el canal que prefieras. El WhatsApp suele ser la forma más rápida de obtener respuesta y confirmación de disponibilidad.</p>
+        <h2 class="contact-aside__title"><?php esc_html_e('Hablemos', 'casadeltorero'); ?></h2>
+        <p class="contact-aside__lead"><?php esc_html_e('Puedes contactarnos por el canal que prefieras. El WhatsApp suele ser la forma más rápida de obtener respuesta y confirmación de disponibilidad.', 'casadeltorero'); ?></p>
 
         <div class="contact-details">
           <div class="contact-detail">
@@ -179,7 +179,7 @@ $facebook  = $go('social_facebook')  ?: 'https://www.facebook.com/casadeltorerov
               <svg viewBox="0 0 24 24"><path d="M22 16.92V19.92a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             </span>
             <div>
-              <p class="contact-detail__label">Teléfono</p>
+              <p class="contact-detail__label"><?php esc_html_e('Teléfono', 'casadeltorero'); ?></p>
               <div class="contact-detail__value">
                 <a href="tel:<?php echo esc_attr(preg_replace('/\D/','',$phone)); ?>"><?php echo esc_html($phone); ?></a>
               </div>
@@ -191,7 +191,7 @@ $facebook  = $go('social_facebook')  ?: 'https://www.facebook.com/casadeltorerov
               <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             </span>
             <div>
-              <p class="contact-detail__label">Email</p>
+              <p class="contact-detail__label"><?php esc_html_e('Email', 'casadeltorero'); ?></p>
               <div class="contact-detail__value">
                 <a href="mailto:<?php echo esc_attr($email); ?>"><?php echo esc_html($email); ?></a>
               </div>
@@ -203,7 +203,7 @@ $facebook  = $go('social_facebook')  ?: 'https://www.facebook.com/casadeltorerov
               <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             </span>
             <div>
-              <p class="contact-detail__label">Dirección</p>
+              <p class="contact-detail__label"><?php esc_html_e('Dirección', 'casadeltorero'); ?></p>
               <div class="contact-detail__value">
                 <address><?php echo nl2br(esc_html($address)); ?></address>
               </div>
@@ -234,8 +234,8 @@ $facebook  = $go('social_facebook')  ?: 'https://www.facebook.com/casadeltorerov
 
       <!-- RIGHT: form -->
       <div class="contact-form-wrap reveal d1">
-        <h2>Envíanos un mensaje</h2>
-        <p class="form-lead">Cuéntanos qué fechas te interesan y cualquier detalle especial. Te responderemos con disponibilidad y una propuesta personalizada.</p>
+        <h2><?php esc_html_e('Envíanos un mensaje', 'casadeltorero'); ?></h2>
+        <p class="form-lead"><?php esc_html_e('Cuéntanos qué fechas te interesan y cualquier detalle especial. Te responderemos con disponibilidad y una propuesta personalizada.', 'casadeltorero'); ?></p>
 
         <?php if (function_exists('wpforms_display')) :
           echo do_shortcode('[wpforms id="contact"]');
@@ -244,53 +244,53 @@ $facebook  = $go('social_facebook')  ?: 'https://www.facebook.com/casadeltorerov
           <?php wp_nonce_field('casadeltorero_contact', '_contact_nonce'); ?>
           <input type="hidden" name="action" value="casadeltorero_contact">
           <div style="display:none!important" aria-hidden="true">
-            <label for="cf_website">No rellenar</label>
+            <label for="cf_website"><?php esc_html_e('No rellenar', 'casadeltorero'); ?></label>
             <input type="text" id="cf_website" name="cf_website" tabindex="-1" autocomplete="off">
           </div>
 
           <div class="contact-form__field">
-            <label for="cf_name">Nombre <span class="req">*</span></label>
-            <input type="text" id="cf_name" name="cf_name" required autocomplete="name" placeholder="Tu nombre">
+            <label for="cf_name"><?php esc_html_e('Nombre', 'casadeltorero'); ?> <span class="req">*</span></label>
+            <input type="text" id="cf_name" name="cf_name" required autocomplete="name" placeholder="<?php esc_attr_e('Tu nombre', 'casadeltorero'); ?>">
           </div>
 
           <div class="contact-form__field">
-            <label for="cf_email">Email <span class="req">*</span></label>
+            <label for="cf_email"><?php esc_html_e('Email', 'casadeltorero'); ?> <span class="req">*</span></label>
             <input type="email" id="cf_email" name="cf_email" required autocomplete="email" placeholder="tu@email.com">
           </div>
 
           <div class="contact-form__field">
-            <label for="cf_phone">Teléfono</label>
+            <label for="cf_phone"><?php esc_html_e('Teléfono', 'casadeltorero'); ?></label>
             <input type="tel" id="cf_phone" name="cf_phone" autocomplete="tel" placeholder="+34 600 000 000">
           </div>
 
           <div class="contact-form__field">
-            <label for="cf_guests">Número de personas</label>
+            <label for="cf_guests"><?php esc_html_e('Número de personas', 'casadeltorero'); ?></label>
             <select id="cf_guests" name="cf_guests">
-              <option value="">— Selecciona —</option>
-              <option>1–2 personas</option>
-              <option>3–4 personas</option>
-              <option>5–8 personas</option>
-              <option>Más de 8 personas</option>
+              <option value=""><?php esc_html_e('— Selecciona —', 'casadeltorero'); ?></option>
+              <option><?php esc_html_e('1–2 personas', 'casadeltorero'); ?></option>
+              <option><?php esc_html_e('3–4 personas', 'casadeltorero'); ?></option>
+              <option><?php esc_html_e('5–8 personas', 'casadeltorero'); ?></option>
+              <option><?php esc_html_e('Más de 8 personas', 'casadeltorero'); ?></option>
             </select>
           </div>
 
           <div class="contact-form__field">
-            <label for="cf_checkin">Fecha de llegada</label>
+            <label for="cf_checkin"><?php esc_html_e('Fecha de llegada', 'casadeltorero'); ?></label>
             <input type="date" id="cf_checkin" name="cf_checkin">
           </div>
 
           <div class="contact-form__field">
-            <label for="cf_checkout">Fecha de salida</label>
+            <label for="cf_checkout"><?php esc_html_e('Fecha de salida', 'casadeltorero'); ?></label>
             <input type="date" id="cf_checkout" name="cf_checkout">
           </div>
 
           <div class="contact-form__field contact-form__field--full">
-            <label for="cf_message">Mensaje <span class="req">*</span></label>
-            <textarea id="cf_message" name="cf_message" rows="5" required placeholder="Cuéntanos qué estás buscando, si tienes alguna petición especial, si es para una celebración..."></textarea>
+            <label for="cf_message"><?php esc_html_e('Mensaje', 'casadeltorero'); ?> <span class="req">*</span></label>
+            <textarea id="cf_message" name="cf_message" rows="5" required placeholder="<?php esc_attr_e('Cuéntanos qué estás buscando, si tienes alguna petición especial, si es para una celebración...', 'casadeltorero'); ?>"></textarea>
           </div>
 
           <div class="contact-form__submit">
-            <button type="submit" class="btn btn--gold">Enviar mensaje</button>
+            <button type="submit" class="btn btn--gold"><?php esc_html_e('Enviar mensaje', 'casadeltorero'); ?></button>
           </div>
         </form>
         <?php endif; ?>
@@ -313,13 +313,13 @@ $facebook  = $go('social_facebook')  ?: 'https://www.facebook.com/casadeltorerov
 <section class="cta-banner" aria-label="Reserva tu estancia">
   <div class="cta-banner__bg" style="background-image:url('<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/casa/aerea.jpg')"></div>
   <div class="container cta-banner__inner reveal">
-    <span class="eyebrow">Reserva directa</span>
-    <h2 class="cta-banner__title">¿Lista para vivir la experiencia?</h2>
+    <span class="eyebrow"><?php esc_html_e('Reserva directa', 'casadeltorero'); ?></span>
+    <h2 class="cta-banner__title"><?php esc_html_e('¿Lista para vivir la experiencia?', 'casadeltorero'); ?></h2>
     <div class="gold-rule"></div>
-    <p class="cta-banner__text">Reserva tu estancia en La Casa del Torero. Directamente con nosotros, sin intermediarios y con las mejores condiciones.</p>
+    <p class="cta-banner__text"><?php esc_html_e('Reserva tu estancia en La Casa del Torero. Directamente con nosotros, sin intermediarios y con las mejores condiciones.', 'casadeltorero'); ?></p>
     <div class="cta-banner__actions">
-      <a href="<?php echo esc_url(home_url('/reservas/')); ?>" class="btn btn--gold">Ver disponibilidad</a>
-      <a href="<?php echo esc_url(home_url('/habitaciones/')); ?>" class="btn btn--ghost">Ver habitaciones</a>
+      <a href="<?php echo esc_url(home_url('/reservas/')); ?>" class="btn btn--gold"><?php esc_html_e('Ver disponibilidad', 'casadeltorero'); ?></a>
+      <a href="<?php echo esc_url(home_url('/habitaciones/')); ?>" class="btn btn--ghost"><?php esc_html_e('Ver habitaciones', 'casadeltorero'); ?></a>
     </div>
   </div>
 </section>

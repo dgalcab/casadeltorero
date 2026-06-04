@@ -97,7 +97,7 @@ $whatsapp  = $go('social_whatsapp') ?: '34615508168';
   </div>
   <div class="post-author__info">
     <p class="post-author__name"><?php the_author(); ?></p>
-    <p class="post-author__bio">El equipo de La Casa del Torero. Una finca histórica en Vejer de la Frontera, Cádiz, donde la tradición, la naturaleza y el lujo rural conviven en armonía.</p>
+    <p class="post-author__bio"><?php esc_html_e('El equipo de La Casa del Torero. Una finca histórica en Vejer de la Frontera, Cádiz, donde la tradición, la naturaleza y el lujo rural conviven en armonía.', 'casadeltorero'); ?></p>
   </div>
 </div>
 
@@ -107,12 +107,12 @@ $whatsapp  = $go('social_whatsapp') ?: '34615508168';
 <section class="cta-banner post-cta" aria-label="Reserva tu estancia">
   <div class="cta-banner__bg" style="background-image:url('<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/casa/aerea.jpg')"></div>
   <div class="container cta-banner__inner reveal">
-    <span class="eyebrow">Tu próxima escapada</span>
+    <span class="eyebrow"><?php esc_html_e('Tu próxima escapada', 'casadeltorero'); ?></span>
     <h2 class="cta-banner__title"><?php echo esc_html( $cta_title ); ?></h2>
     <div class="gold-rule"></div>
     <p class="cta-banner__text"><?php echo esc_html( $cta_text ); ?></p>
     <div class="cta-banner__actions">
-      <a href="<?php echo esc_url( home_url( '/reservas/' ) ); ?>" class="btn btn--gold">Ver disponibilidad</a>
+      <a href="<?php echo esc_url( home_url( '/reservas/' ) ); ?>" class="btn btn--gold"><?php esc_html_e('Ver disponibilidad', 'casadeltorero'); ?></a>
       <a href="https://wa.me/<?php echo esc_attr( $whatsapp ); ?>" class="btn btn--ghost" target="_blank" rel="noopener noreferrer">WhatsApp</a>
     </div>
   </div>
@@ -140,8 +140,8 @@ $related = new WP_Query( [
 if ( $related->have_posts() ) : ?>
 <section class="related-posts reveal">
   <div class="container">
-    <span class="eyebrow related-posts__eyebrow">Sigue leyendo</span>
-    <h2 class="related-posts__heading">Más artículos</h2>
+    <span class="eyebrow related-posts__eyebrow"><?php esc_html_e('Sigue leyendo', 'casadeltorero'); ?></span>
+    <h2 class="related-posts__heading"><?php esc_html_e('Más artículos', 'casadeltorero'); ?></h2>
     <div class="related-grid">
       <?php while ( $related->have_posts() ) : $related->the_post(); ?>
       <article class="related-card">

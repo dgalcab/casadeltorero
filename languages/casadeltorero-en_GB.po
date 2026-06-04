@@ -1,0 +1,246 @@
+# Translation of casadeltorero theme
+# Copyright (C) 2026 La Casa del Torero
+msgid ""
+msgstr ""
+"Project-Id-Version: casadeltorero 2.0.0\n"
+"POT-Creation-Date: 2026-06-04\n"
+"PO-Revision-Date: 2026-06-04\n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Abrir menú"
+msgstr "Open menu"
+
+msgid "Menú principal"
+msgstr "Main navigation"
+
+msgid "Habitaciones"
+msgstr "Rooms"
+
+msgid "La Casa"
+msgstr "The House"
+
+msgid "Gastronomía"
+msgstr "Gastronomy"
+
+msgid "Experiencias"
+msgstr "Experiences"
+
+msgid "Ubicación"
+msgstr "Location"
+
+msgid "Reservar"
+msgstr "Book now"
+
+msgid "Finca histórica de 24 hectáreas entre olivos centenarios, frente al pueblo blanco de Vejer de la Frontera, a 11 km de las playas vírgenes de la Costa de la Luz."
+msgstr "A historic 24-hectare estate among centuries-old olive trees, facing the white village of Vejer de la Frontera, 11 km from the unspoilt beaches of the Costa de la Luz."
+
+msgid "La Finca"
+msgstr "The Estate"
+
+msgid "Espacios"
+msgstr "Spaces"
+
+msgid "Información"
+msgstr "Information"
+
+msgid "Reservas"
+msgstr "Reservations"
+
+msgid "Cómo llegar"
+msgstr "How to get here"
+
+msgid "Condiciones de reserva"
+msgstr "Booking conditions"
+
+msgid "Privacidad · Cookies"
+msgstr "Privacy · Cookies"
+
+msgid "Contacto"
+msgstr "Contact"
+
+msgid "Privacidad"
+msgstr "Privacy"
+
+msgid "Condiciones"
+msgstr "Conditions"
+
+msgid "La Casa del Torero"
+msgstr "La Casa del Torero"
+
+msgid "Reserva directa"
+msgstr "Direct booking"
+
+msgid "¿Listo para reservar?"
+msgstr "Ready to book?"
+
+msgid "Comprueba disponibilidad y reserva directamente con nosotros, sin intermediarios y con las mejores condiciones."
+msgstr "Check availability and book directly with us, no middlemen, best rates guaranteed."
+
+msgid "Ver disponibilidad"
+msgstr "Check availability"
+
+msgid "Contactar"
+msgstr "Contact us"
+
+msgid "El equipo de La Casa del Torero. Una finca histórica en Vejer de la Frontera, Cádiz, donde la tradición, la naturaleza y el lujo rural conviven en armonía."
+msgstr "The team at La Casa del Torero. A historic estate in Vejer de la Frontera, Cádiz, where tradition, nature and rural luxury coexist in harmony."
+
+msgid "Tu próxima escapada"
+msgstr "Your next getaway"
+
+msgid "¿Lista para vivir la experiencia?"
+msgstr "Ready to live the experience?"
+
+msgid "Sigue leyendo"
+msgstr "Keep reading"
+
+msgid "Más artículos"
+msgstr "More articles"
+
+msgid "Página no encontrada"
+msgstr "Page not found"
+
+msgid "Lo sentimos, la página que buscas no existe o ha sido movida.\nQuizás quieras volver al inicio y explorar La Casa del Torero."
+msgstr "Sorry, the page you are looking for does not exist or has been moved.\nYou might want to go back to the homepage and explore La Casa del Torero."
+
+msgid "Volver al inicio"
+msgstr "Back to home"
+
+msgid "Estamos encantados de atenderte"
+msgstr "We are delighted to welcome you"
+
+msgid "Para reservas, consultas o simplemente para conocernos mejor. Respondemos en menos de 24 horas."
+msgstr "For reservations, enquiries or simply to get to know us better. We reply within 24 hours."
+
+msgid "Hablemos"
+msgstr "Let's talk"
+
+msgid "Puedes contactarnos por el canal que prefieras. El WhatsApp suele ser la forma más rápida de obtener respuesta y confirmación de disponibilidad."
+msgstr "You can contact us through whichever channel you prefer. WhatsApp is usually the quickest way to get a response and confirm availability."
+
+msgid "Teléfono"
+msgstr "Phone"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Dirección"
+msgstr "Address"
+
+msgid "Envíanos un mensaje"
+msgstr "Send us a message"
+
+msgid "Cuéntanos qué fechas te interesan y cualquier detalle especial. Te responderemos con disponibilidad y una propuesta personalizada."
+msgstr "Tell us which dates you are interested in and any special requirements. We will reply with availability and a personalised proposal."
+
+msgid "Nombre"
+msgstr "Name"
+
+msgid "Tu nombre"
+msgstr "Your name"
+
+msgid "Número de personas"
+msgstr "Number of guests"
+
+msgid "— Selecciona —"
+msgstr "— Select —"
+
+msgid "1–2 personas"
+msgstr "1–2 guests"
+
+msgid "3–4 personas"
+msgstr "3–4 guests"
+
+msgid "5–8 personas"
+msgstr "5–8 guests"
+
+msgid "Más de 8 personas"
+msgstr "More than 8 guests"
+
+msgid "Fecha de llegada"
+msgstr "Arrival date"
+
+msgid "Fecha de salida"
+msgstr "Departure date"
+
+msgid "Mensaje"
+msgstr "Message"
+
+msgid "Cuéntanos qué estás buscando, si tienes alguna petición especial, si es para una celebración..."
+msgstr "Tell us what you are looking for, any special requests, whether it is for a celebration..."
+
+msgid "Enviar mensaje"
+msgstr "Send message"
+
+msgid "Reserva tu estancia en La Casa del Torero. Directamente con nosotros, sin intermediarios y con las mejores condiciones."
+msgstr "Book your stay at La Casa del Torero. Directly with us, no middlemen and best rates guaranteed."
+
+msgid "Ver habitaciones"
+msgstr "View rooms"
+
+msgid "No rellenar"
+msgstr "Do not fill"
+
+msgid "Nuestras estancias"
+msgstr "Our rooms"
+
+msgid "Las Habitaciones"
+msgstr "The Rooms"
+
+msgid "Cuatro espacios únicos, cada uno con su propio carácter. Todas con terraza privada, vistas a Vejer y acceso al campo."
+msgstr "Four unique spaces, each with its own character. All with private terrace, views of Vejer and access to the countryside."
+
+msgid "Cada habitación es un mundo propio: desde la amplitud de la Suite con cama extragrande y bañera exenta, hasta la intimidad del Apartamento con cocina independiente y entrada privada. Todas comparten el mismo cuidado en el detalle, el silencio de la finca y las vistas al campo andaluz."
+msgstr "Each room is a world of its own: from the spacious Suite with its king-size bed and freestanding bath, to the intimate Apartment with its independent kitchen and private entrance. All share the same attention to detail, the silence of the estate and views over the Andalusian countryside."
+
+msgid "Puedes reservar habitaciones sueltas en régimen B&B o, si vuestro grupo llega a 8 personas, optar por el alquiler completo de la casa con todos los servicios incluidos."
+msgstr "You can book individual rooms on a B&B basis or, if your group reaches 8 people, opt for the full rental of the house with all services included."
+
+msgid "Modalidad"
+msgstr "Type"
+
+msgid "B&B por habitación"
+msgstr "B&B per room"
+
+msgid "Alquiler completo"
+msgstr "Full rental"
+
+msgid "Ver habitación"
+msgstr "View room"
+
+msgid "Para grupos y eventos"
+msgstr "For groups and events"
+
+msgid "¿Prefieres la casa completa?"
+msgstr "Prefer the whole house?"
+
+msgid "Si sois un grupo de 8 o más personas, podéis alquilar La Casa del Torero en exclusiva: las cuatro habitaciones, los espacios comunes, la piscina y el jardín solo para vosotros. Perfecto para celebraciones, retiros o simplemente para disfrutar de la finca sin interrupciones."
+msgstr "If you are a group of 8 or more, you can rent La Casa del Torero exclusively: all four rooms, the communal spaces, the pool and the garden just for you. Perfect for celebrations, retreats or simply to enjoy the estate without interruptions."
+
+msgid "El precio incluye desayuno, limpieza diaria y la atención personalizada del equipo de la casa."
+msgstr "The price includes breakfast, daily cleaning and personalised attention from the house team."
+
+msgid "Desde 50 €"
+msgstr "From €50"
+
+msgid "/ persona · noche"
+msgstr "/ person · night"
+
+msgid "Consultar disponibilidad"
+msgstr "Check availability"
+
+msgid "La Casa del Torero · Vejer de la Frontera"
+msgstr "La Casa del Torero · Vejer de la Frontera"
+
+msgid "Tu estancia perfecta"
+msgstr "Your perfect stay"
+
+msgid "te espera"
+msgstr "awaits you"
+
+msgid "Reserva con antelación para asegurar tu habitación. Confirmación inmediata, cancelación flexible."
+msgstr "Book in advance to secure your room. Immediate confirmation, flexible cancellation."

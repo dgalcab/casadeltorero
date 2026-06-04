@@ -147,9 +147,9 @@ $img_base = get_template_directory_uri() . '/assets/img';
 <!-- ══════════ HERO ══════════ -->
 <section class="page-hero" style="--hero-bg:url('<?php echo esc_url($img_base); ?>/espacios/hab-slide-1.jpg')" aria-label="Las Habitaciones de La Casa del Torero">
   <div class="container page-hero__inner reveal">
-    <span class="eyebrow">Nuestras estancias</span>
-    <h1>Las Habitaciones</h1>
-    <p>Cuatro espacios únicos, cada uno con su propio carácter. Todas con terraza privada, vistas a Vejer y acceso al campo.</p>
+    <span class="eyebrow"><?php esc_html_e('Nuestras estancias', 'casadeltorero'); ?></span>
+    <h1><?php esc_html_e('Las Habitaciones', 'casadeltorero'); ?></h1>
+    <p><?php esc_html_e('Cuatro espacios únicos, cada uno con su propio carácter. Todas con terraza privada, vistas a Vejer y acceso al campo.', 'casadeltorero'); ?></p>
     <div class="gold-rule"></div>
   </div>
 </section>
@@ -159,18 +159,18 @@ $img_base = get_template_directory_uri() . '/assets/img';
 <section class="habs-intro" aria-label="Modalidades de alojamiento">
   <div class="container">
     <div class="habs-intro__body reveal">
-      <p>Cada habitación es un mundo propio: desde la amplitud de la Suite con cama extragrande y bañera exenta, hasta la intimidad del Apartamento con cocina independiente y entrada privada. Todas comparten el mismo cuidado en el detalle, el silencio de la finca y las vistas al campo andaluz.</p>
-      <p>Puedes reservar <strong>habitaciones sueltas en régimen B&B</strong> o, si vuestro grupo llega a 8 personas, optar por el <strong>alquiler completo de la casa</strong> con todos los servicios incluidos.</p>
+      <p><?php esc_html_e('Cada habitación es un mundo propio: desde la amplitud de la Suite con cama extragrande y bañera exenta, hasta la intimidad del Apartamento con cocina independiente y entrada privada. Todas comparten el mismo cuidado en el detalle, el silencio de la finca y las vistas al campo andaluz.', 'casadeltorero'); ?></p>
+      <p><?php printf(wp_kses(__('Puedes reservar <strong>habitaciones sueltas en régimen B&B</strong> o, si vuestro grupo llega a 8 personas, optar por el <strong>alquiler completo de la casa</strong> con todos los servicios incluidos.', 'casadeltorero'), ['strong' => []])); ?></p>
     </div>
 
     <div class="habs-intro__modalities reveal d1">
       <div class="habs-intro__mod">
-        <span class="habs-intro__mod-label">Modalidad</span>
-        <span class="habs-intro__mod-value">B&amp;B por habitación</span>
+        <span class="habs-intro__mod-label"><?php esc_html_e('Modalidad', 'casadeltorero'); ?></span>
+        <span class="habs-intro__mod-value"><?php esc_html_e('B&B por habitación', 'casadeltorero'); ?></span>
       </div>
       <div class="habs-intro__mod" style="border-left:1px solid var(--border); padding-left:3rem;">
-        <span class="habs-intro__mod-label">Modalidad</span>
-        <span class="habs-intro__mod-value">Alquiler completo</span>
+        <span class="habs-intro__mod-label"><?php esc_html_e('Modalidad', 'casadeltorero'); ?></span>
+        <span class="habs-intro__mod-value"><?php esc_html_e('Alquiler completo', 'casadeltorero'); ?></span>
       </div>
     </div>
   </div>
@@ -253,7 +253,7 @@ $img_base = get_template_directory_uri() . '/assets/img';
           <?php if ($h_price) : ?>
             <p class="space-card__price">desde <?php echo esc_html($h_price); ?></p>
           <?php endif; ?>
-          <span class="space-card__cta">Ver habitación</span>
+          <span class="space-card__cta"><?php esc_html_e('Ver habitación', 'casadeltorero'); ?></span>
         </div>
       </a>
     <?php endwhile; wp_reset_postdata();
@@ -267,7 +267,7 @@ $img_base = get_template_directory_uri() . '/assets/img';
             <h2 class="space-card__name"><?php echo esc_html($room['title']); ?></h2>
             <p class="space-card__size"><?php echo esc_html($room['size']); ?></p>
             <p class="space-card__price"><?php echo esc_html($room['price']); ?></p>
-            <span class="space-card__cta">Ver habitación</span>
+            <span class="space-card__cta"><?php esc_html_e('Ver habitación', 'casadeltorero'); ?></span>
           </div>
         </a>
       <?php endforeach;
@@ -292,18 +292,14 @@ $img_base = get_template_directory_uri() . '/assets/img';
       </div>
 
       <div class="habs-completo__content reveal d1">
-        <span class="eyebrow">Para grupos y eventos</span>
-        <h2 class="habs-completo__title">¿Prefieres la casa completa?</h2>
-        <p class="habs-completo__text">
-          Si sois un grupo de 8 o más personas, podéis alquilar La Casa del Torero en exclusiva: las cuatro habitaciones, los espacios comunes, la piscina y el jardín solo para vosotros. Perfecto para celebraciones, retiros o simplemente para disfrutar de la finca sin interrupciones.
-        </p>
-        <p class="habs-completo__text">
-          El precio incluye desayuno, limpieza diaria y la atención personalizada del equipo de la casa.
-        </p>
+        <span class="eyebrow"><?php esc_html_e('Para grupos y eventos', 'casadeltorero'); ?></span>
+        <h2 class="habs-completo__title"><?php esc_html_e('¿Prefieres la casa completa?', 'casadeltorero'); ?></h2>
+        <p class="habs-completo__text"><?php esc_html_e('Si sois un grupo de 8 o más personas, podéis alquilar La Casa del Torero en exclusiva: las cuatro habitaciones, los espacios comunes, la piscina y el jardín solo para vosotros. Perfecto para celebraciones, retiros o simplemente para disfrutar de la finca sin interrupciones.', 'casadeltorero'); ?></p>
+        <p class="habs-completo__text"><?php esc_html_e('El precio incluye desayuno, limpieza diaria y la atención personalizada del equipo de la casa.', 'casadeltorero'); ?></p>
         <p class="habs-completo__price">
-          Desde 50 €<span>/ persona · noche</span>
+          <?php esc_html_e('Desde 50 €', 'casadeltorero'); ?><span><?php esc_html_e('/ persona · noche', 'casadeltorero'); ?></span>
         </p>
-        <a href="<?php echo esc_url(home_url('/reservas/')); ?>" class="btn btn--gold">Consultar disponibilidad</a>
+        <a href="<?php echo esc_url(home_url('/reservas/')); ?>" class="btn btn--gold"><?php esc_html_e('Consultar disponibilidad', 'casadeltorero'); ?></a>
       </div>
 
     </div>
@@ -317,11 +313,11 @@ $img_base = get_template_directory_uri() . '/assets/img';
   <div class="container">
     <div class="cta-banner__content reveal">
       <span class="eyebrow" style="color:var(--gold-lt);">La Casa del Torero · Vejer de la Frontera</span>
-      <h2 class="cta-banner__title">Tu estancia perfecta<br><em style="font-style:italic;color:var(--gold-lt);">te espera</em></h2>
-      <p class="cta-banner__text">Reserva con antelación para asegurar tu habitación. Confirmación inmediata, cancelación flexible.</p>
+      <h2 class="cta-banner__title"><?php esc_html_e('Tu estancia perfecta', 'casadeltorero'); ?><br><em style="font-style:italic;color:var(--gold-lt);"><?php esc_html_e('te espera', 'casadeltorero'); ?></em></h2>
+      <p class="cta-banner__text"><?php esc_html_e('Reserva con antelación para asegurar tu habitación. Confirmación inmediata, cancelación flexible.', 'casadeltorero'); ?></p>
       <div class="cta-banner__actions">
-        <a href="<?php echo esc_url(home_url('/reservas/')); ?>" class="btn btn--gold">Ver disponibilidad</a>
-        <a href="<?php echo esc_url(home_url('/contacto/')); ?>" class="btn btn--ghost">Contactar</a>
+        <a href="<?php echo esc_url(home_url('/reservas/')); ?>" class="btn btn--gold"><?php esc_html_e('Ver disponibilidad', 'casadeltorero'); ?></a>
+        <a href="<?php echo esc_url(home_url('/contacto/')); ?>" class="btn btn--ghost"><?php esc_html_e('Contactar', 'casadeltorero'); ?></a>
       </div>
     </div>
   </div>

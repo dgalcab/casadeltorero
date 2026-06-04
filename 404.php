@@ -11,9 +11,9 @@
 <main id="main" class="page-404">
   <div class="page-404__inner">
     <p class="page-404__num">404</p>
-    <h1>Página no encontrada</h1>
-    <p>Lo sentimos, la página que buscas no existe o ha sido movida.<br>Quizás quieras volver al inicio y explorar La Casa del Torero.</p>
-    <a href="<?php echo esc_url(home_url('/')); ?>" class="btn btn--gold">Volver al inicio</a>
+    <h1><?php esc_html_e('Página no encontrada', 'casadeltorero'); ?></h1>
+    <p><?php esc_html_e('Lo sentimos, la página que buscas no existe o ha sido movida. Quizás quieras volver al inicio y explorar La Casa del Torero.', 'casadeltorero'); ?></p>
+    <a href="<?php echo esc_url(home_url('/')); ?>" class="btn btn--gold"><?php esc_html_e('Volver al inicio', 'casadeltorero'); ?></a>
   </div>
 </main>
 

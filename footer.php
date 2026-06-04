@@ -24,7 +24,7 @@ $wa_url    = 'https://wa.me/' . preg_replace('/\D/', '', $whatsapp);
           <?php get_template_part('inc/logo'); ?>
           <span class="site-logo__name">La Casa del Torero<em>Vejer · Cádiz</em></span>
         </a>
-        <p>Finca histórica de 24 hectáreas entre olivos centenarios, frente al pueblo blanco de Vejer de la Frontera, a 11 km de las playas vírgenes de la Costa de la Luz.</p>
+        <p><?php esc_html_e('Finca histórica de 24 hectáreas entre olivos centenarios, frente al pueblo blanco de Vejer de la Frontera, a 11 km de las playas vírgenes de la Costa de la Luz.', 'casadeltorero'); ?></p>
         <div class="footer__social">
           <a href="<?php echo esc_url($instagram); ?>" target="_blank" rel="noopener" aria-label="Instagram">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
@@ -39,28 +39,28 @@ $wa_url    = 'https://wa.me/' . preg_replace('/\D/', '', $whatsapp);
       </div>
 
       <div class="footer__col">
-        <h4>La Casa</h4>
+        <h4><?php esc_html_e('La Casa', 'casadeltorero'); ?></h4>
         <ul>
-          <li><a href="<?php echo esc_url(home_url('/#la-casa')); ?>">La Casa</a></li>
-          <li><a href="<?php echo esc_url(home_url('/#la-finca')); ?>">La Finca</a></li>
-          <li><a href="<?php echo esc_url(home_url('/#habitaciones')); ?>">Espacios</a></li>
-          <li><a href="<?php echo esc_url(home_url('/#experiencias')); ?>">Experiencias</a></li>
+          <li><a href="<?php echo esc_url(home_url('/#la-casa')); ?>"><?php esc_html_e('La Casa', 'casadeltorero'); ?></a></li>
+          <li><a href="<?php echo esc_url(home_url('/#la-finca')); ?>"><?php esc_html_e('La Finca', 'casadeltorero'); ?></a></li>
+          <li><a href="<?php echo esc_url(home_url('/#habitaciones')); ?>"><?php esc_html_e('Espacios', 'casadeltorero'); ?></a></li>
+          <li><a href="<?php echo esc_url(home_url('/#experiencias')); ?>"><?php esc_html_e('Experiencias', 'casadeltorero'); ?></a></li>
         </ul>
       </div>
 
       <div class="footer__col">
-        <h4>Información</h4>
+        <h4><?php esc_html_e('Información', 'casadeltorero'); ?></h4>
         <ul>
-          <li><a href="<?php echo esc_url(home_url('/reservas/')); ?>">Reservas</a></li>
-          <li><a href="<?php echo esc_url(home_url('/#ubicacion')); ?>">Cómo llegar</a></li>
+          <li><a href="<?php echo esc_url(home_url('/reservas/')); ?>"><?php esc_html_e('Reservas', 'casadeltorero'); ?></a></li>
+          <li><a href="<?php echo esc_url(home_url('/#ubicacion')); ?>"><?php esc_html_e('Cómo llegar', 'casadeltorero'); ?></a></li>
           <?php
           wp_nav_menu([
               'theme_location' => 'footer',
               'container'      => false,
               'items_wrap'     => '%3$s',
               'fallback_cb'    => function () {
-                  echo '<li><a href="' . esc_url(home_url('/condiciones-reserva/')) . '">Condiciones de reserva</a></li>';
-                  echo '<li><a href="' . esc_url(home_url('/politica-privacidad/')) . '">Privacidad · Cookies</a></li>';
+                  echo '<li><a href="' . esc_url(home_url('/condiciones-reserva/')) . '">' . esc_html__('Condiciones de reserva', 'casadeltorero') . '</a></li>';
+                  echo '<li><a href="' . esc_url(home_url('/politica-privacidad/')) . '">' . esc_html__('Privacidad · Cookies', 'casadeltorero') . '</a></li>';
               },
           ]);
           ?>
@@ -68,7 +68,7 @@ $wa_url    = 'https://wa.me/' . preg_replace('/\D/', '', $whatsapp);
       </div>
 
       <div class="footer__col">
-        <h4>Contacto</h4>
+        <h4><?php esc_html_e('Contacto', 'casadeltorero'); ?></h4>
         <address>
           <?php echo nl2br(esc_html($address)); ?><br><br>
           <a href="tel:<?php echo esc_attr(str_replace(' ', '', $phone)); ?>"><?php echo esc_html($phone); ?></a>
@@ -88,9 +88,9 @@ $wa_url    = 'https://wa.me/' . preg_replace('/\D/', '', $whatsapp);
     <div class="footer__bottom">
       <span>&copy; <?php echo esc_html(date('Y')); ?> La Casa del Torero · Vejer de la Frontera, Cádiz</span>
       <div>
-        <a href="<?php echo esc_url(home_url('/politica-privacidad/')); ?>">Privacidad</a>
+        <a href="<?php echo esc_url(home_url('/politica-privacidad/')); ?>"><?php esc_html_e('Privacidad', 'casadeltorero'); ?></a>
         &nbsp;·&nbsp;
-        <a href="<?php echo esc_url(home_url('/condiciones-reserva/')); ?>">Condiciones</a>
+        <a href="<?php echo esc_url(home_url('/condiciones-reserva/')); ?>"><?php esc_html_e('Condiciones', 'casadeltorero'); ?></a>
       </div>
     </div>
   </div>
