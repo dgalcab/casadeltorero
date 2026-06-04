@@ -119,6 +119,8 @@ add_action('acf/init', function () {
             ['key' => 'field_intro_item_3_value', 'label' => 'Item 3 valor',    'name' => 'intro_item_3_value', 'type' => 'text', 'default_value' => 'Por habitación · Casa completa'],
             ['key' => 'field_intro_item_4_label', 'label' => 'Item 4 etiqueta', 'name' => 'intro_item_4_label', 'type' => 'text', 'default_value' => 'Ubicación'],
             ['key' => 'field_intro_item_4_value', 'label' => 'Item 4 valor',    'name' => 'intro_item_4_value', 'type' => 'text', 'default_value' => 'Vejer de la Frontera, Cádiz'],
+            ['key' => 'field_intro_item_5_label', 'label' => 'Item 5 etiqueta', 'name' => 'intro_item_5_label', 'type' => 'text', 'default_value' => 'Desayuno'],
+            ['key' => 'field_intro_item_5_value', 'label' => 'Item 5 valor',    'name' => 'intro_item_5_value', 'type' => 'text', 'default_value' => 'Siempre incluido'],
 
             // Tab: Modalidades
             ['key' => 'field_tab_modality', 'label' => 'Modalidades', 'name' => '', 'type' => 'tab'],
