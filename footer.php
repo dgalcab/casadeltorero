@@ -60,7 +60,6 @@ $wa_url    = 'https://wa.me/' . preg_replace('/\D/', '', $whatsapp);
               'items_wrap'     => '%3$s',
               'fallback_cb'    => function () {
                   echo '<li><a href="' . esc_url(home_url('/condiciones-reserva/')) . '">Condiciones de reserva</a></li>';
-                  echo '<li><a href="' . esc_url(home_url('/politica-cancelacion/')) . '">Política de cancelación</a></li>';
                   echo '<li><a href="' . esc_url(home_url('/politica-privacidad/')) . '">Privacidad · Cookies</a></li>';
               },
           ]);
@@ -92,8 +91,6 @@ $wa_url    = 'https://wa.me/' . preg_replace('/\D/', '', $whatsapp);
         <a href="<?php echo esc_url(home_url('/politica-privacidad/')); ?>">Privacidad</a>
         &nbsp;·&nbsp;
         <a href="<?php echo esc_url(home_url('/condiciones-reserva/')); ?>">Condiciones</a>
-        &nbsp;·&nbsp;
-        <a href="<?php echo esc_url(home_url('/politica-cancelacion/')); ?>">Cancelación</a>
       </div>
     </div>
   </div>
