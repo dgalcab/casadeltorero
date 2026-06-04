@@ -244,3 +244,12 @@ msgstr "awaits you"
 
 msgid "Reserva con antelación para asegurar tu habitación. Confirmación inmediata, cancelación flexible."
 msgstr "Book in advance to secure your room. Immediate confirmation, flexible cancellation."
+
+msgid "¿Cuándo nos visitas?"
+msgstr "When are you visiting?"
+
+msgid "Reserva directamente con nosotros y obtén las mejores condiciones. Sin intermediarios. Confirmación inmediata."
+msgstr "Book directly with us and get the best conditions. No middlemen. Immediate confirmation."
+
+msgid "Comprobar disponibilidad"
+msgstr "Check availability"

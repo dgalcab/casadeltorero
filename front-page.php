@@ -686,13 +686,13 @@ $default_testimonials = [
 <section id="reservas" class="booking">
   <div class="container">
     <div class="booking__header reveal">
-      <span class="eyebrow">Reservas</span>
-      <h2 class="section-title">¿Cuándo nos visitas?</h2>
+      <span class="eyebrow"><?php esc_html_e('Reservas', 'casadeltorero'); ?></span>
+      <h2 class="section-title"><?php esc_html_e('¿Cuándo nos visitas?', 'casadeltorero'); ?></h2>
       <div class="gold-rule"></div>
-      <p>Reserva directamente con nosotros y obtén las mejores condiciones. Sin intermediarios. Confirmación inmediata.</p>
+      <p><?php esc_html_e('Reserva directamente con nosotros y obtén las mejores condiciones. Sin intermediarios. Confirmación inmediata.', 'casadeltorero'); ?></p>
       <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem;">
-        <a href="<?php echo esc_url(home_url('/reservas/')); ?>" class="btn btn--gold">Comprobar disponibilidad</a>
-        <a href="<?php echo esc_url(home_url('/contacto/')); ?>" class="btn btn--ghost">Contactar</a>
+        <a href="<?php echo esc_url(home_url('/reservas/')); ?>" class="btn btn--gold"><?php esc_html_e('Comprobar disponibilidad', 'casadeltorero'); ?></a>
+        <a href="<?php echo esc_url(home_url('/contacto/')); ?>" class="btn btn--ghost"><?php esc_html_e('Contactar', 'casadeltorero'); ?></a>
       </div>
     </div>
   </div>

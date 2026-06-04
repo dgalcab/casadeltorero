@@ -244,3 +244,12 @@ msgstr "vous attend"
 
 msgid "Reserva con antelación para asegurar tu habitación. Confirmación inmediata, cancelación flexible."
 msgstr "Réservez à l'avance pour garantir votre chambre. Confirmation immédiate, annulation flexible."
+
+msgid "¿Cuándo nos visitas?"
+msgstr "Quand nous rendez-vous visite ?"
+
+msgid "Reserva directamente con nosotros y obtén las mejores condiciones. Sin intermediarios. Confirmación inmediata."
+msgstr "Réservez directement avec nous et bénéficiez des meilleures conditions. Sans intermédiaires. Confirmation immédiate."
+
+msgid "Comprobar disponibilidad"
+msgstr "Vérifier la disponibilité"
