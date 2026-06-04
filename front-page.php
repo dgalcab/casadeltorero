@@ -11,7 +11,7 @@ $go = fn($k) => $has_acf ? get_field($k, 'option') : null;
 
 <!-- ══════════ HERO ══════════ -->
 <?php
-$hero_video     = $gf('hero_video') ?: (home_url('/') . 'wp-content/uploads/2026/06/La-Casa-del-Torero_25mb.mp4');
+$hero_video     = $gf('hero_video') ?: (site_url('/') . 'wp-content/uploads/2026/06/La-Casa-del-Torero_25mb.mp4');
 $hero_eyebrow   = $gf('hero_eyebrow')   ?: 'Casa Rural · Hotel Boutique · Vejer, Cádiz';
 $hero_title     = $gf('hero_title')     ?: 'La Casa del Torero';
 $hero_subtitle  = $gf('hero_subtitle')  ?: 'Una finca histórica de 24 hectáreas entre olivos centenarios, a 11 km de las playas vírgenes de la Costa de la Luz.';
