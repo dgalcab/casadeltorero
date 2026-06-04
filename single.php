@@ -69,7 +69,7 @@ $whatsapp  = $go('social_whatsapp') ?: '34615508168';
     <?php the_post_thumbnail( 'full', [ 'class' => 'post-hero__img', 'alt' => get_the_title(), 'loading' => 'eager' ] ); ?>
   <?php else : ?>
     <img class="post-hero__img"
-         src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/galeria/exterior-1.jpg' ); ?>"
+         src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/galeria/g01.jpg' ); ?>"
          alt="<?php echo esc_attr( get_the_title() ); ?>">
   <?php endif; ?>
   <div class="post-hero__overlay"></div>
@@ -150,7 +150,7 @@ if ( $related->have_posts() ) : ?>
             <?php if ( has_post_thumbnail() ) : ?>
               <?php the_post_thumbnail( 'medium_large', [ 'loading' => 'lazy', 'alt' => get_the_title() ] ); ?>
             <?php else : ?>
-              <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/galeria/exterior-1.jpg' ); ?>"
+              <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/galeria/g01.jpg' ); ?>"
                    alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy">
             <?php endif; ?>
           </a>

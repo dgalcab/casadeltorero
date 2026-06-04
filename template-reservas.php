@@ -211,11 +211,13 @@ $use_cpt = $cpt_query->have_posts();
     <div class="res-room-grid">
       <?php if ($use_cpt) :
         while ($cpt_query->have_posts()) : $cpt_query->the_post();
-          $o_tag      = get_field('hab_eyebrow')  ?: '';
-          $o_price    = get_field('hab_price')    ?: '';
-          $o_size     = get_field('hab_size')     ?: '';
-          $o_capacity = get_field('hab_capacity') ?: '';
-          $o_ohbe     = get_field('hab_ohbe_id')  ?: '';
+          $o_tag      = get_field('hab_eyebrow')   ?: '';
+          $o_price    = get_field('hab_price')     ?: '';
+          $o_size     = get_field('hab_size')      ?: '';
+          $_o_beds    = get_field('hab_bed_types') ?: [];
+          $_o_bmap    = ['king'=>'King Size','dos_camas'=>'Dos camas','sofa_cama'=>'Sofá cama','matrimonial'=>'Matrimonial','individual'=>'Individual'];
+          $o_capacity = !empty($_o_beds) ? ($_o_bmap[$_o_beds[0]] ?? '') : '';
+          $o_ohbe     = get_field('hab_ohbe_id')   ?: '';
           $o_img      = get_the_post_thumbnail_url(null, 'space-card');
       ?>
         <div class="res-room-card reveal">

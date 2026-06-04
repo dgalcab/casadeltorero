@@ -245,7 +245,7 @@ function casadeltorero_handle_contact() {
              . "Personas: $guests\nLlegada: $checkin\nSalida: $checkout\n\n$message";
     $headers = [
         'Content-Type: text/plain; charset=UTF-8',
-        'Reply-To: ' . $name . ' <' . $email . '>',
+        'Reply-To: ' . preg_replace('/[\r\n\t]/', '', $name) . ' <' . $email . '>',
     ];
     wp_mail($to, $subject, $body, $headers);
 

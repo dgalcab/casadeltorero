@@ -51,7 +51,7 @@
             </a>
           <?php else : ?>
             <a href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">
-              <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/galeria/exterior-1.jpg' ); ?>"
+              <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/galeria/g01.jpg' ); ?>"
                    alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy">
             </a>
           <?php endif; ?>

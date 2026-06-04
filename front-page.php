@@ -157,7 +157,7 @@ $house_feats = $house_feats_raw
           <h3 class="modality-card__title">Reserva tu habitación</h3>
         </div>
         <p class="modality-card__price"><?php echo esc_html($rooms_price); ?> <span>/ habitación / noche</span></p>
-        <p class="modality-card__desc">Disfruta de La Casa del Torero a tu ritmo. Cada habitación incluye desayuno continental, acceso a todas las zonas comunes, piscina y los 24 km de campo de la finca.</p>
+        <p class="modality-card__desc">Disfruta de La Casa del Torero a tu ritmo. Cada habitación incluye desayuno continental, acceso a todas las zonas comunes, piscina y las 24 hectáreas de campo de la finca.</p>
         <ul class="modality-card__features">
           <?php foreach ($rooms_feats as $feat) : ?>
             <li class="modality-card__feat"><?php echo esc_html($feat); ?></li>
@@ -227,11 +227,13 @@ $house_feats = $house_feats_raw
         while ($hab_query->have_posts()) : $hab_query->the_post();
             $dc       = $delay_classes[$idx % 4] ?? '';
             $hab_img  = get_the_post_thumbnail_url(get_the_ID(), 'large') ?: ($hab_fallback_imgs[$idx] ?? $hab_fallback_imgs[0]);
-            $hab_tag  = $has_acf ? get_field('hab_eyebrow')  : '';
-            $hab_size = $has_acf ? get_field('hab_size')     : '';
-            $hab_cap  = $has_acf ? get_field('hab_capacity') : '';
-            $hab_price= $has_acf ? get_field('hab_price')    : '';
-            $hab_url  = get_permalink();
+            $hab_tag   = $has_acf ? get_field('hab_eyebrow')   : '';
+            $hab_size  = $has_acf ? get_field('hab_size')      : '';
+            $hab_beds  = $has_acf ? (get_field('hab_bed_types') ?: []) : [];
+            $_bed_map  = ['king'=>'King Size','dos_camas'=>'Dos camas','sofa_cama'=>'Sofá cama','matrimonial'=>'Matrimonial','individual'=>'Individual'];
+            $hab_cap   = !empty($hab_beds) ? ($_bed_map[$hab_beds[0]] ?? '') : '';
+            $hab_price = $has_acf ? get_field('hab_price')     : '';
+            $hab_url   = get_permalink();
     ?>
         <div class="space-card reveal <?php echo esc_attr($dc); ?>">
           <div class="space-card__img s<?php echo ($idx % 3) + 1; ?>">
