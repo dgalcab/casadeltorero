@@ -279,8 +279,6 @@ $fallback_hero = $slug_fallbacks[$slug] ?? ($img_base . '/espacios/hab-slide-1.j
 $gallery_fallbacks = [
     'suite-del-torero'       => [
         $img_base . '/espacios/suite-principal.jpg',
-        $img_base . '/espacios/suite-2.jpg',
-        $img_base . '/espacios/suite-3.jpg',
         $img_base . '/espacios/suite-bano.jpg',
     ],
     'doble-superior'         => [
