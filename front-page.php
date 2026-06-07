@@ -11,7 +11,7 @@ $go = fn($k) => $has_acf ? get_field($k, 'option') : null;
 
 <!-- ══════════ HERO ══════════ -->
 <?php
-$hero_video     = $gf('hero_video') ?: (site_url('/') . 'wp-content/uploads/2026/06/La-Casa-del-Torero_25mb.mp4');
+$hero_video     = $gf('hero_video') ?: 'https://new.lacasadeltorero.com/wp-content/uploads/2026/06/La-Casa-del-Torero_25mb.mp4';
 $hero_eyebrow   = $gf('hero_eyebrow')   ?: 'Casa Rural · Hotel Boutique · Vejer, Cádiz';
 $hero_title     = $gf('hero_title')     ?: 'La Casa del Torero';
 $hero_subtitle  = $gf('hero_subtitle')  ?: 'Una finca histórica de 24 hectáreas entre olivos centenarios, a 11 km de las playas vírgenes de la Costa de la Luz.';
@@ -107,8 +107,6 @@ $i3l = $gf('intro_item_3_label') ?: 'Modalidades';
 $i3v = $gf('intro_item_3_value') ?: 'Por habitación · Casa completa';
 $i4l = $gf('intro_item_4_label') ?: 'Ubicación';
 $i4v = $gf('intro_item_4_value') ?: 'Vejer de la Frontera, Cádiz';
-$i5l = $gf('intro_item_5_label') ?: 'Desayuno';
-$i5v = $gf('intro_item_5_value') ?: 'Siempre incluido';
 ?>
 <div class="intro-strip">
   <div class="container">
@@ -117,7 +115,6 @@ $i5v = $gf('intro_item_5_value') ?: 'Siempre incluido';
       <div class="intro-strip__item"><p class="intro-strip__label"><?php echo esc_html($i2l); ?></p><p class="intro-strip__value"><?php echo esc_html($i2v); ?></p></div>
       <div class="intro-strip__item"><p class="intro-strip__label"><?php echo esc_html($i3l); ?></p><p class="intro-strip__value"><?php echo esc_html($i3v); ?></p></div>
       <div class="intro-strip__item"><p class="intro-strip__label"><?php echo esc_html($i4l); ?></p><p class="intro-strip__value"><?php echo esc_html($i4v); ?></p></div>
-      <div class="intro-strip__item"><p class="intro-strip__label"><?php echo esc_html($i5l); ?></p><p class="intro-strip__value"><?php echo esc_html($i5v); ?></p></div>
     </div>
   </div>
 </div>
@@ -187,7 +184,7 @@ $house_feats = $house_feats_raw
           <?php endforeach; ?>
         </ul>
         <div class="modality-card__actions">
-          <a href="<?php echo esc_url(home_url('/contacto/')); ?>" class="btn btn--dark">Solicitar presupuesto</a>
+          <a href="mailto:<?php echo esc_attr(function_exists('get_field') ? (get_field('contact_email','option') ?: 'info@lacasadeltorero.com') : 'info@lacasadeltorero.com'); ?>" class="btn btn--dark">Solicitar presupuesto</a>
         </div>
       </div>
 
@@ -686,13 +683,13 @@ $default_testimonials = [
 <section id="reservas" class="booking">
   <div class="container">
     <div class="booking__header reveal">
-      <span class="eyebrow"><?php esc_html_e('Reservas', 'casadeltorero'); ?></span>
-      <h2 class="section-title"><?php esc_html_e('¿Cuándo nos visitas?', 'casadeltorero'); ?></h2>
+      <span class="eyebrow">Reservas</span>
+      <h2 class="section-title">¿Cuándo nos visitas?</h2>
       <div class="gold-rule"></div>
-      <p><?php esc_html_e('Reserva directamente con nosotros y obtén las mejores condiciones. Sin intermediarios. Confirmación inmediata.', 'casadeltorero'); ?></p>
+      <p>Reserva directamente con nosotros y obtén las mejores condiciones. Sin intermediarios. Confirmación inmediata.</p>
       <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem;">
-        <a href="<?php echo esc_url(home_url('/reservas/')); ?>" class="btn btn--gold"><?php esc_html_e('Comprobar disponibilidad', 'casadeltorero'); ?></a>
-        <a href="<?php echo esc_url(home_url('/contacto/')); ?>" class="btn btn--ghost"><?php esc_html_e('Contactar', 'casadeltorero'); ?></a>
+        <a href="<?php echo esc_url(home_url('/reservas/')); ?>" class="btn btn--gold">Comprobar disponibilidad</a>
+        <a href="<?php echo esc_url(home_url('/contacto/')); ?>" class="btn btn--ghost">Contactar</a>
       </div>
     </div>
   </div>
@@ -703,26 +700,16 @@ $default_testimonials = [
 <?php
 $faq_items = $go('faq_items');
 $default_faq = [
-    ['q' => '¿Se admiten mascotas?',
-     'a' => 'Sí, se admiten mascotas. El alojamiento acepta mascotas bajo petición previa y se hospedan de forma totalmente gratuita. Al contar la finca con 24 hectáreas de campo, es un entorno ideal para ellas.'],
-    ['q' => '¿Cuál es el horario de check-in y check-out?',
-     'a' => 'Check-in: de 15:00 a 19:00 horas. Check-out: de 06:00 a 11:30 horas.'],
-    ['q' => '¿Está incluido el desayuno?',
-     'a' => 'Sí, el desayuno continental está incluido de forma diaria y gratuita con la estancia. Quienes se han alojado destacan especialmente la calidad de los desayunos elaborados con detalle por los anfitriones. El horario del servicio es de 08:30 a 11:00 horas.'],
-    ['q' => '¿Hay un mínimo de noches?',
-     'a' => 'Las condiciones varían según la temporada y el tipo de reserva. Para el alquiler de la casa completa, el mínimo es una semana (7 noches). Para habitaciones individuales, el mínimo depende de las fechas seleccionadas en el motor de reservas.'],
-    ['q' => '¿Se puede alquilar la casa completa para eventos o celebraciones?',
-     'a' => 'Sí. El alquiler completo incluye la Suite, dos habitaciones dobles y el apartamento independiente (capacidad para unas 10 personas en 5 dormitorios), con acceso privado a los salones con chimenea, la gran cocina, el comedor y la piscina. Ideal para reuniones de amigos, familias o retiros en grupo.'],
-    ['q' => '¿La piscina está disponible todo el año?',
-     'a' => 'No. La finca dispone de una piscina exterior de temporada estival no climatizada. Permanece abierta únicamente durante los meses de verano.'],
-    ['q' => '¿Cuánto se tarda en llegar a la playa más cercana?',
-     'a' => 'La finca se sitúa a unos 11–15 km de las playas de la Costa de la Luz (El Palmar, Zahora, Conil). En coche, el trayecto se realiza en unos 15–20 minutos.'],
-    ['q' => '¿Hay aparcamiento en la finca?',
-     'a' => 'Sí, hay aparcamiento gratuito sin asistencia dentro de las instalaciones de la finca. No es necesario reservar plaza con antelación.'],
-    ['q' => '¿Cuál es la política de cancelación?',
-     'a' => 'Las condiciones de cancelación y el prepago varían según el tipo de alojamiento y la tarifa elegida. Consulta las condiciones específicas introduciendo las fechas exactas en el motor de reservas.'],
-    ['q' => '¿Hay WiFi en toda la finca?',
-     'a' => 'Sí, la finca dispone de WiFi gratuito accesible en las habitaciones, el apartamento y las principales zonas comunes, incluyendo los salones de estar y áreas aptas para teletrabajar.'],
+    ['q' => '¿Se admiten mascotas?',                                                'a' => '— Pendiente de confirmar con el propietario —'],
+    ['q' => '¿Cuál es el horario de check-in y check-out?',                        'a' => '— Pendiente de confirmar con el propietario —'],
+    ['q' => '¿Está incluido el desayuno?',                                          'a' => '— Pendiente de confirmar con el propietario —'],
+    ['q' => '¿Hay un mínimo de noches?',                                            'a' => '— Pendiente de confirmar con el propietario —'],
+    ['q' => '¿Se puede alquilar la casa completa para eventos o celebraciones?',   'a' => '— Pendiente de confirmar con el propietario —'],
+    ['q' => '¿La piscina está disponible todo el año?',                            'a' => '— Pendiente de confirmar con el propietario —'],
+    ['q' => '¿Cuánto se tarda en llegar a la playa más cercana?',                  'a' => 'Las playas vírgenes de la Costa de la Luz están a tan solo 11 km. En coche son aproximadamente 15 minutos hasta Caños de Meca y El Palmar.'],
+    ['q' => '¿Hay aparcamiento en la finca?',                                      'a' => 'Sí, la finca dispone de aparcamiento privado gratuito para todos los huéspedes.'],
+    ['q' => '¿Cuál es la política de cancelación?',                               'a' => '— Pendiente de confirmar con el propietario —'],
+    ['q' => '¿Hay WiFi en toda la finca?',                                         'a' => 'Sí, la finca dispone de WiFi gratuito de alta velocidad en todas las habitaciones y zonas comunes.'],
 ];
 $faq_wa_num = function_exists('get_field') ? (get_field('social_whatsapp', 'option') ?: '34615508168') : '34615508168';
 ?>
