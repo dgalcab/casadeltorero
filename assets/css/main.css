@@ -95,6 +95,24 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 #site-footer .site-logo:hover { color: var(--gold-lt); }
 
 .primary-nav { display: flex; align-items: center; gap: 2.25rem; }
+
+/* ── Language switcher in nav ── */
+.nav-lang { display: flex; align-items: center; }
+.nav-lang a,
+.nav-lang span,
+.nav-lang li { font-size: .6rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.75); text-decoration: none; transition: color var(--ease); }
+.nav-lang a:hover { color: var(--white); }
+.nav-lang ul { display: flex; gap: .6rem; list-style: none; margin: 0; padding: 0; align-items: center; }
+.nav-lang li { display: flex; align-items: center; }
+.nav-lang li + li::before { content: '·'; margin-right: .6rem; color: rgba(255,255,255,.35); font-size: .55rem; }
+.nav-lang .active,
+.nav-lang .wpml-ls-current-language a,
+.nav-lang [aria-current] { color: var(--gold); pointer-events: none; }
+#site-header.scrolled .nav-lang a,
+#site-header.scrolled .nav-lang span { color: var(--muted); }
+#site-header.scrolled .nav-lang a:hover { color: var(--blue); }
+#site-header.scrolled .nav-lang .active,
+#site-header.scrolled .nav-lang .wpml-ls-current-language a { color: var(--gold); }
 .primary-nav__list { display: contents; list-style: none; margin: 0; padding: 0; }
 .primary-nav__list li { display: contents; }
 .primary-nav__list li a,
@@ -548,8 +566,11 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
   .primary-nav__list li { display:block; }
   .primary-nav__list li a,
   .primary-nav > a:not(.nav-cta) { font-size:.875rem; color:rgba(255,255,255,.75); }
-  .nav-cta { margin-top:1rem; padding:.875rem 2rem; }
+  .nav-cta { margin-top:.5rem; padding:.875rem 2rem; }
   .nav-toggle { display:flex; }
+  .nav-lang { order:1; margin-top:.25rem; }
+  .nav-lang a, .nav-lang span, .nav-lang li { font-size:.75rem; color:rgba(255,255,255,.7); }
+  .nav-lang .active, .nav-lang .wpml-ls-current-language a, .nav-lang [aria-current] { color:var(--gold-lt); }
   .about__inner,.finca__inner,.experience__inner,.location__inner { grid-template-columns:1fr; }
   .about__image-accent { right:0; bottom:-1.5rem; width:44%; border-width:4px; }
   .testimonials__track { grid-template-columns:1fr; }

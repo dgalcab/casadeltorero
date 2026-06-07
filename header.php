@@ -38,6 +38,7 @@
           },
       ]);
       ?>
+      <div class="nav-lang"><?php echo do_shortcode('[language-switcher]'); ?></div>
       <a href="<?php echo esc_url(home_url('/reservas/')); ?>" class="btn btn--gold nav-cta"><?php esc_html_e('Reservar', 'casadeltorero'); ?></a>
     </nav>
   </div>
