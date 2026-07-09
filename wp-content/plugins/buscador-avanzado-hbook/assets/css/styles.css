@@ -1,0 +1,696 @@
+/*
+ * Buscador Avanzado HBook — estilos
+ * Todo el CSS está encapsulado bajo .bah-wrapper para no colisionar
+ * con el tema activo. Mobile-first.
+ */
+
+.bah-wrapper {
+  --bah-primary: #fdcf6d;
+  --bah-primary-hover: #fcb928;
+  --bah-ink: #1f2430;
+  --bah-ink-soft: #5b6270;
+  --bah-line: #e7e8ec;
+  --bah-surface: #ffffff;
+  --bah-surface-muted: #f7f7f9;
+  --bah-radius: 12px;
+  --bah-radius-lg: 18px;
+  --bah-shadow: 0 4px 14px rgba(20, 20, 30, 0.06);
+  --bah-shadow-hover: 0 10px 24px rgba(20, 20, 30, 0.12);
+  --bah-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  box-sizing: border-box;
+  font-family: var(--bah-font);
+  color: var(--bah-ink);
+  position: relative;
+  line-height: 1.45;
+}
+
+.bah-wrapper *,
+.bah-wrapper *::before,
+.bah-wrapper *::after {
+  box-sizing: border-box;
+}
+
+.bah-wrapper ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bah-wrapper button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.bah-wrapper a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ───────────────────────── Layout base ───────────────────────── */
+
+.bah-layout {
+  display: block;
+  width: 100%;
+}
+
+.bah-results {
+  width: 100%;
+}
+
+.bah-results__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.bah-results__count {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--bah-ink-soft);
+  font-weight: 500;
+}
+
+/* ───────────────────────── Botones ───────────────────────── */
+
+.bah-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background-color 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease, color 0.18s ease;
+  white-space: nowrap;
+}
+
+.bah-btn:active {
+  transform: scale(0.97);
+}
+
+.bah-btn--primary {
+  background: var(--bah-primary);
+  color: #2b2205;
+}
+
+.bah-btn--primary:hover {
+  background: var(--bah-primary-hover);
+}
+
+.bah-btn--outline {
+  background: var(--bah-surface);
+  color: var(--bah-ink);
+  border: 1.5px solid var(--bah-line);
+}
+
+.bah-btn--outline:hover {
+  border-color: var(--bah-primary-hover);
+  color: var(--bah-primary-hover);
+}
+
+.bah-btn--ghost {
+  background: transparent;
+  color: var(--bah-ink-soft);
+  padding: 12px 14px;
+}
+
+.bah-btn--ghost:hover {
+  color: var(--bah-ink);
+  text-decoration: underline;
+}
+
+.bah-loadmore-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+/* ───────────────────────── Botón flotante móvil ───────────────────────── */
+
+.bah-mobile-toggle {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bah-ink);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 22px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  min-height: 48px;
+}
+
+.bah-mobile-toggle:hover {
+  background: #303647;
+}
+
+.bah-mobile-toggle__icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.bah-mobile-toggle__badge {
+  background: var(--bah-primary);
+  color: #2b2205;
+  font-size: 0.75rem;
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 992px) {
+  .bah-mobile-toggle {
+    display: none;
+  }
+}
+
+/* ───────────────────────── Overlay (off-canvas móvil) ───────────────────────── */
+
+.bah-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 17, 24, 0.5);
+  z-index: 70;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.bah-overlay.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ───────────────────────── Panel de filtros ───────────────────────── */
+
+.bah-filters {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(360px, 88vw);
+  background: var(--bah-surface);
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: -12px 0 32px rgba(0, 0, 0, 0.18);
+}
+
+.bah-filters.is-open {
+  transform: translateX(0);
+}
+
+.bah-filters__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--bah-line);
+  flex-shrink: 0;
+}
+
+.bah-filters__title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.bah-filters__close {
+  background: var(--bah-surface-muted);
+  border: none;
+  border-radius: 999px;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bah-ink-soft);
+}
+
+.bah-filters__close:hover {
+  background: var(--bah-line);
+  color: var(--bah-ink);
+}
+
+.bah-filters__close svg {
+  width: 16px;
+  height: 16px;
+}
+
+.bah-filters__scroll {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 8px 20px 20px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.bah-filters__empty {
+  color: var(--bah-ink-soft);
+  font-size: 0.9rem;
+}
+
+.bah-filters__footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px;
+  border-top: 1px solid var(--bah-line);
+  flex-shrink: 0;
+  background: var(--bah-surface);
+}
+
+.bah-filters__footer .bah-btn--primary {
+  flex: 1;
+}
+
+.bah-filter-group {
+  border: none;
+  margin: 0 0 22px;
+  padding: 0;
+}
+
+.bah-filter-group__title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--bah-ink-soft);
+  margin-bottom: 12px;
+  padding: 0;
+}
+
+.bah-filter-group__options {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Checkbox elegante */
+
+.bah-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 6px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.15s ease;
+  user-select: none;
+}
+
+.bah-checkbox:hover {
+  background: var(--bah-surface-muted);
+}
+
+.bah-checkbox__input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.bah-checkbox__box {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  border: 1.8px solid var(--bah-line);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bah-surface);
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.bah-checkbox__tick {
+  width: 14px;
+  height: 14px;
+  color: #2b2205;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.12s ease, transform 0.12s ease;
+}
+
+.bah-checkbox__input:checked + .bah-checkbox__box {
+  background: var(--bah-primary);
+  border-color: var(--bah-primary);
+}
+
+.bah-checkbox__input:checked + .bah-checkbox__box .bah-checkbox__tick {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.bah-checkbox__input:focus-visible + .bah-checkbox__box {
+  outline: 2px solid var(--bah-primary-hover);
+  outline-offset: 2px;
+}
+
+.bah-checkbox__label {
+  color: var(--bah-ink);
+}
+
+@media (min-width: 992px) {
+  .bah-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    align-items: start;
+    gap: 32px;
+  }
+
+  .bah-filters {
+    position: sticky;
+    top: 24px;
+    right: auto;
+    height: auto;
+    max-height: calc(100vh - 48px);
+    width: 100%;
+    transform: none;
+    box-shadow: var(--bah-shadow);
+    border: 1px solid var(--bah-line);
+    border-radius: var(--bah-radius-lg);
+  }
+
+  .bah-filters__close {
+    display: none;
+  }
+
+  .bah-filters__footer .bah-filters__apply {
+    display: none;
+  }
+}
+
+/* ───────────────────────── Grid de resultados ───────────────────────── */
+
+.bah-grid-wrap {
+  position: relative;
+}
+
+.bah-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  transition: opacity 0.2s ease;
+}
+
+@media (min-width: 640px) {
+  .bah-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .bah-grid.bah-grid--cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bah-grid.bah-grid--cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .bah-grid.bah-grid--cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .bah-grid.bah-grid--cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.bah-grid.is-loading {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* ───────────────────────── Tarjeta de alojamiento ───────────────────────── */
+
+.bah-card {
+  background: var(--bah-surface);
+  border-radius: var(--bah-radius);
+  box-shadow: var(--bah-shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  border: 1px solid var(--bah-line);
+  animation: bah-card-in 0.35s ease both;
+}
+
+@keyframes bah-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bah-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--bah-shadow-hover);
+}
+
+.bah-card__media {
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--bah-surface-muted);
+}
+
+.bah-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.bah-card:hover .bah-card__img {
+  transform: scale(1.05);
+}
+
+.bah-card__img--placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #f0f1f4, #e4e5ea);
+}
+
+.bah-card__body {
+  padding: 16px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.bah-card__title {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.bah-card__title a:hover {
+  color: var(--bah-primary-hover);
+}
+
+.bah-card__excerpt {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--bah-ink-soft);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.bah-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 2px 0 4px;
+}
+
+.bah-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #7a5c04;
+  background: #fff4da;
+  border: 1px solid #fbe4ac;
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.bah-card__cta {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--bah-primary);
+  color: #2b2205;
+  font-weight: 700;
+  font-size: 0.92rem;
+  border-radius: 10px;
+  padding: 11px 16px;
+  transition: background-color 0.18s ease, transform 0.12s ease;
+}
+
+.bah-card__cta:hover {
+  background: var(--bah-primary-hover);
+}
+
+.bah-card__cta:active {
+  transform: scale(0.98);
+}
+
+.bah-card__cta-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.18s ease;
+}
+
+.bah-card__cta:hover .bah-card__cta-icon {
+  transform: translateX(2px);
+}
+
+/* ───────────────────────── Skeleton loading ───────────────────────── */
+
+.bah-skeleton-card {
+  border-radius: var(--bah-radius);
+  overflow: hidden;
+  background: var(--bah-surface);
+  border: 1px solid var(--bah-line);
+  box-shadow: var(--bah-shadow);
+}
+
+.bah-skeleton-card__media {
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(100deg, #eef0f3 30%, #f8f9fb 50%, #eef0f3 70%);
+  background-size: 200% 100%;
+  animation: bah-shimmer 1.3s ease-in-out infinite;
+}
+
+.bah-skeleton-card__body {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bah-skeleton-line {
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(100deg, #eef0f3 30%, #f8f9fb 50%, #eef0f3 70%);
+  background-size: 200% 100%;
+  animation: bah-shimmer 1.3s ease-in-out infinite;
+}
+
+.bah-skeleton-line--title {
+  width: 70%;
+  height: 16px;
+}
+
+.bah-skeleton-line--sm {
+  width: 45%;
+}
+
+@keyframes bah-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ───────────────────────── Spinner overlay ───────────────────────── */
+
+.bah-spinner-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding-top: 60px;
+  pointer-events: none;
+}
+
+.bah-spinner {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 3px solid var(--bah-line);
+  border-top-color: var(--bah-primary-hover);
+  animation: bah-spin 0.7s linear infinite;
+}
+
+@keyframes bah-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.bah-spinner-overlay__text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--bah-ink-soft);
+  background: var(--bah-surface);
+  padding: 4px 12px;
+  border-radius: 999px;
+  box-shadow: var(--bah-shadow);
+}
+
+/* ───────────────────────── Estado vacío ───────────────────────── */
+
+.bah-empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 56px 20px;
+  color: var(--bah-ink-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.bah-empty-state__icon {
+  width: 48px;
+  height: 48px;
+  color: var(--bah-line);
+}
+
+.bah-empty-state p {
+  margin: 0;
+  max-width: 320px;
+}
+
+/* Cuando el estado vacío se muestra dentro del wrap, ocupa el ancho completo */
+.bah-grid-wrap > [data-bah-empty] {
+  width: 100%;
+}
