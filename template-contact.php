@@ -272,6 +272,7 @@ $form_error = isset($_GET['error']) && $_GET['error'] === '1';
         <form class="contact-form" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post">
           <?php wp_nonce_field('casadeltorero_contact', '_contact_nonce'); ?>
           <input type="hidden" name="action" value="casadeltorero_contact">
+          <input type="hidden" name="cf_ts" value="<?php echo esc_attr(time()); ?>">
           <div style="display:none!important" aria-hidden="true">
             <label for="cf_website"><?php esc_html_e('No rellenar', 'casadeltorero'); ?></label>
             <input type="text" id="cf_website" name="cf_website" tabindex="-1" autocomplete="off">

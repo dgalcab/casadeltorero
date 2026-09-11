@@ -438,8 +438,27 @@ function casadeltorero_handle_contact() {
         wp_die('Solicitud no válida.', 403);
     }
 
+    /* Límite de envíos por IP: máximo 5 cada 15 minutos */
+    $ip      = sanitize_text_field($_SERVER['REMOTE_ADDR'] ?? '');
+    $rl_key  = 'contact_rl_' . md5($ip);
+    $rl_count = (int) get_transient($rl_key);
+    if ($rl_count >= 5) {
+        wp_die('Demasiadas solicitudes. Espera unos minutos antes de volver a escribirnos.', 429);
+    }
+    set_transient($rl_key, $rl_count + 1, 15 * MINUTE_IN_SECONDS);
+
     /* Honeypot antispam */
     if (!empty($_POST['cf_website'])) {
+        wp_redirect(home_url('/contacto/?sent=1'));
+        exit;
+    }
+
+    /* Tiempo mínimo de relleno: un bot que envía el formulario al instante
+       tarda menos de 3 segundos en "rellenarlo". Fallamos en silencio,
+       igual que el honeypot, para no delatar el filtro. */
+    $submitted_at = (int) ($_POST['cf_ts'] ?? 0);
+    $elapsed      = time() - $submitted_at;
+    if ($submitted_at <= 0 || $elapsed < 3 || $elapsed > 3 * HOUR_IN_SECONDS) {
         wp_redirect(home_url('/contacto/?sent=1'));
         exit;
     }
