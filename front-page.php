@@ -683,13 +683,17 @@ $default_testimonials = [
 
 
 <!-- ══════════ RESERVAS CTA ══════════ -->
+<?php
+$booking_title = $gf('booking_title') ?: __('¿Cuándo nos visitas?', 'casadeltorero');
+$booking_text  = $gf('booking_text')  ?: __('Reserva directamente con nosotros y obtén las mejores condiciones. Sin intermediarios. Confirmación inmediata.', 'casadeltorero');
+?>
 <section id="reservas" class="booking">
   <div class="container">
     <div class="booking__header reveal">
       <span class="eyebrow"><?php esc_html_e('Reservas', 'casadeltorero'); ?></span>
-      <h2 class="section-title"><?php esc_html_e('¿Cuándo nos visitas?', 'casadeltorero'); ?></h2>
+      <h2 class="section-title"><?php echo esc_html($booking_title); ?></h2>
       <div class="gold-rule"></div>
-      <p><?php esc_html_e('Reserva directamente con nosotros y obtén las mejores condiciones. Sin intermediarios. Confirmación inmediata.', 'casadeltorero'); ?></p>
+      <p><?php echo esc_html($booking_text); ?></p>
       <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem;">
         <a href="<?php echo esc_url(home_url('/reservas/')); ?>" class="btn btn--gold"><?php esc_html_e('Comprobar disponibilidad', 'casadeltorero'); ?></a>
         <a href="<?php echo esc_url(home_url('/contacto/')); ?>" class="btn btn--ghost"><?php esc_html_e('Contactar', 'casadeltorero'); ?></a>
