@@ -534,38 +534,61 @@ $img_base_cta = get_template_directory_uri() . '/assets/img';
 </section>
 
 
+<?php
+/* HotelRoom JSON-LD: mismos datos (precio, superficie, comodidades, galería) que se muestran arriba */
+$room_images = [];
+if (!empty($gallery)) {
+    foreach ($gallery as $g_item) {
+        $g_img = is_array($g_item) ? ($g_item['hab_image'] ?? null) : null;
+        $g_src = is_array($g_img) ? ($g_img['url'] ?? '') : $g_img;
+        if ($g_src) $room_images[] = $g_src;
+    }
+} else {
+    $room_images = $fallback_slides;
+}
+if (!$room_images && $hero_img) $room_images[] = $hero_img;
+
+$room_amenities = [];
+foreach ($amenities as $a_key) {
+    if (isset($amenity_map[$a_key])) {
+        $room_amenities[] = ['@type' => 'LocationFeatureSpecification', 'name' => $amenity_map[$a_key]['label'], 'value' => true];
+    }
+}
+
+$room_schema = [
+    '@context' => 'https://schema.org',
+    '@type'    => 'HotelRoom',
+    'name'     => get_the_title(),
+    'url'      => get_permalink(),
+    'isPartOf' => ['@type' => 'LodgingBusiness', 'name' => 'La Casa del Torero', 'url' => home_url('/')],
+];
+$room_desc = trim(wp_strip_all_tags($desc_long));
+if ($room_desc) $room_schema['description'] = wp_trim_words($room_desc, 60);
+if ($room_images) $room_schema['image'] = array_values($room_images);
+if ($room_amenities) $room_schema['amenityFeature'] = $room_amenities;
+if ($size && preg_match('/(\d+(?:[.,]\d+)?)/', $size, $m_size)) {
+    $room_schema['floorSize'] = ['@type' => 'QuantitativeValue', 'value' => (float) str_replace(',', '.', $m_size[1]), 'unitCode' => 'MTK'];
+}
+if ($price && preg_match('/(\d+(?:[.,]\d+)?)/', $price, $m_price)) {
+    $room_price = str_replace(',', '.', $m_price[1]);
+    $room_schema['offers'] = [
+        '@type'         => 'Offer',
+        'url'           => get_permalink(),
+        'priceCurrency' => 'EUR',
+        'price'         => $room_price,
+        'availability'  => 'https://schema.org/InStock',
+        'priceSpecification' => [
+            '@type'         => 'UnitPriceSpecification',
+            'price'         => $room_price,
+            'priceCurrency' => 'EUR',
+            'unitCode'      => 'DAY',
+        ],
+    ];
+}
+printf('<script type="application/ld+json">%s</script>' . "\n", wp_json_encode($room_schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+?>
+
 <?php endwhile; endif; ?>
 
-
-<script>
-(function() {
-  /* Gallery drag-scroll */
-  var track = document.getElementById('habGalleryTrack');
-  if (track) {
-    var isDown = false, startX, scrollLeft;
-    track.addEventListener('mousedown', function(e) {
-      isDown = true; track.classList.add('dragging');
-      startX = e.pageX - track.offsetLeft;
-      scrollLeft = track.scrollLeft;
-    });
-    document.addEventListener('mouseup', function() { isDown = false; track.classList.remove('dragging'); });
-    track.addEventListener('mousemove', function(e) {
-      if (!isDown) return;
-      e.preventDefault();
-      var x = e.pageX - track.offsetLeft;
-      track.scrollLeft = scrollLeft - (x - startX) * 1.4;
-    });
-  }
-
-  /* Reveal on scroll */
-  var reveals = document.querySelectorAll('.reveal');
-  var io = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(function(el) { io.observe(el); });
-})();
-</script>
 
 <?php get_footer(); ?>
