@@ -14,6 +14,9 @@ $wa_num   = preg_replace('/\D/', '', $go('social_whatsapp') ?: '34615508168');
 $wa_url   = 'https://wa.me/' . $wa_num;
 $instagram = $go('social_instagram') ?: 'https://www.instagram.com/casadeltorerovejer/';
 $facebook  = $go('social_facebook')  ?: 'https://www.facebook.com/casadeltorerovejer';
+
+$form_sent  = isset($_GET['sent'])  && $_GET['sent']  === '1';
+$form_error = isset($_GET['error']) && $_GET['error'] === '1';
 ?>
 
 <style>
@@ -141,6 +144,20 @@ $facebook  = $go('social_facebook')  ?: 'https://www.facebook.com/casadeltorerov
 .contact-form__submit { grid-column: 1 / -1; }
 .contact-form__submit .btn { width: 100%; justify-content: center; margin-top: .5rem; padding: 1.1rem 2rem; }
 
+.contact-form-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.75rem;
+  font-size: .875rem;
+  line-height: 1.6;
+  border: 1px solid;
+}
+.contact-form-notice svg { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; }
+.contact-form-notice--success { background: #f3f7f1; border-color: #a9c9a0; color: #2f5233; }
+.contact-form-notice--error   { background: #fbf2f0; border-color: #e0a9a0; color: #7a2f24; }
+
 /* ── Map ── */
 .contact-map-section { background: var(--white); padding: 0; }
 .contact-map-section iframe { display: block; width: 100%; height: clamp(300px,40vw,480px); border: none; }
@@ -236,6 +253,18 @@ $facebook  = $go('social_facebook')  ?: 'https://www.facebook.com/casadeltorerov
       <div class="contact-form-wrap reveal d1">
         <h2><?php esc_html_e('Envíanos un mensaje', 'casadeltorero'); ?></h2>
         <p class="form-lead"><?php esc_html_e('Cuéntanos qué fechas te interesan y cualquier detalle especial. Te responderemos con disponibilidad y una propuesta personalizada.', 'casadeltorero'); ?></p>
+
+        <?php if ($form_sent) : ?>
+          <div class="contact-form-notice contact-form-notice--success" role="status">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>
+            <span><?php esc_html_e('¡Gracias! Hemos recibido tu mensaje correctamente. Te responderemos en menos de 24 horas.', 'casadeltorero'); ?></span>
+          </div>
+        <?php elseif ($form_error) : ?>
+          <div class="contact-form-notice contact-form-notice--error" role="alert">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span><?php esc_html_e('No hemos podido enviar tu mensaje. Revisa que el nombre y el email sean correctos e inténtalo de nuevo.', 'casadeltorero'); ?></span>
+          </div>
+        <?php endif; ?>
 
         <?php if (function_exists('wpforms_display')) :
           echo do_shortcode('[wpforms id="contact"]');

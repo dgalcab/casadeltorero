@@ -102,9 +102,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { passive: true });
   })();
 
-  // ── Habitacion gallery slider drag ──
+  // ── Habitacion gallery slider drag (#habGalleryTrack) ──
   (function () {
-    var s = document.querySelector('.hab-gallery-slider');
+    var s = document.getElementById('habGalleryTrack');
     if (!s) return;
     var down = false, sx = 0, sl = 0;
     s.addEventListener('mousedown', function (e) { down = true; s.classList.add('dragging'); sx = e.pageX; sl = s.scrollLeft; });

@@ -597,11 +597,6 @@ h1,h2,h3,h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
 .hab-features { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
 .hab-features li { display: flex; align-items: center; gap: .75rem; font-size: .9375rem; color: var(--text); }
 .hab-features li::before { content: ''; width: 18px; height: 2px; background: var(--gold); flex-shrink: 0; }
-.hab-gallery-slider { display: flex; gap: 6px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; cursor: grab; margin-top: 3rem; }
-.hab-gallery-slider::-webkit-scrollbar { display: none; }
-.hab-gallery-slider.dragging { cursor: grabbing; scroll-snap-type: none; }
-.hab-gallery-slider div { flex: 0 0 clamp(260px,40vw,520px); height: clamp(220px,35vw,400px); overflow: hidden; scroll-snap-align: start; }
-.hab-gallery-slider div img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .hab-sidebar { background: var(--white); border: 1px solid var(--border); padding: 2rem; }
 .hab-sidebar__price { font-size: 2rem; font-weight: 700; color: var(--blue); margin-bottom: .5rem; }
 .hab-sidebar__price span { font-size: .875rem; font-weight: 400; color: var(--muted); }

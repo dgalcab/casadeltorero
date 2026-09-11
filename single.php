@@ -60,7 +60,7 @@ $go        = fn( $k ) => $has_acf ? get_field( $k, 'option' ) : null;
 
 $cta_title = $go('cta_title') ?: '¿Lista para vivir la experiencia?';
 $cta_text  = $go('cta_text')  ?: 'Reserva tu estancia en La Casa del Torero. Contacta con nosotros y te preparamos una propuesta a medida.';
-$whatsapp  = $go('social_whatsapp') ?: '34615508168';
+$whatsapp  = preg_replace('/\D/', '', $go('social_whatsapp') ?: '34615508168');
 ?>
 
 <!-- ══ HERO ══ -->
